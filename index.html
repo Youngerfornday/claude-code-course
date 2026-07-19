@@ -260,6 +260,33 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 .author::before{content:"";width:34px;height:1px;background:var(--grad);flex:none}
 .author b{color:var(--text);font-weight:600;letter-spacing:.12em}
 
+/* ---------- cover: how to move through the deck ---------- */
+.startcue{display:inline-flex;align-items:center;gap:11px;margin-top:40px;
+  padding:10px 18px 10px 13px;border:1px solid var(--border-ui);border-radius:999px;
+  background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  font-size:13px;letter-spacing:.02em;color:var(--muted);white-space:nowrap}
+.startcue .cue-touch{display:none}
+.startcue .cue-keys{display:inline-flex;align-items:center;gap:9px}
+.startcue kbd{font-family:var(--mono);font-size:11px;line-height:1;color:var(--text);
+  border:1px solid var(--border-ui);border-radius:6px;padding:5px 7px;background:rgba(255,255,255,.05)}
+/* a dot travelling a short track reads as "swipe" without a hand illustration */
+.cue-swipe{position:relative;width:30px;height:14px;flex:none;border-radius:999px;
+  background:rgba(255,255,255,.07);overflow:hidden}
+.cue-swipe i{position:absolute;top:3px;left:3px;width:8px;height:8px;border-radius:50%;
+  background:var(--grad);animation:cueswipe 2.1s var(--ease) infinite}
+@keyframes cueswipe{
+  0%,8%{transform:translateX(0);opacity:.35}
+  45%{transform:translateX(16px);opacity:1}
+  85%,100%{transform:translateX(0);opacity:.35}
+}
+@media (hover:none){
+  .startcue .cue-keys{display:none}
+  .startcue .cue-touch{display:inline-flex;align-items:center;gap:11px}
+}
+@media (max-width:620px){
+  .startcue{margin-top:30px;font-size:12.5px;padding:9px 16px 9px 11px;white-space:normal}
+}
+
 /* cards */
 .grid{display:grid;gap:16px;margin-top:44px}
 .g2{grid-template-columns:repeat(2,1fr)}
@@ -493,6 +520,20 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <p class="author fu" style="--i:2">
         <span class="en">A course by</span><span class="ru">Автор курса</span><span class="uk">Автор курсу</span>
         <b>Oleg Osypenko</b>
+      </p>
+      <p class="startcue fu" style="--i:3">
+        <span class="cue-touch">
+          <span class="cue-swipe" aria-hidden="true"><i></i></span>
+          <span class="en">Swipe to move between slides</span>
+          <span class="ru">Листайте слайды свайпом</span>
+          <span class="uk">Гортайте слайди свайпом</span>
+        </span>
+        <span class="cue-keys">
+          <span aria-hidden="true"><kbd>←</kbd> <kbd>→</kbd></span>
+          <span class="en">to move between slides</span>
+          <span class="ru">листать слайды</span>
+          <span class="uk">гортати слайди</span>
+        </span>
       </p>
     </div>
   </section>
