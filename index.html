@@ -625,7 +625,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div><span class="cm"># <span class="en">terminal — one-shot, scriptable</span><span class="ru">терминал — разово, для скриптов</span><span class="uk">термінал — разово, для скриптів</span></span></div>
 <div><span class="pp">$</span> claude -p <span class="ss">"summarize what changed in the last 10 commits"</span></div>
 <div><span class="cm"># <span class="en">GitHub — right in the issue thread</span><span class="ru">GitHub — прямо в треде issue</span><span class="uk">GitHub — прямо в треді issue</span></span></div>
-<div>  <span class="hl">@claude</span> this test is flaky on CI — find out why</div>
+<div>  <span class="pp">@claude</span> this test is flaky on CI — find out why</div>
       </div>
     </div>
   </section>
@@ -659,7 +659,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div><span class="ok">✓ Claude Code</span></div>
 <div>  <span class="hl">●</span> <span class="en">read auth.service.ts · ran the login flow · timed it</span><span class="ru">прочитал auth.service.ts · прогнал вход · замерил</span><span class="uk">прочитав auth.service.ts · прогнав вхід · заміряв</span></div>
 <div>  <span class="hl">●</span> <span class="en">findUser() runs 3× per request — no memoization</span><span class="ru">findUser() вызывается 3× за запрос — нет мемоизации</span><span class="uk">findUser() викликається 3× за запит — немає мемоізації</span></div>
-<div>  <span class="ok">✓</span> <span class="en">840ms → 190ms. Want the diff?</span><span class="ru">840ms → 190ms. Показать дифф?</span><span class="uk">840ms → 190ms. Показати диф?</span></div>
+<div>  <span class="ok">✓</span> <span class="en">Memoized it — 840ms → 190ms. Want the diff?</span><span class="ru">Замемоизировал — 840ms → 190ms. Показать дифф?</span><span class="uk">Замемоізував — 840ms → 190ms. Показати диф?</span></div>
       </div>
     </div>
   </section>
@@ -698,7 +698,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div><span class="hl">●</span> <span class="cm">1 · <span class="en">understand</span><span class="ru">понять</span><span class="uk">зрозуміти</span></span>  <span class="en">timezone bug, EU only, invoices</span><span class="ru">баг таймзоны, только EU, счета</span><span class="uk">баг таймзони, лише EU, рахунки</span></div>
 <div><span class="hl">●</span> <span class="cm">2 · <span class="en">explore</span><span class="ru">изучить</span><span class="uk">вивчити</span></span>     <span class="en">read invoice.ts, date-utils.ts, 2 tests</span><span class="ru">читаю invoice.ts, date-utils.ts, 2 теста</span><span class="uk">читаю invoice.ts, date-utils.ts, 2 тести</span></div>
 <div><span class="hl">●</span> <span class="cm">3 · <span class="en">act</span><span class="ru">действовать</span><span class="uk">діяти</span></span>        <span class="en">toLocaleDateString() used UTC — switched to user tz</span><span class="ru">toLocaleDateString() брал UTC — перевёл на tz юзера</span><span class="uk">toLocaleDateString() брав UTC — перевів на tz юзера</span></div>
-<div><span class="hl">●</span> <span class="cm">4 · <span class="en">verify</span><span class="ru">проверить</span><span class="uk">перевірити</span></span>     npm test → 41/41 <span class="ok">✓</span></div>
+<div><span class="hl">●</span> <span class="cm">4 · <span class="en">verify</span><span class="ru">проверить</span><span class="uk">перевірити</span></span>     npm test → 40/41 <span class="bad">✗</span> <span class="en">one snapshot still on UTC</span><span class="ru">один снапшот всё ещё в UTC</span><span class="uk">один снапшот усе ще в UTC</span></div>
+<div><span class="hl">●</span> <span class="cm">5 · <span class="en">iterate</span><span class="ru">повторить</span><span class="uk">повторити</span></span>    <span class="en">updated the snapshot · npm test → 41/41</span><span class="ru">обновил снапшот · npm test → 41/41</span><span class="uk">оновив снапшот · npm test → 41/41</span> <span class="ok">✓</span></div>
 <div><span class="ok">✓</span> <span class="en">One file changed. Review the diff?</span><span class="ru">Изменён один файл. Посмотрите дифф?</span><span class="uk">Змінено один файл. Переглянути диф?</span></div>
       </div>
     </div>
@@ -945,7 +946,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <span class="exlab">/init</span>
 <div><span class="pp">&gt;</span> /init</div>
 <div><span class="hl">●</span> <span class="en">Scanning: package.json, tsconfig, 214 source files…</span><span class="ru">Сканирую: package.json, tsconfig, 214 файлов исходников…</span><span class="uk">Сканую: package.json, tsconfig, 214 вихідних файлів…</span></div>
-<div><span class="hl">●</span> <span class="en">Found: pnpm, Next.js 15, Prisma, Vitest, strict TS</span><span class="ru">Нашёл: pnpm, Next.js 15, Prisma, Vitest, strict TS</span><span class="uk">Знайшов: pnpm, Next.js 15, Prisma, Vitest, strict TS</span></div>
+<div><span class="hl">●</span> <span class="en">Found: npm, Next.js 15, Prisma, Vitest, strict TS</span><span class="ru">Нашёл: npm, Next.js 15, Prisma, Vitest, strict TS</span><span class="uk">Знайшов: npm, Next.js 15, Prisma, Vitest, strict TS</span></div>
 <div><span class="ok">✓</span> <span class="en">Wrote CLAUDE.md — 34 lines. Read it and fix what I got wrong.</span><span class="ru">Создал CLAUDE.md — 34 строки. Прочитайте и поправьте, где я ошибся.</span><span class="uk">Створив CLAUDE.md — 34 рядки. Прочитайте й виправте, де я помилився.</span></div>
       </div>
     </div>
@@ -1277,9 +1278,9 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div class="ln" style="--i:0">{</div>
 <div class="ln" style="--i:1">  <span class="kk">"hooks"</span>: {</div>
 <div class="ln" style="--i:2">    <span class="kk">"PostToolUse"</span>: [{</div>
-<div class="ln" style="--i:3">      <span class="kk">"type"</span>: <span class="ss">"command"</span>,</div>
-<div class="ln" style="--i:4">      <span class="kk">"command"</span>: <span class="ss">"npm run lint --fix"</span>,</div>
-<div class="ln" style="--i:5">      <span class="kk">"tools"</span>: [<span class="ss">"Edit"</span>]</div>
+<div class="ln" style="--i:3">      <span class="kk">"matcher"</span>: <span class="ss">"Edit|Write"</span>,</div>
+<div class="ln" style="--i:4">      <span class="kk">"hooks"</span>: [{ <span class="kk">"type"</span>: <span class="ss">"command"</span>,</div>
+<div class="ln" style="--i:5">        <span class="kk">"command"</span>: <span class="ss">"npm run lint -- --fix"</span> }]</div>
 <div class="ln" style="--i:6">    }]</div>
 <div class="ln" style="--i:7">  }</div>
 <div class="ln" style="--i:8">}</div>
@@ -1363,8 +1364,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <span class="chip fu" style="--i:7"><span class="en">Everyday feature →</span><span class="ru">Обычная фича →</span><span class="uk">Звичайна фіча →</span> <b>Sonnet 5</b></span>
         <span class="chip fu" style="--i:8"><span class="en">Batch of small fixes →</span><span class="ru">Пачка мелких правок →</span><span class="uk">Пачка дрібних правок →</span> <b>Haiku 4.5</b></span>
       </div>
-      <p class="sub fu" style="--i:9"><span class="en">Example: /model opus-4-8 · set a default in settings.json ("model") · give each subagent its own model in its frontmatter.</span>
-        <span class="ru">Пример: /model opus-4-8 · значение по умолчанию задаётся в settings.json (ключ model) · каждому субагенту можно назначить свою модель в frontmatter.</span><span class="uk">Приклад: /model opus-4-8 · значення за замовчуванням задається в settings.json («model») · кожному субагентові можна призначити свою модель у frontmatter.</span></p>
+      <p class="sub fu" style="--i:9"><span class="en">Example: /model fable-5 · /model opus-4-8 · set a default in settings.json ("model") · give each subagent its own model in its frontmatter.</span>
+        <span class="ru">Пример: /model fable-5 · /model opus-4-8 · значение по умолчанию задаётся в settings.json (ключ model) · каждому субагенту можно назначить свою модель в frontmatter.</span><span class="uk">Приклад: /model fable-5 · /model opus-4-8 · значення за замовчуванням задається в settings.json («model») · кожному субагентові можна призначити свою модель у frontmatter.</span></p>
       <div class="ex fu" style="--i:10">
         <span class="exlab"><span class="en">Switching mid-task costs nothing</span><span class="ru">Переключение посреди задачи ничего не стоит</span><span class="uk">Перемикання посеред задачі нічого не коштує</span></span>
 <div><span class="pp">&gt;</span> /model opus-4-8</div>
@@ -1496,7 +1497,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">claude — api-service</span></div>
         <div class="tbody">
 <div class="ln" style="--i:0"><span class="pp">&gt;</span> <span class="en">Production error, ~50/hour. Find the cause and fix it:</span><span class="ru">Production error, ~50/hour. Find the cause and fix it:</span><span class="uk">Production error, ~50/hour. Find the cause and fix it:</span></div>
-<div class="ln" style="--i:1">  TypeError: Cannot read properties of undefined ('userId')</div>
+<div class="ln" style="--i:1">  TypeError: Cannot read properties of undefined (reading 'userId')</div>
 <div class="ln" style="--i:2">  at SessionService.refresh (session.ts:214)</div>
 <div class="ln" style="--i:3">&nbsp;</div>
 <div class="ln" style="--i:4"><span class="hl">●</span> <span class="en">Tracing callers of refresh()… found a race: token renewal</span><span class="ru">Ищу вызовы refresh()… нашёл гонку: обновление токена</span><span class="uk">Шукаю виклики refresh()… знайшов гонку: оновлення токена</span></div>
@@ -1785,8 +1786,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <div class="ex fu" style="--i:4">
         <span class="exlab"><span class="en">What a guardrail looks like in the moment</span><span class="ru">Как ограждение выглядит в моменте</span><span class="uk">Як огорожа спрацьовує на практиці</span></span>
 <div><span class="pp">&gt;</span> clean up the old migration files</div>
-<div><span class="hl">●</span> <span class="en">Wants to run:</span><span class="ru">Хочет выполнить:</span><span class="uk">Хоче виконати:</span> <span class="ss">git push --force origin main</span></div>
-<div><span class="bad">✗ <span class="en">Blocked by</span><span class="ru">Заблокировано правилом</span><span class="uk">Заблоковано правилом</span></span> <span class="cm">deny: Bash(git push --force *)</span></div>
+<div><span class="hl">●</span> <span class="en">Wants to run:</span><span class="ru">Хочет выполнить:</span><span class="uk">Хоче виконати:</span> <span class="ss">rm -rf migrations/2023-*</span></div>
+<div><span class="bad">✗ <span class="en">Blocked by</span><span class="ru">Заблокировано правилом</span><span class="uk">Заблоковано правилом</span></span> <span class="cm">deny: Bash(rm -rf *)</span></div>
 <div><span class="hl">●</span> <span class="en">Listing them instead — delete the ones you recognize:</span><span class="ru">Вместо этого показываю список — удалите то, что узнаёте:</span><span class="uk">Натомість показую список — видаліть те, що впізнаєте:</span></div>
 <div>  <span class="cm">2023-04-add-index.sql · 2023-07-drop-legacy.sql · …</span></div>
       </div>
@@ -2076,6 +2077,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
     <nav class="side" id="cmapNav"></nav>
     <div class="pane" id="cmapPane"></div>
   </div>
+</div>
     </div>
   </section>
 
@@ -2328,7 +2330,7 @@ var LEVELS=[
           ['forceLoginMethod','string',{en:'Pin the sign-in method',ru:'Зафиксировать метод входа',uk:'Зафіксувати метод входу'}],
           ['forceLoginOrgUUID','string',{en:'Pin the organization',ru:'Зафиксировать организацию',uk:'Зафіксувати організацію'}],
           ['claudeMd','string',{en:'Inline org instructions without a separate file',ru:'Инструкции организации прямо в настройках, без отдельного файла',uk:'Інструкції орг. прямо в налаштуваннях, без окремого файлу'}]],
-    code:'{\n  "permissions": {\n    "deny": ["Read(.env*)", "Bash(curl *)"]\n  },\n  "sandbox": { "enabled": true },\n  "forceLoginOrgUUID": "…",\n  "env": { "NODE_ENV": "development" }\n}',
+    code:'{\n  "permissions": {\n    "deny": ["Read(.env*)", "Bash(curl *)"]\n  },\n  "sandbox": { "enabled": true },\n  "forceLoginOrgUUID": "<org-uuid>",\n  "env": { "NODE_ENV": "development" }\n}',
     tips:[{en:'Ships as a drop-in directory too: <b>managed-settings.d/</b> with files like 10-telemetry.json and 20-security.json — arrays merge in filename order.',
            ru:'Поддерживает drop-in директорию <b>managed-settings.d/</b> с файлами вида 10-telemetry.json и 20-security.json — массивы мержатся по порядку имён.',
            uk:'Підтримує drop-in папку <b>managed-settings.d/</b> з файлами на кшталт 10-telemetry.json і 20-security.json — масиви зливаються за порядком імен.'},
@@ -2382,7 +2384,7 @@ var LEVELS=[
     desc:{en:'Your personal instruction file, loaded into every session right after the managed one. This is where preferences that follow you across projects belong: how you like commits written, which package manager you use, what you never want touched.',
           ru:'Ваш личный файл инструкций, загружается в каждую сессию сразу после managed-файла. Здесь живут предпочтения, которые следуют за вами из проекта в проект: как писать коммиты, какой пакетный менеджер, что нельзя трогать.',
           uk:'Ваш особистий файл інструкцій, завантажується в кожну сесію одразу після managed. Тут живуть уподобання, що йдуть за вами з проєкту в проєкт: як писати коміти, який пакетний менеджер, що не можна чіпати.'},
-    code:'# Preferences\n- Conventional commits: feat:, fix:, refactor:\n- Package manager: pnpm, never npm\n- Never edit files under vendor/\n\n# Imports\n@~/.claude/rules/security.md',
+    code:'# Preferences\n- Conventional commits: feat:, fix:, refactor:\n- Package manager: npm, never yarn\n- Never edit files under vendor/\n\n# Imports\n@~/.claude/rules/security.md',
     tips:[{en:'Keep it under ~200 lines. Past that, instruction-following starts to degrade — move detail into <b>~/.claude/rules/</b>.',
            ru:'Держите короче ~200 строк. Дальше следование инструкциям заметно падает — детали выносите в <b>~/.claude/rules/</b>.',
            uk:'Тримайте його коротшим за ~200 рядків. Далі дотримання інструкцій помітно падає — деталі виносьте в <b>~/.claude/rules/</b>.'},
@@ -2410,7 +2412,7 @@ var LEVELS=[
           ['autoCompactEnabled','bool',{en:'Auto-summarize when context fills',ru:'Автосжатие при заполнении контекста',uk:'Автостиснення, коли контекст заповнюється'}],
           ['effortLevel','string',{en:'"low" … "xhigh" — reasoning depth',ru:'"low" … "xhigh" — глубина рассуждений',uk:'"low" … "xhigh" — глибина міркувань'}],
           ['editorMode','string',{en:'"normal" or "vim"',ru:'"normal" или "vim"',uk:'"normal" або "vim"'}]],
-    code:'{\n  "model": "sonnet-5",\n  "editorMode": "vim",\n  "permissions": {\n    "allow": ["Bash(git status)", "Bash(pnpm test:*)"],\n    "deny":  ["Read(.env*)"]\n  },\n  "hooks": {\n    "PostToolUse": [{ "type": "command",\n      "command": "prettier --write $CLAUDE_FILE", "tools": ["Edit"] }]\n  }\n}',
+    code:'{\n  "model": "sonnet-5",\n  "editorMode": "vim",\n  "permissions": {\n    "allow": ["Bash(git status)", "Bash(npm run test:*)"],\n    "deny":  ["Read(.env*)"]\n  },\n  "hooks": {\n    "PostToolUse": [{ "matcher": "Edit|Write",\n      "hooks": [{ "type": "command", "command": "prettier --write ." }] }]\n  }\n}',
     tips:[{en:'Project settings <b>merge</b> with this file rather than replacing it — arrays combine, scalars override.',
            ru:'Проектные настройки <b>мержатся</b> с этим файлом, а не заменяют его — массивы объединяются, скаляры переопределяются.',
            uk:'Проєктні налаштування <b>зливаються</b> з цим файлом, а не заміняють його — масиви об’єднуються, скаляри перевизначаються.'},
@@ -2491,7 +2493,7 @@ var LEVELS=[
     desc:{en:'The file that makes an agent useful on day one: build and test commands, architecture in three lines, conventions, and the gotchas that would otherwise cost an afternoon. Run /init once and Claude drafts it from the codebase.',
           ru:'Файл, который делает агента полезным с первого дня: команды сборки и тестов, архитектура в три строки, конвенции и подводные камни, которые иначе стоят половины дня. Запустите /init — Claude составит черновик по коду.',
           uk:'Файл, який робить агента корисним з першого дня: команди збірки й тестів, архітектура в три рядки, конвенції та підводні камені, що інакше коштують пів дня. Запустіть /init — Claude складе чернетку за кодом.'},
-    code:'# Commands\n- Dev: pnpm dev · Tests: pnpm test · Lint: pnpm lint\n\n# Architecture\n- Next.js app router · API in src/app/api · DB via Prisma\n\n# Conventions\n- TypeScript strict · no default exports · tests next to source\n\n# Gotchas\n- Run pnpm db:generate after every schema change',
+    code:'# Commands\n- Dev: npm run dev · Tests: npm test · Lint: npm run lint\n\n# Architecture\n- Next.js app router · API in src/app/api · DB via Prisma\n\n# Conventions\n- TypeScript strict · no default exports · tests next to source\n\n# Gotchas\n- Run npm run db:generate after every schema change',
     tips:[{en:'Subdirectories can have their own CLAUDE.md — each loads when Claude works in that folder. Great for monorepos.',
            ru:'У подпапок может быть свой CLAUDE.md — он загружается, когда Claude работает в этой папке. Отлично для монорепо.',
            uk:'У підпапок може бути свій CLAUDE.md — він завантажиться, коли Claude працює в цій папці. Чудово для монорепо.'},
@@ -2510,7 +2512,7 @@ var LEVELS=[
     desc:{en:'The same schema as your personal settings, but committed — so everyone who clones the repo gets the same allowed commands, the same hooks, and the same guardrails without reading a wiki page.',
           ru:'Та же схема, что и в личных настройках, но в git — каждый, кто склонировал репозиторий, получает те же разрешённые команды, хуки и ограждения, не читая вики.',
           uk:'Та сама схема, що й в особистих налаштуваннях, але в git — кожен, хто склонував репозиторій, отримує ті самі дозволені команди, хуки й огорожі, не читаючи вікі.'},
-    code:'{\n  "permissions": {\n    "allow": ["Bash(pnpm test:*)", "Bash(pnpm lint:*)", "Edit(src/**)"],\n    "deny":  ["Read(.env*)", "Read(secrets/**)", "Bash(git push --force *)"]\n  },\n  "hooks": {\n    "PreToolUse": [{ "type": "command", "command": ".claude/guard.sh" }]\n  }\n}',
+    code:'{\n  "permissions": {\n    "allow": ["Bash(npm run test:*)", "Bash(npm run lint:*)", "Edit(src/**)"],\n    "deny":  ["Read(.env*)", "Read(secrets/**)", "Bash(git push --force *)"]\n  },\n  "hooks": {\n    "PreToolUse": [{ "matcher": "Bash",\n      "hooks": [{ "type": "command", "command": ".claude/guard.sh" }] }]\n  }\n}',
     tips:[{en:'Put team-wide safety here and personal convenience in settings.local.json — the two merge.',
            ru:'Командную безопасность — сюда, личное удобство — в settings.local.json. Они мержатся.',
            uk:'Командну безпеку — сюди, особисту зручність — у settings.local.json. Вони зливаються.'},
