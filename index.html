@@ -260,8 +260,23 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 .author::before{content:"";width:34px;height:1px;background:var(--grad);flex:none}
 .author b{color:var(--text);font-weight:600;letter-spacing:.12em}
 
+/* ---------- cover: the contents affordance, which is otherwise easy to miss ---------- */
+.topiccue{all:unset;box-sizing:border-box;display:flex;width:fit-content;align-items:center;gap:10px;
+  cursor:pointer;margin-bottom:10px;padding:8px 15px;border:1px solid var(--border-ui);
+  border-radius:999px;background:var(--glass);backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);font-family:var(--sans);font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;
+  transition:color .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease);
+  -webkit-tap-highlight-color:transparent}
+.topiccue:hover,.topiccue:focus-visible{color:var(--text);border-color:var(--coral)}
+.topiccue:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+.topiccue .ar{color:var(--coral);font-size:14px;line-height:1;transition:transform .2s var(--ease)}
+.topiccue:hover .ar,.topiccue:focus-visible .ar{transform:translateY(2px)}
+@media (prefers-reduced-motion:reduce){.topiccue .ar{transition:none}
+  .topiccue:hover .ar,.topiccue:focus-visible .ar{transform:none}}
+
 /* ---------- cover: how to move through the deck ---------- */
-.startcue{display:inline-flex;align-items:center;gap:11px;margin-top:40px;
+.startcue{display:inline-flex;align-items:center;gap:11px;margin-top:24px;
   padding:10px 18px 10px 13px;border:1px solid var(--border-ui);border-radius:999px;
   background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   font-size:13px;letter-spacing:.02em;color:var(--muted);white-space:nowrap}
@@ -505,7 +520,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 /* ---------- print / PDF handout ---------- */
 @media print{
   html,body{height:auto;overflow:visible;background:#fff;color:#000}
-  .orbs,.grain,.progress,.navbtns,.hud,.lang,.brand,.zone,.keys,.toc{display:none!important}
+  .orbs,.grain,.progress,.navbtns,.hud,.lang,.brand,.zone,.keys,.toc,.topiccue{display:none!important}
   .deck{position:static;height:auto;overflow:visible}
   /* the deck's own visibility transition is delayed 280ms — kill it or the
      print snapshot is taken while 80 slides are still fading */
@@ -530,6 +545,10 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
   <section class="slide" data-ch-en="Claude Code · The Course" data-ch-ru="Claude Code · Курс" data-ch-uk="Claude Code · Курс"
            data-toc-en="Cover" data-toc-ru="Обложка" data-toc-uk="Обкладинка">
     <div class="inner">
+      <button class="topiccue fu" id="topicCue" style="--i:0" aria-controls="toc">
+        <span class="ar" aria-hidden="true">▾</span>
+        <span class="en">Click to jump between topics</span><span class="ru">Кликните, чтобы перейти между темами</span><span class="uk">Клацніть, щоб перейти між темами</span>
+      </button>
       <span class="eyebrow"><span class="en">A practical course · 2026</span><span class="ru">Практический курс · 2026</span><span class="uk">Практичний курс · 2026</span></span>
       <h1 class="d1">
         <span class="kl"><span class="kw" style="--i:0">CLAUDE</span> <span class="kw outline" style="--i:1">CODE</span></span>
@@ -3117,6 +3136,9 @@ document.documentElement.classList.add('jsboot');
 
   /* ---- contents is otherwise keyboard-only, which a phone cannot reach ---- */
   if(hudBtn)hudBtn.addEventListener('click',toggleToc);
+  /* the cover repeats the affordance, because the bottom readout reads as a label */
+  var topicCue=document.getElementById('topicCue');
+  if(topicCue)topicCue.addEventListener('click',toggleToc);
   toc.addEventListener('click',function(e){if(e.target===toc)closeToc()});
 
 
