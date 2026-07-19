@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SYNAPSE — an interactive essay on machine minds</title>
+<meta name="description" content="An interactive one-page essay on machine minds: a living neural network, scramble typography, animated counters. Built by Claude Code from a single prompt.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+<style>
+:root{
+  --ink:#04060A;
+  --panel:#0A0F16;
+  --mint:#7CFFB2;
+  --cyan:#5FE8FF;
+  --magenta:#FF6BD5;
+  --text:#E9F2EF;
+  --dim:#5F7370;
+  --line:rgba(124,255,178,.14);
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(124,255,178,.3)}
+canvas#net{position:fixed;inset:0;z-index:0;display:block}
+.scan{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.14) 3px 4px)}
+.spot{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.55;
+  background:radial-gradient(560px circle at var(--mx,50%) var(--my,40%),rgba(124,255,178,.075),transparent 70%)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.badge{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--mint);
+  border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(124,255,178,.05)}
+.probbar{display:inline-block;vertical-align:middle;width:72px;height:4px;border-radius:2px;
+  background:rgba(255,255,255,.1);margin-left:10px;overflow:hidden}
+.probbar i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--cyan));
+  width:41%;transition:width .45s cubic-bezier(.22,1,.36,1)}
+.cta{border:1px solid var(--line);background:rgba(4,7,10,.8);border-radius:6px;display:inline-block;
+  font-family:var(--mono);font-size:14px;padding:18px 26px;margin-top:34px;text-align:left;line-height:1.9}
+.cta .p{color:var(--magenta)}
+.cta b{color:var(--mint);font-weight:600}
+main{position:relative;z-index:2}
+
+header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;
+  padding:18px 28px;font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--dim);
+  mix-blend-mode:screen}
+header b{color:var(--mint)}
+header a{color:var(--dim);text-decoration:none;transition:color .25s}
+header a:hover{color:var(--mint)}
+
+section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16vh 8vw}
+.wrap{width:min(1060px,100%)}
+
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--cyan);text-transform:uppercase;display:block;margin-bottom:26px}
+.tag::before{content:"// "}
+h1{font-family:var(--mono);font-weight:700;font-size:clamp(54px,11vw,170px);line-height:.9;letter-spacing:-.04em}
+h1 .alt{color:var(--mint);text-shadow:0 0 34px rgba(124,255,178,.45)}
+h2{font-family:var(--mono);font-weight:700;font-size:clamp(30px,4.6vw,64px);line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+h2 .alt{color:var(--mint)}
+h2 .alt2{color:var(--magenta)}
+.lead{font-size:clamp(15px,1.55vw,19px);line-height:1.65;color:#AEC4BE;max-width:58ch;margin-top:26px}
+.lead b{color:var(--text)}
+.hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:var(--mono);
+  font-size:11px;letter-spacing:.28em;color:var(--dim);animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+.stat{border:1px solid var(--line);background:rgba(10,15,22,.6);backdrop-filter:blur(10px);
+  border-radius:4px;padding:26px 22px;position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.stat:hover{transform:translateY(-4px);border-color:rgba(124,255,178,.4);box-shadow:0 18px 44px rgba(0,0,0,.4)}
+.stat::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--mint),transparent)}
+.stat .n{font-family:var(--mono);font-size:clamp(30px,3.8vw,54px);font-weight:700;color:var(--mint);font-variant-numeric:tabular-nums}
+.stat .n small{font-size:.5em;color:var(--cyan)}
+.stat p{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.5}
+
+.term{border:1px solid var(--line);background:rgba(4,7,10,.82);border-radius:4px;margin-top:48px;
+  font-family:var(--mono);font-size:clamp(13px,1.4vw,16px);padding:26px 26px;line-height:2}
+.term .p{color:var(--magenta)}
+.term .tok{display:inline-block;padding:1px 8px;border:1px solid var(--line);border-radius:3px;margin-left:10px;color:var(--mint);min-width:9ch;text-align:center}
+.term .prob{color:var(--dim);font-size:.8em}
+.term .cursor{display:inline-block;width:.6em;height:1.1em;background:var(--mint);vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.tl{margin-top:52px;border-left:1px solid var(--line);padding-left:34px;display:flex;flex-direction:column;gap:30px}
+.tl .row{position:relative;padding:6px 10px;margin-left:-10px;border-radius:8px;transition:background .3s}
+.tl .row:hover{background:rgba(124,255,178,.045)}
+.tl .row::before{content:"";position:absolute;left:-39px;top:8px;width:9px;height:9px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--mint);box-shadow:0 0 14px rgba(124,255,178,.6)}
+.tl .y{font-family:var(--mono);color:var(--cyan);font-size:13px;letter-spacing:.14em}
+.tl h3{font-size:clamp(17px,2vw,23px);margin:6px 0 4px;font-weight:650}
+.tl p{color:var(--dim);font-size:14px;line-height:1.55;max-width:60ch}
+.tl .row:last-child h3{color:var(--mint)}
+
+.marq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin-top:70px}
+.marq div{display:inline-block;white-space:nowrap;font-family:var(--mono);font-size:13px;letter-spacing:.3em;
+  color:var(--dim);animation:mv 26s linear infinite}
+@keyframes mv{to{transform:translateX(-50%)}}
+
+footer{position:relative;z-index:2;text-align:center;padding:14vh 8vw 12vh}
+footer .big{font-family:var(--mono);font-weight:700;font-size:clamp(30px,6vw,80px);letter-spacing:-.03em}
+footer .big span{color:var(--mint)}
+footer p{color:var(--dim);font-family:var(--mono);font-size:13px;margin-top:22px;letter-spacing:.12em}
+
+@media (max-width:760px){.stats{grid-template-columns:1fr}section{padding:14vh 7vw}}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.2s!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="scan" aria-hidden="true"></div>
+<div class="spot" id="spot" aria-hidden="true"></div>
+<header><span><b>●</b> SYNAPSE_v1.0</span><a href="#think">how it thinks ↓</a></header>
+
+<main>
+<section style="position:relative">
+  <div class="wrap">
+    <span class="tag">an interactive essay on machine minds</span>
+    <h1><span id="scr1">SYNAPSE</span><br><span class="alt" id="scr2">WAKES UP.</span></h1>
+    <p class="lead">Move your cursor — the network feels it. Every dot is a neuron, every line a connection
+      deciding whether to fire. <b>This whole page is one HTML file, built by Claude Code from a single prompt.</b></p>
+    <div class="badges">
+      <span class="badge">INTERACTIVE</span><span class="badge">OFFLINE</span><span class="badge">0 DEPENDENCIES</span><span class="badge">1 PROMPT</span>
+    </div>
+  </div>
+  <div class="hint">SCROLL ▾</div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag reveal">from neurons to numbers</span>
+    <h2 class="reveal">Intelligence became<br><span class="alt">a counting problem.</span></h2>
+    <p class="lead reveal">A language model never learns rules. It reads almost everything ever written
+      and compresses the patterns into billions of weighted connections — then predicts, one token at a time.</p>
+    <div class="stats">
+      <div class="stat reveal"><div class="n" data-count="175" data-suffix="B">0</div><p>parameters in the model that made the world notice, back in 2020</p></div>
+      <div class="stat reveal"><div class="n" data-count="1000000" data-suffix=" tok"><small></small>0</div><p>tokens of context a frontier model can hold in one thought today</p></div>
+      <div class="stat reveal"><div class="n" data-count="1" data-suffix=" prompt">0</div><p>needed to build the page you are reading right now</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="think">
+  <div class="wrap">
+    <span class="tag reveal">the loop</span>
+    <h2 class="reveal">It thinks by <span class="alt2">guessing</span><br>the <span class="alt">next word.</span></h2>
+    <p class="lead reveal">Watch the model weigh candidates for the next token — thousands of times per sentence,
+      each guess reshaped by everything before it:</p>
+    <div class="term reveal">
+      <span class="p">context:</span> "The best way to predict the future is to"
+      <span class="tok" id="tok">invent</span> <span class="prob" id="prob">p=0.41</span><span class="probbar"><i id="pbar"></i></span><br>
+      <span class="p">sampling…</span> <span class="cursor"></span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag reveal">a short history of waking up</span>
+    <h2 class="reveal">Seventy years,<br><span class="alt">four sentences.</span></h2>
+    <div class="tl">
+      <div class="row reveal"><div class="y">1950</div><h3>The question</h3><p>Turing asks "can machines think?" — and proposes judging by conversation, not by mechanism.</p></div>
+      <div class="row reveal"><div class="y">1986</div><h3>The method</h3><p>Backpropagation lets networks learn from mistakes. Small ones, for now.</p></div>
+      <div class="row reveal"><div class="y">2017</div><h3>The architecture</h3><p>"Attention is all you need." The transformer reads everything at once — and scales.</p></div>
+      <div class="row reveal"><div class="y">2026</div><h3>The coworker</h3><p>Models stop suggesting and start doing: reading codebases, running tools, verifying their own work.</p></div>
+    </div>
+    <div class="marq"><div>PREDICT · ATTEND · COMPRESS · SAMPLE · VERIFY · ITERATE · PREDICT · ATTEND · COMPRESS · SAMPLE · VERIFY · ITERATE · PREDICT · ATTEND · COMPRESS · SAMPLE · VERIFY · ITERATE · </div></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="big reveal">Minds are <span>built</span> now.</div>
+  <p class="reveal">demo page · generated by Claude Code · one prompt, one file, zero dependencies</p>
+  <p class="reveal" style="margin-top:10px;letter-spacing:.2em">a course demo by <span style="color:var(--mint)">Oleg Osypenko</span></p>
+  <div class="cta reveal"><span class="p">$</span> cd your-idea<br><span class="p">$</span> <b>claude</b> <span style="color:var(--dim)">— want one like this? that's the whole recipe.</span></div>
+</footer>
+
+<script>
+(function(){
+  var c=document.getElementById('net'),x=c.getContext('2d'),W,H,pts=[],mouse={x:-1e4,y:-1e4};
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px'}
+  size();addEventListener('resize',size);
+  var N=Math.min(110,Math.floor(innerWidth/14));
+  for(var i=0;i<N;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35*devicePixelRatio,vy:(Math.random()-.5)*.35*devicePixelRatio,r:(Math.random()*1.6+.8)*devicePixelRatio});
+  var spot=document.getElementById('spot');
+  addEventListener('pointermove',function(e){
+    mouse.x=e.clientX*devicePixelRatio;mouse.y=e.clientY*devicePixelRatio;
+    if(spot){spot.style.setProperty('--mx',e.clientX+'px');spot.style.setProperty('--my',e.clientY+'px')}
+  });
+  addEventListener('pointerleave',function(){mouse.x=-1e4;mouse.y=-1e4});
+  var LINK=150*devicePixelRatio,PULL=220*devicePixelRatio;
+  function frame(){
+    x.clearRect(0,0,W,H);
+    for(var i=0;i<N;i++){
+      var p=pts[i],dx=mouse.x-p.x,dy=mouse.y-p.y,d=Math.hypot(dx,dy);
+      if(d<PULL&&d>1){p.vx+=dx/d*.028*devicePixelRatio;p.vy+=dy/d*.028*devicePixelRatio}
+      p.vx*=.985;p.vy*=.985;p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+    }
+    for(var i=0;i<N;i++){
+      for(var j=i+1;j<N;j++){
+        var a=pts[i],b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<LINK){
+          var o=(1-d/LINK)*.55;
+          x.strokeStyle='rgba(124,255,178,'+o*.5+')';
+          x.lineWidth=devicePixelRatio*.6;
+          x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();
+        }
+      }
+      var p=pts[i],md=Math.hypot(mouse.x-p.x,mouse.y-p.y),hot=md<PULL;
+      x.fillStyle=hot?'rgba(255,107,213,.95)':'rgba(95,232,255,.8)';
+      x.beginPath();x.arc(p.x,p.y,p.r*(hot?1.7:1),0,7);x.fill();
+    }
+    if(!reduced)requestAnimationFrame(frame);
+  }
+  frame();
+
+  var CH='!<>-_\\/[]{}—=+*^?#________';
+  function scramble(el,txt,speed){
+    var frame=0,out='',len=txt.length,total=len*(speed||3);
+    (function tick(){
+      out='';
+      for(var i=0;i<len;i++){
+        var reveal=frame/(speed||3);
+        out+=i<reveal?txt[i]:CH[Math.floor(Math.random()*CH.length)];
+      }
+      el.textContent=out;frame++;
+      if(frame<=total+4)requestAnimationFrame(tick);else el.textContent=txt;
+    })();
+  }
+  if(!reduced){scramble(document.getElementById('scr1'),'SYNAPSE',4);setTimeout(function(){scramble(document.getElementById('scr2'),'WAKES UP.',4)},500)}
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting||e.target.dataset.done)return;
+    e.target.dataset.done=1;
+    var end=+e.target.dataset.count,suf=e.target.dataset.suffix||'',t0=null;
+    function step(t){
+      if(!t0)t0=t;var k=Math.min(1,(t-t0)/1400),v=Math.floor(end*(1-Math.pow(1-k,3)));
+      e.target.textContent=(end>=1e6?(v/1e6).toFixed(v<1e6?1:0)+'M':v)+suf;
+      if(k<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })},{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el)});
+
+  var toks=[['invent','0.41'],['build','0.22'],['create','0.14'],['ship','0.09'],['dream','0.05'],['compute','0.03']],ti=0;
+  setInterval(function(){
+    ti=(ti+1)%toks.length;
+    var t=document.getElementById('tok'),p=document.getElementById('prob'),b=document.getElementById('pbar');
+    if(t){t.textContent=toks[ti][0];p.textContent='p='+toks[ti][1];
+      if(b)b.style.width=(parseFloat(toks[ti][1])*100)+'%'}
+  },900);
+})();
+</script>
+</body>
+</html>
