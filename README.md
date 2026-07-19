@@ -9,13 +9,18 @@ interactive map of all 20 configuration files.
 
 Live: <https://youngerfornday.github.io/claude-code-course/>
 
-- `index.html` — the course (54 slides).
+- `index.html` — the course (81 slides).
 - `synapse-demo.html` — SYNAPSE, an interactive demo page built by Claude Code
   from a single prompt, linked from the designer chapter.
 - `og.jpg` — link-preview card (1200×630), rendered from the title slide.
 
 Everything is self-contained: no build step, no dependencies, no external
 requests, works offline.
+
+> **Slide numbers changed on 2026-07-20.** The deck grew from 54 to 81 slides
+> when worked examples were added throughout, so any `#N` link shared before
+> that date now points at a different slide. Links into the Contents entries
+> are unaffected — they are generated from live positions.
 
 ## Navigating
 
