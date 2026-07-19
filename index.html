@@ -162,8 +162,8 @@ body.nozones .zone{display:none}
 .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   padding:9vh 8vw 11vh;opacity:0;visibility:hidden;transition:opacity .55s var(--ease),visibility 0s .55s;z-index:2}
 .slide.active{opacity:1;visibility:visible;transition:opacity .55s var(--ease);z-index:3}
-/* first paint must never be blank: show slide 1 before JS boots */
-.slide:first-of-type{opacity:1;visibility:visible}
+/* first paint must never be blank: show slide 1 until JS boots */
+html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 .inner{width:min(1180px,100%);position:relative}
 
 /* kinetic type */
@@ -1900,6 +1900,7 @@ body.nozones .zone{display:none}
 
 <script>
 (function(){
+document.documentElement.classList.add('jsboot');
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var idx=0,total=slides.length;
   var progress=document.getElementById('progress'),
