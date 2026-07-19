@@ -2,21 +2,52 @@
 <html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Claude Code — The Course</title>
+<meta name="description" content="A practical trilingual (EN/RU/UA) course on Claude Code: setup, role playbooks for developers, designers and product teams, best practices, and an interactive map of every configuration file.">
+<meta name="theme-color" content="#0A0A0E">
+<link rel="canonical" href="https://youngerfornday.github.io/claude-code-course/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0E'/%3E%3Cpath d='M28 68 L50 30 L72 68' stroke='%23E8765A' stroke-width='11' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Claude Code — The Course">
+<meta property="og:title" content="Claude Code — The Course">
+<meta property="og:description" content="54 slides on Claude Code — setup, role playbooks, best practices, and an interactive config map. In English, Russian and Ukrainian.">
+<meta property="og:url" content="https://youngerfornday.github.io/claude-code-course/">
+<meta property="og:image" content="https://youngerfornday.github.io/claude-code-course/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Code — The Course">
+<meta name="twitter:description" content="54 slides on Claude Code — setup, role playbooks, best practices, and an interactive config map.">
+<meta name="twitter:image" content="https://youngerfornday.github.io/claude-code-course/og.jpg">
+<script>
+/* set before first paint: a deep link must not flash slide 1 and then jump */
+try{document.documentElement.classList.add('jsboot')}catch(e){}
+</script>
 <style>
 :root{
   --bg:#0A0A0E;
   --bg2:#0E0E14;
   --text:#F5F5F7;
   --muted:#9A9AA3;
-  --dim:#63636B;
+  --dim:#8A8A94;            /* was #63636B — 3.32:1, below the 4.5:1 floor for body text */
   --coral:#E8765A;
   --coral-soft:#FFB088;
   --violet:#B06AF9;
   --blue:#5AA9FF;
   --green:#7ED99A;
-  --border:rgba(255,255,255,.10);
+  /* config-map level taxonomy — referenced throughout the map but never defined,
+     so every level dot rendered invisible and every eyebrow fell back to coral */
+  --l-managed:#E8765A;
+  --l-global:#5AA9FF;
+  --l-project:#7ED99A;
+  --l-local:#B06AF9;
+  --l-agents:#FFB088;
+  --border:rgba(255,255,255,.10);      /* decorative container edges */
+  --border-ui:rgba(255,255,255,.36);   /* interactive edges — needs 3:1 */
   --glass:rgba(255,255,255,.045);
   --grad:linear-gradient(100deg,#FFB088 0%,#E8765A 32%,#B06AF9 66%,#5AA9FF 100%);
   --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,sans-serif;
@@ -24,7 +55,8 @@
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+/* dvh, or the bottom of every slide hides behind the mobile Safari toolbar */
+html,body{height:100%;height:100dvh}
 body{
   background:var(--bg);color:var(--text);font-family:var(--sans);
   overflow:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
@@ -36,7 +68,7 @@ body{
 [data-lang="uk"] .en,[data-lang="uk"] .ru{display:none!important}
 
 /* ---------- deck chrome ---------- */
-.deck{position:fixed;inset:0;overflow:hidden}
+.deck{position:fixed;inset:0;height:100dvh;overflow:hidden}
 .orbs{position:fixed;inset:0;pointer-events:none;z-index:0}
 .orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.42}
 .orb.o1{width:56vw;height:56vw;left:-18vw;top:-24vh;background:radial-gradient(circle,#E8765A33,transparent 65%)}
@@ -45,37 +77,55 @@ body{
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
 .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--grad);z-index:70;transition:width .4s var(--ease)}
-.navbtns{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:65;
-  display:flex;align-items:center;gap:8px}
+.navbtns{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;
+  transform:translateX(-50%);z-index:65;display:flex;align-items:center;gap:8px}
 .navbtns button{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;
-  border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--muted);
+  border:1px solid var(--border-ui);background:rgba(255,255,255,.05);color:var(--muted);
   display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:color .2s,border-color .2s,background .2s}
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:color .2s,border-color .2s,background .2s,transform .12s}
 .navbtns button:hover{color:var(--text);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.1)}
 .navbtns button:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+.navbtns button:active{transform:scale(.92)}
+/* the deck used to look navigable at both ends and silently do nothing */
+.navbtns button:disabled{opacity:.28;cursor:default;pointer-events:none}
 .navbtns .pos{font-family:var(--mono);font-size:11.5px;color:var(--dim);
   min-width:5.5em;text-align:center;font-variant-numeric:tabular-nums}
 /* phones navigate by swipe and by the contents sheet, so the arrows are dropped there */
 @media (max-width:620px){.navbtns{display:none}}
-.hud{position:fixed;bottom:20px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
-  padding:0 26px;z-index:60;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);pointer-events:none}
+/* `all:unset` because this is now a real <button> — it is the only route to the
+   contents on a phone, and it was a div with a click handler */
+.hud{all:unset;position:fixed;bottom:20px;left:0;right:0;display:flex;justify-content:space-between;
+  align-items:center;padding:0 26px;z-index:60;font-family:var(--sans);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hud:focus-visible{outline:2px solid var(--coral);outline-offset:-4px;border-radius:8px}
+.hud:hover .count{color:var(--text)}
 .hud .chap{max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.hud .count{font-variant-numeric:tabular-nums}
-.lang{position:fixed;top:18px;right:22px;z-index:80;display:flex;border:1px solid var(--border);
+.hud .count{font-variant-numeric:tabular-nums;transition:color .2s}
+.lang{position:fixed;top:calc(18px + env(safe-area-inset-top,0px));right:calc(22px + env(safe-area-inset-right,0px));
+  z-index:80;display:flex;border:1px solid var(--border-ui);
   border-radius:999px;overflow:hidden;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(255,255,255,.03)}
 .lang button{all:unset;cursor:pointer;padding:7px 14px;font-family:var(--sans);font-size:12px;font-weight:600;
-  letter-spacing:.08em;color:var(--dim);transition:color .25s,background .25s}
+  letter-spacing:.08em;color:var(--dim);transition:color .25s,background .25s;-webkit-tap-highlight-color:transparent}
+.lang button:hover{color:var(--text);background:rgba(255,255,255,.05)}
 .lang button:focus-visible{outline:2px solid var(--coral);outline-offset:-2px}
-[data-lang="en"] .lang .bEn,[data-lang="ru"] .lang .bRu,[data-lang="uk"] .lang .bUk{color:var(--text);background:rgba(255,255,255,.08)}
-.brand{position:fixed;top:22px;left:26px;z-index:60;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--dim);pointer-events:none}
+/* the selected language was signalled by colour alone at 1.19:1 — invisible to most eyes */
+[data-lang="en"] .lang .bEn,[data-lang="ru"] .lang .bRu,[data-lang="uk"] .lang .bUk{
+  color:var(--text);background:rgba(255,255,255,.08);box-shadow:inset 0 -2px 0 var(--coral)}
+.brand{position:fixed;top:22px;left:calc(26px + env(safe-area-inset-left,0px));z-index:60;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--dim);pointer-events:none}
 .brand b{color:var(--coral);font-weight:700}
-.zone{position:fixed;top:0;bottom:0;width:12vw;z-index:40;cursor:pointer;-webkit-tap-highlight-color:transparent}
+/* the zones must never reach into the text column, and real content always wins:
+   at 1280-1440px they used to cover the left third of the CTA links */
+.zone{position:fixed;top:0;bottom:0;width:min(12vw,calc((100vw - 1180px)/2));z-index:1;
+  cursor:pointer;-webkit-tap-highlight-color:transparent}
 .zone.prev{left:0}.zone.next{right:0}
-.keys{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:60;font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--dim);opacity:0;transition:opacity .6s;pointer-events:none}
-.keys.show{opacity:1}
-.keys kbd{font-family:var(--mono);border:1px solid var(--border);border-radius:6px;padding:2px 7px;margin:0 2px;font-size:10px}
+/* `display:none` here was never lifted — `.show` only set opacity, so the one piece
+   of onboarding in the deck could not render at all */
+.keys{display:flex;align-items:center;position:fixed;bottom:64px;left:50%;transform:translateX(-50%);
+  z-index:60;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  opacity:0;visibility:hidden;transition:opacity .6s,visibility 0s .6s;pointer-events:none}
+.keys.show{opacity:1;visibility:visible;transition:opacity .6s}
+.keys kbd{font-family:var(--mono);border:1px solid var(--border-ui);border-radius:6px;padding:2px 7px;margin:0 2px;font-size:10px}
 
 
 /* ---------- embedded config map overlay ---------- */
@@ -163,20 +213,27 @@ body.nozones .zone{display:none}
 .toc{position:fixed;inset:0;z-index:90;background:rgba(6,6,10,.82);backdrop-filter:blur(24px);
   -webkit-backdrop-filter:blur(24px);display:none;align-items:center;justify-content:center}
 .toc.open{display:flex}
-.toc .box{width:min(680px,90vw);max-height:80vh;overflow-y:auto;padding:8px 0}
+.toc .box{width:min(680px,90vw);max-height:80dvh;overflow-y:auto;overscroll-behavior:contain;padding:8px 0}
 .toc h3{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin:0 0 22px 18px}
 .toc a{display:flex;align-items:baseline;gap:18px;padding:13px 18px;border-radius:14px;text-decoration:none;
   color:var(--muted);font-size:clamp(17px,2.2vw,24px);font-weight:600;letter-spacing:-.01em;transition:background .2s,color .2s}
-.toc a:hover,.toc a:focus-visible{background:rgba(255,255,255,.06);color:var(--text);outline:none}
+.toc a:hover{background:rgba(255,255,255,.06);color:var(--text)}
 .toc a .n{font-family:var(--mono);font-size:12px;color:var(--coral);min-width:2.4em}
 
 /* ---------- slides ---------- */
-.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  padding:9vh 8vw 11vh;opacity:0;visibility:hidden;transition:opacity .55s var(--ease),visibility 0s .55s;z-index:2}
-.slide.active{opacity:1;visibility:visible;transition:opacity .55s var(--ease);z-index:3}
+/* every slide scrolls: at 200% zoom, on short windows and in the 901-1200px band the
+   content used to overflow a clipped viewport with no scrollbar and no way to reach it */
+.slide{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;
+  padding:9vh 8vw 11vh;opacity:0;visibility:hidden;z-index:2;
+  overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  transition:opacity .28s var(--ease),visibility 0s .28s}
+/* the outgoing slide clears before the incoming one arrives — they used to be
+   legible on top of each other through the middle of a 550ms cross-fade */
+.slide.active{opacity:1;visibility:visible;transition:opacity .38s var(--ease) .16s;z-index:3}
 /* first paint must never be blank: show slide 1 until JS boots */
 html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
-.inner{width:min(1180px,100%);position:relative}
+/* auto margins centre the block when it fits and let it scroll when it does not */
+.inner{width:min(1180px,100%);position:relative;margin:auto 0}
 
 /* kinetic type */
 .kl{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
@@ -192,7 +249,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 .d2{font-size:clamp(40px,6.2vw,96px);line-height:.98;font-weight:800;letter-spacing:-.035em;text-wrap:balance}
 .h1{font-size:clamp(32px,4.6vw,68px);line-height:1.04;font-weight:800;letter-spacing:-.03em;text-wrap:balance}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.outline{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.30)}
+.outline{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.45)}  /* .30 was 2.62:1 */
 .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
   color:var(--coral);margin-bottom:26px}
 .lead{font-size:clamp(16px,1.6vw,21px);line-height:1.55;color:var(--muted);max-width:62ch;margin-top:28px}
@@ -324,9 +381,12 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
   /* nothing floats over the bottom edge any more — it always covered the content.
      the HUD moves up top and doubles as the contents button, since there is no
      keyboard on a phone to press O */
-  .hud{top:15px;bottom:auto;justify-content:flex-start;gap:11px;
-    padding:0 16px;font-size:10px;pointer-events:auto;cursor:pointer}
-  .hud .chap{max-width:32vw}
+  /* 44px tall so it is a real tap target, and padded clear of the language pill:
+     below 352px the counter used to sit underneath it and steal the tap */
+  .hud{top:calc(6px + env(safe-area-inset-top,0px));bottom:auto;justify-content:flex-start;
+    align-items:center;min-height:44px;gap:11px;font-size:10px;
+    padding:0 calc(180px + env(safe-area-inset-right,0px)) 0 calc(16px + env(safe-area-inset-left,0px))}
+  .hud .chap{max-width:26vw}
   .hud .count{color:var(--muted)}
   .navbtns{display:none}
   .slide{align-items:flex-start;overflow-y:auto;
@@ -355,16 +415,67 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
   .inner{overflow-wrap:break-word}
 }
 @media (prefers-reduced-motion:reduce){
-  *{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}
+  /* pseudo-elements animate too and were escaping the reset */
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;
+    animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .kw,.fu,.ln{opacity:1;transform:none}
   .divider .marq .track{animation:none}
+}
+
+/* ---------- focus, hit areas and touch affordances ---------- */
+/* every interactive control needs a visible ring; several had `outline:none`
+   or `all:unset`, which strips the one the browser would have drawn */
+.toc a:focus-visible,.cmap .fi:focus-visible,.cmap .tabs button:focus-visible,
+.cmap .q input:focus-visible,.cmap .x:focus-visible,.btn:focus-visible{
+  outline:2px solid var(--coral);outline-offset:2px;border-radius:6px}
+.cmap .tabs button:hover,.cmap .fi:hover{color:var(--text)}
+.hud,.lang button,.toc a,.cmap .fi,.cmap .tabs button,.cmap .x{-webkit-tap-highlight-color:transparent}
+/* revisited slides skip the entrance stagger */
+.slide.noanim .kw,.slide.noanim .fu,.slide.noanim .ln{animation:none!important;opacity:1;transform:none}
+
+@media (hover:none){
+  /* 44px minimum on anything a finger has to hit */
+  .lang button{padding:12px 16px}
+  .navbtns button{width:44px;height:44px}
+  .cmap .tabs button{padding:13px 16px}
+  .cmap .x{padding:13px 20px}
+}
+@media (max-width:1000px){
+  /* iOS zooms the page for any input under 16px, and with a fixed body there is
+     no scroll left to recover the viewport afterwards */
+  .cmap .q input{font-size:16px;padding:11px 14px 11px 34px}
+  /* `height:100%` never resolved here, so neither pane scrolled and the Back
+     button could land above the top of the viewport */
+  .slide.mapslide{overflow:hidden;padding:56px 3vw calc(16px + env(safe-area-inset-bottom,0px))}
+  .slide.mapslide .inner{height:100%;margin:0}
+  .cmap .side,.cmap .pane{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+}
+/* keep sideways scrollers from chaining into Safari's back-swipe */
+.tw,.tbody,.chips,.cmap pre,.cmap .pbox code{overscroll-behavior-x:contain}
+
+/* ---------- print / PDF handout ---------- */
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff;color:#000}
+  .orbs,.grain,.progress,.navbtns,.hud,.lang,.brand,.zone,.keys,.toc{display:none!important}
+  .deck{position:static;height:auto;overflow:visible}
+  /* the deck's own visibility transition is delayed 280ms — kill it or the
+     print snapshot is taken while 53 slides are still fading */
+  *{transition:none!important;animation:none!important}
+  .slide{position:static!important;opacity:1!important;visibility:visible!important;
+    overflow:visible;page-break-after:always;break-after:page;min-height:auto;padding:6vh 6vw}
+  .inner{margin:0}
+  .kw,.fu,.ln{opacity:1!important;transform:none!important;animation:none!important}
+  /* gradient-clipped and stroked headings print as blank without this */
+  .grad,.outline{color:#000!important;-webkit-text-fill-color:#000!important;
+    -webkit-text-stroke:0!important;background:none!important}
+  .card,.term,.tw{border-color:#bbb!important;background:none!important}
 }
 </style>
 </head>
 <body>
-<div class="deck" id="deck">
-  <div class="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
-  <div class="grain"></div>
+<main class="deck" id="deck">
+  <div class="orbs" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- ============ ACT 0 · COVER ============ -->
   <section class="slide" data-ch-en="Claude Code · The Course" data-ch-ru="Claude Code · Курс" data-ch-uk="Claude Code · Курс"
@@ -1887,7 +1998,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
   <section class="slide mapslide" data-ch-en="Bonus · Config file map" data-ch-ru="Бонус · Карта конфигов" data-ch-uk="Бонус · Карта конфігів"
            data-toc-en="Bonus — The map" data-toc-ru="Бонус — Сама карта" data-toc-uk="Бонус — Сама карта">
     <div class="inner">
-<div class="cmap" id="cmap" role="dialog" aria-label="Config file map">
+<div class="cmap" id="cmap" role="region" aria-label="Config file map">
   <div class="top">
     <h3><b>●</b> <span class="en">Config file map</span><span class="ru">Карта конфиг-файлов</span><span class="uk">Карта конфіг-файлів</span></h3>
     <div class="q"><i>⌕</i><input id="cmapQ" type="search" autocomplete="off" spellcheck="false" aria-label="Search"></div>
@@ -1902,29 +2013,34 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 
 
   <!-- SLIDES-ACT4 -->
-</div>
+</main>
 
-<div class="progress" id="progress"></div>
-<div class="brand"><b>●</b>&nbsp; CLAUDE CODE — THE COURSE</div>
+<noscript><div style="position:fixed;bottom:0;left:0;right:0;z-index:99;padding:12px 16px;
+  text-align:center;font:14px/1.5 -apple-system,BlinkMacSystemFont,sans-serif;color:#0A0A0E;background:#FFB088">
+  This deck needs JavaScript to reach the remaining 53 slides.
+</div></noscript>
+
+<div class="progress" id="progress" role="progressbar" aria-label="Deck progress"></div>
+<div class="brand" aria-hidden="true"><b>●</b>&nbsp; CLAUDE CODE — THE COURSE</div>
 <div class="lang" role="group" aria-label="Language">
-  <button class="bEn" id="btnEn" aria-label="English">EN</button>
-  <button class="bRu" id="btnRu" aria-label="Русский">RU</button>
-  <button class="bUk" id="btnUk" aria-label="Українська">UA</button>
+  <button class="bEn" id="btnEn" lang="en" aria-label="English" aria-pressed="true">EN</button>
+  <button class="bRu" id="btnRu" lang="ru" aria-label="Русский" aria-pressed="false">RU</button>
+  <button class="bUk" id="btnUk" lang="uk" aria-label="Українська" aria-pressed="false">UA</button>
 </div>
-<div class="hud">
-  <div class="chap" id="chap"></div>
-  <div class="count" id="count"></div>
-</div>
+<button class="hud" id="hudBtn" aria-controls="toc" aria-expanded="false">
+  <span class="chap" id="chap"></span>
+  <span class="count" id="count"></span>
+</button>
 <div class="navbtns">
   <button id="navPrev" aria-label="Previous slide">‹</button>
   <span class="pos" id="navPos"></span>
   <button id="navNext" aria-label="Next slide">›</button>
 </div>
-<div class="keys" id="keys"><span class="en"><kbd>←</kbd><kbd>→</kbd> navigate &nbsp; <kbd>O</kbd> contents</span><span class="ru"><kbd>←</kbd><kbd>→</kbd> листать &nbsp; <kbd>O</kbd> оглавление</span><span class="uk"><kbd>←</kbd><kbd>→</kbd> гортати &nbsp; <kbd>O</kbd> зміст</span></div>
+<div class="keys" id="keys" aria-hidden="true"><span class="en"><kbd>←</kbd><kbd>→</kbd> navigate &nbsp; <kbd>Shift</kbd>+<kbd>O</kbd> contents</span><span class="ru"><kbd>←</kbd><kbd>→</kbd> листать &nbsp; <kbd>Shift</kbd>+<kbd>O</kbd> оглавление</span><span class="uk"><kbd>←</kbd><kbd>→</kbd> гортати &nbsp; <kbd>Shift</kbd>+<kbd>O</kbd> зміст</span></div>
 <div class="zone prev" id="zPrev" aria-hidden="true"></div>
 <div class="zone next" id="zNext" aria-hidden="true"></div>
 
-<div class="toc" id="toc" role="dialog" aria-label="Contents">
+<div class="toc" id="toc" role="dialog" aria-modal="true" aria-label="Contents" tabindex="-1">
   <div class="box"><h3><span class="en">Contents</span><span class="ru">Оглавление</span><span class="uk">Зміст</span></h3><nav id="tocList"></nav></div>
 </div>
 
@@ -1943,6 +2059,13 @@ document.documentElement.classList.add('jsboot');
   function lang(){return document.documentElement.getAttribute('data-lang')||'en'}
   function setLang(l){
     document.documentElement.setAttribute('data-lang',l);
+    /* without this a screen reader narrates the Russian and Ukrainian decks
+       with an English synthesiser, which is unintelligible */
+    document.documentElement.lang=l;
+    ['btnEn','btnRu','btnUk'].forEach(function(id,i){
+      var el=document.getElementById(id);
+      if(el)el.setAttribute('aria-pressed',String(['en','ru','uk'][i]===l));
+    });
     try{localStorage.setItem('ccc-lang',l)}catch(e){}
     paintHud();
     if(window.__cmapRefresh)window.__cmapRefresh();
@@ -1961,6 +2084,13 @@ document.documentElement.classList.add('jsboot');
     if(np)np.textContent=(idx+1)+' / '+total;
     chap.textContent=(lang()==='ru'?s.dataset.chRu:(lang()==='uk'?(s.dataset.chUk||s.dataset.chEn):s.dataset.chEn))||'';
     progress.style.width=((idx+1)/total*100)+'%';
+    progress.setAttribute('aria-valuenow',String(idx+1));
+    progress.setAttribute('aria-valuemin','1');
+    progress.setAttribute('aria-valuemax',String(total));
+    /* the arrows used to stay fully live at both ends and silently do nothing */
+    var pv=document.getElementById('navPrev'),nx=document.getElementById('navNext');
+    if(pv)pv.disabled=(idx===0);
+    if(nx)nx.disabled=(idx===total-1);
   }
   function go(i,push){
     if(i<0||i>=total)return;
@@ -1968,11 +2098,17 @@ document.documentElement.classList.add('jsboot');
     idx=i;
     var s=slides[idx];
     s.scrollTop=0;                 /* a scrolled slide must not reopen half-way down */
+    /* the entrance stagger runs up to ~1.7s; replaying it when a presenter steps
+       back over old ground leaves them looking at a blank slide */
+    if(s.dataset.seen){s.classList.add('noanim')}else{s.dataset.seen='1'}
     void s.offsetWidth;
     s.classList.add('active');
     document.body.classList.toggle('nozones', s.classList.contains('mapslide'));
     paintHud();
-    if(push!==false){try{history.replaceState(null,'','#'+(idx+1))}catch(e){}}
+    /* move focus so the change is announced and the keyboard stays on the deck */
+    s.setAttribute('tabindex','-1');
+    try{s.focus({preventScroll:true})}catch(e){}
+    if(push!==false){try{history.pushState({i:idx},'','#'+(idx+1))}catch(e){}}
   }
   function next(){go(idx+1)} function prev(){go(idx-1)}
   window.__deckNext=next;
@@ -1982,27 +2118,75 @@ document.documentElement.classList.add('jsboot');
       var a=document.createElement('a');a.href='#'+(i+1);
       a.innerHTML='<span class="n">'+String(i+1).padStart(2,'0')+'</span>'+
         '<span><span class="en">'+s.dataset.tocEn+'</span><span class="ru">'+s.dataset.tocRu+'</span><span class="uk">'+(s.dataset.tocUk||s.dataset.tocEn)+'</span></span>';
-      a.addEventListener('click',function(e){e.preventDefault();toc.classList.remove('open');go(i)});
+      a.addEventListener('click',function(e){e.preventDefault();closeToc();go(i)});
       tocList.appendChild(a);
     }
   });
 
+  /* ---- contents sheet: a real modal, not just a visible overlay ---- */
+  var tocOpener=null, deckEl=document.getElementById('deck'),
+      hudBtn=document.getElementById('hudBtn');
+  function tocOpen(){return toc.classList.contains('open')}
+  function openToc(){
+    tocOpener=document.activeElement;
+    toc.classList.add('open');
+    if(deckEl)deckEl.setAttribute('inert','');           /* focus trap for free */
+    if(hudBtn)hudBtn.setAttribute('aria-expanded','true');
+    var cur=tocList.children[Math.min(idx,tocList.children.length-1)];
+    (cur||tocList.children[0]||toc).focus();
+  }
+  function closeToc(){
+    if(!tocOpen())return;
+    toc.classList.remove('open');
+    if(deckEl)deckEl.removeAttribute('inert');
+    if(hudBtn)hudBtn.setAttribute('aria-expanded','false');
+    if(tocOpener&&tocOpener.focus)tocOpener.focus();
+  }
+  function toggleToc(){tocOpen()?closeToc():openToc()}
+
+  var numBuf='',numT=null;
   document.addEventListener('keydown',function(e){
     if(e.metaKey||e.ctrlKey||e.altKey)return;
     var ae=document.activeElement;
-    if(ae&&(ae.tagName==='INPUT'||ae.tagName==='TEXTAREA')){
+    /* arrow keys inside the config map belong to the map, not to the deck */
+    if(ae&&(ae.tagName==='INPUT'||ae.tagName==='TEXTAREA'||(ae.closest&&ae.closest('.cmap')))){
       if(e.key==='Escape'){ae.blur();}
+      if(e.key!=='PageDown'&&e.key!=='PageUp')return;
+    }
+    /* while the contents is open it owns the keyboard */
+    if(tocOpen()){
+      if(e.key==='Escape'||e.key==='o'||e.key==='O'||e.key==='о'||e.key==='О'){
+        e.preventDefault();closeToc();
+      }
+      return;
+    }
+    /* type a slide number to jump — 54 slides is too many for sequential paging */
+    if(/^[0-9]$/.test(e.key)){
+      numBuf+=e.key;clearTimeout(numT);
+      numT=setTimeout(function(){
+        var n=parseInt(numBuf,10);numBuf='';
+        if(n>=1&&n<=total)go(n-1);
+      },700);
       return;
     }
     switch(e.key){
-      case'ArrowRight':case' ':case'PageDown':e.preventDefault();next();break;
-      case'ArrowLeft':case'PageUp':e.preventDefault();prev();break;
+      case'ArrowRight':case'PageDown':case'ArrowDown':e.preventDefault();next();break;
+      case' ':e.preventDefault();e.shiftKey?prev():next();break;   /* Shift+Space goes back */
+      case'ArrowLeft':case'PageUp':case'ArrowUp':e.preventDefault();prev();break;
       case'Home':e.preventDefault();go(0);break;
       case'End':e.preventDefault();go(total-1);break;
-      case'o':case'O':case'о':case'О':toc.classList.toggle('open');break;
-      case'l':case'L':case'д':case'Д':setLang(lang()==='en'?'ru':(lang()==='ru'?'uk':'en'));break;
-      case'Escape':toc.classList.remove('open');break;
+      /* single-character shortcuts must be modified or disableable (WCAG 2.1.4):
+         stray keystrokes from speech input used to flip slides and languages */
+      case'o':case'O':case'о':case'О':if(e.shiftKey){e.preventDefault();toggleToc()}break;
+      case'l':case'L':case'д':case'Д':if(e.shiftKey){e.preventDefault();setLang(lang()==='en'?'ru':(lang()==='ru'?'uk':'en'))}break;
+      case'Escape':closeToc();break;
     }
+  });
+
+  /* Back/Forward must step through slides, and a pasted #12 must be honoured */
+  window.addEventListener('popstate',function(){
+    var h=parseInt((location.hash||'').slice(1),10);
+    if(h>=1&&h<=total&&h-1!==idx)go(h-1,false);
   });
   on('zNext','click',next);
   on('zPrev','click',prev);
@@ -2044,10 +2228,9 @@ document.documentElement.classList.add('jsboot');
     dx<0?next():prev();
   },{passive:true});
 
-  /* ---- contents is keyboard-only (O), which a phone cannot reach ---- */
-  var hudEl=document.querySelector('.hud');
-  if(hudEl)hudEl.addEventListener('click',function(){toc.classList.toggle('open')});
-  toc.addEventListener('click',function(e){if(e.target===toc)toc.classList.remove('open')});
+  /* ---- contents is otherwise keyboard-only, which a phone cannot reach ---- */
+  if(hudBtn)hudBtn.addEventListener('click',toggleToc);
+  toc.addEventListener('click',function(e){if(e.target===toc)closeToc()});
 
 
 /* ============ embedded config file map ============ */
@@ -2450,7 +2633,7 @@ function hl(code){
     .replace(/(←[^\n<]*)/g,'<span class="cm">$1</span>');
 }
 var box=document.getElementById('cmap'), nav=document.getElementById('cmapNav'),
-    pane=document.getElementById('cmapPane'), qi=document.getElementById('cmapQ'), cur=null, shown=[];
+    pane=document.getElementById('cmapPane'), qi=document.getElementById('cmapQ'), cur=null, curOS=null, shown=[];
 if(!box||!nav||!pane||!qi) return;
 
 function match(f,q){
@@ -2497,11 +2680,15 @@ function drawPane(){
   pane.appendChild(h);
   if(f.paths){
     var oss=Object.keys(f.paths), wrap=E('div'), tabs=E('div','tabs'), pb=E('div','pbox'), code=E('code');
-    function setOS(os){ code.textContent=f.paths[os];
-      [].forEach.call(tabs.children,function(b){ b.classList.toggle('on',b.dataset.os===os); }); }
+    function setOS(os){ curOS=os; code.textContent=f.paths[os];
+      [].forEach.call(tabs.children,function(b){ var on=b.dataset.os===os;
+        b.classList.toggle('on',on); b.setAttribute('aria-pressed',String(on)); }); }
     oss.forEach(function(os){ var b=E('button',null,esc(os)); b.type='button'; b.dataset.os=os;
       b.addEventListener('click',function(){ setOS(os); }); tabs.appendChild(b); });
-    pb.appendChild(code); wrap.appendChild(tabs); wrap.appendChild(pb); setOS(oss[0]);
+    pb.appendChild(code); wrap.appendChild(tabs); wrap.appendChild(pb);
+    /* the OS choice is the one thing that should survive picking another file —
+       a Windows reader had to re-select their platform on all 20 of them */
+    setOS(oss.indexOf(curOS)>-1?curOS:oss[0]);
     pane.appendChild(sec(tt(CM_UI.path),wrap));
   }
   if(f.keys){
@@ -2520,6 +2707,9 @@ function drawPane(){
     pane.appendChild(sec(tt(CM_UI.tips),ul)); }
 }
 function pick(f){ cur=f; drawNav(); drawPane(); pane.scrollTop=0;
+  /* on a phone the slide is the scroller, not the pane — without this the user
+     lands mid-detail with the Back button above the top of the viewport */
+  var sl=box.closest&&box.closest('.slide'); if(sl)sl.scrollTop=0;
   box.classList.remove('list'); box.classList.add('detail'); }
 function refresh(){ qi.placeholder=tt(CM_UI.search); drawNav(); drawPane(); }
 qi.addEventListener('input',drawNav);
@@ -2528,7 +2718,17 @@ qi.addEventListener('keydown',function(e){
   if(e.key==='Escape'){ e.stopPropagation(); qi.value=''; drawNav(); qi.blur(); }
 });
 cur=ALLF.filter(function(f){return f.id==='proj-claude-md';})[0]||ALLF[0];
-if(window.matchMedia('(max-width:1000px)').matches){ cur=null; box.classList.add('list'); }
+var mqNarrow=window.matchMedia('(max-width:1000px)');
+if(mqNarrow.matches){ cur=null; box.classList.add('list'); }
+/* rotating a tablet used to leave the map in the wrong mode with no way back */
+function onNarrowChange(e){
+  if(e.matches){ cur=null; box.classList.add('list'); box.classList.remove('detail'); }
+  else { box.classList.remove('list','detail');
+         if(!cur)cur=ALLF.filter(function(f){return f.id==='proj-claude-md';})[0]||ALLF[0]; }
+  refresh();
+}
+if(mqNarrow.addEventListener)mqNarrow.addEventListener('change',onNarrowChange);
+else if(mqNarrow.addListener)mqNarrow.addListener(onNarrowChange);
 refresh();
 window.__cmapRefresh=refresh;
 })();
