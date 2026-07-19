@@ -605,8 +605,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">An agent that lives</span><span class="ru">Агент, который живёт</span><span class="uk">Агент, який живе</span></span></span>
         <span class="kl"><span class="kw" style="--i:1"><span class="en">where <em class="grad" style="font-style:normal">you</em> work.</span><span class="ru">там, где работаете <em class="grad" style="font-style:normal">вы</em>.</span><span class="uk">там, де працюєте <em class="grad" style="font-style:normal">ви</em>.</span></span></span></h2>
       <p class="lead fu" style="--i:0">
-        <span class="en">Claude Code is Anthropic's agentic coding tool. You describe the outcome in plain language — it plans the work, edits files, runs commands, and shows you every change before it lands.</span>
-        <span class="ru">Claude Code — агентный инструмент разработки от Anthropic. Вы описываете результат обычным языком — он планирует работу, правит файлы, запускает команды и показывает каждое изменение до того, как оно попадёт в код.</span><span class="uk">Claude Code — агентний інструмент розробки від Anthropic. Ви описуєте результат звичайною мовою — він планує роботу, редагує файли, запускає команди й показує кожну зміну до того, як вона потрапить у код.</span>
+        <span class="en">Claude Code is Anthropic's coding agent — a program that doesn't just answer questions, it does the work inside your project. You describe the outcome in plain language: it plans the work, edits files, runs commands, and shows you every change before it lands.</span>
+        <span class="ru">Claude Code — агент для разработки от Anthropic: программа, которая не просто отвечает на вопросы, а делает работу внутри вашего проекта. Вы описываете результат обычным языком: он планирует работу, правит файлы, запускает команды и показывает каждое изменение до того, как оно попадёт в код.</span><span class="uk">Claude Code — агент для розробки від Anthropic: програма, яка не просто відповідає на запитання, а робить роботу всередині вашого проєкту. Ви описуєте результат звичайною мовою: він планує роботу, редагує файли, запускає команди й показує кожну зміну до того, як вона потрапить у код.</span>
       </p>
       <div class="grid g4">
         <div class="card fu" style="--i:1"><span class="ic">⌘</span><h4><span class="en">Terminal</span><span class="ru">Терминал</span><span class="uk">Термінал</span></h4>
@@ -616,7 +616,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <div class="card fu" style="--i:3"><span class="ic">◱</span><h4><span class="en">Desktop &amp; Web</span><span class="ru">Десктоп и веб</span><span class="uk">Десктоп і веб</span></h4>
           <p><span class="en">Native app and claude.ai/code — parallel sessions in the cloud.</span><span class="ru">Приложение и claude.ai/code — параллельные сессии в облаке.</span><span class="uk">Застосунок і claude.ai/code — паралельні сесії в хмарі.</span></p></div>
         <div class="card fu" style="--i:4"><span class="ic">⎇</span><h4><span class="en">GitHub &amp; CI</span><span class="ru">GitHub и CI</span><span class="uk">GitHub і CI</span></h4>
-          <p><span class="en">Tag @claude on issues and PRs, run headless in pipelines.</span><span class="ru">Тегните @claude в issue или PR, запускайте headless в пайплайнах.</span><span class="uk">Тегніть @claude в issue чи PR, запускайте headless у пайплайнах.</span></p></div>
+          <p><span class="en">Mention @claude in a GitHub issue or pull request. It can also run with nobody watching, on every build.</span><span class="ru">Упомяните @claude в issue или пул-реквесте. Может работать и без человека — на каждой сборке.</span><span class="uk">Згадайте @claude в issue чи пул-реквесті. Може працювати й без людини — на кожній збірці.</span></p></div>
       </div>
       <div class="ex fu" style="--i:5">
         <span class="exlab"><span class="en">Same agent, every surface</span><span class="ru">Один агент, все поверхности</span><span class="uk">Один агент, усі поверхні</span></span>
@@ -695,7 +695,11 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <span class="en">Every action runs through your permission system. You stay in control — the agent does the legwork.</span>
         <span class="ru">Каждое действие проходит через вашу систему разрешений. Контроль у вас — агент берёт на себя рутину.</span><span class="uk">Кожна дія проходить через вашу систему дозволів. Контроль у вас — агент бере на себе рутину.</span>
       </p>
-      <div class="ex fu" style="--i:6">
+      <p class="sub fu" style="--i:6">
+        <span class="en">In plain words: it can't touch anything you haven't allowed. Everything else, it stops and asks.</span>
+        <span class="ru">Простыми словами: он не тронет ничего, что вы не разрешили. Во всех остальных случаях он останавливается и спрашивает.</span><span class="uk">Простими словами: він не торкнеться нічого, що ви не дозволили. У решті випадків він зупиняється і запитує.</span>
+      </p>
+      <div class="ex fu" style="--i:7">
         <span class="exlab"><span class="en">The same loop, in one real task</span><span class="ru">Тот же цикл на одной реальной задаче</span><span class="uk">Той самий цикл на одній реальній задачі</span></span>
 <div><span class="pp">&gt;</span> The date on invoices is off by one day for EU users</div>
 <div><span class="hl">●</span> <span class="cm">1 · <span class="en">understand</span><span class="ru">понять</span><span class="uk">зрозуміти</span></span>  <span class="en">timezone bug, EU only, invoices</span><span class="ru">баг таймзоны, только EU, счета</span><span class="uk">баг таймзони, лише EU, рахунки</span></div>
@@ -721,7 +725,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <div class="card fu" style="--i:0"><h4><span class="en">Write &amp; refactor code</span><span class="ru">Писать и рефакторить код</span><span class="uk">Писати й рефакторити код</span></h4>
           <p><span class="en">Features, fixes, migrations — across many files at once.</span><span class="ru">Фичи, фиксы, миграции — сразу по многим файлам.</span><span class="uk">Фічі, фікси, міграції — одразу в багатьох файлах.</span></p></div>
         <div class="card fu" style="--i:1"><h4><span class="en">Run tests &amp; commands</span><span class="ru">Запускать тесты и команды</span><span class="uk">Запускати тести й команди</span></h4>
-          <p><span class="en">Executes your toolchain and reads the output.</span><span class="ru">Выполняет ваш тулчейн и читает вывод.</span><span class="uk">Виконує ваш тулчейн і читає вивід.</span></p></div>
+          <p><span class="en">Runs the same commands you run — tests, builds, linters — and reads what they print.</span><span class="ru">Запускает те же команды, что и вы — тесты, сборку, линтеры — и читает, что они вывели.</span><span class="uk">Запускає ті самі команди, що й ви — тести, збірку, лінтери — і читає, що вони вивели.</span></p></div>
         <div class="card fu" style="--i:2"><h4><span class="en">Git, commits &amp; PRs</span><span class="ru">Git, коммиты и PR</span><span class="uk">Git, коміти та PR</span></h4>
           <p><span class="en">Branches, meaningful commits, pull requests with summaries.</span><span class="ru">Ветки, осмысленные коммиты, PR с описанием.</span><span class="uk">Гілки, осмислені коміти, PR з описом.</span></p></div>
         <div class="card fu" style="--i:3"><h4><span class="en">Search the web &amp; docs</span><span class="ru">Искать в вебе и доках</span><span class="uk">Шукати у вебі й доках</span></h4>
@@ -729,7 +733,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <div class="card fu" style="--i:4"><h4><span class="en">See images &amp; designs</span><span class="ru">Видеть картинки и макеты</span><span class="uk">Бачити картинки й макети</span></h4>
           <p><span class="en">Screenshots, mockups, PDFs — paste them straight in.</span><span class="ru">Скриншоты, макеты, PDF — просто вставьте их в чат.</span><span class="uk">Скріншоти, макети, PDF — просто вставте їх у чат.</span></p></div>
         <div class="card fu" style="--i:5"><h4><span class="en">Automate the boring</span><span class="ru">Автоматизировать рутину</span><span class="uk">Автоматизувати рутину</span></h4>
-          <p><span class="en">Lint fixes, merge conflicts, release notes, repetitive edits.</span><span class="ru">Линт, мерж-конфликты, release notes, однотипные правки.</span><span class="uk">Лінт, мерж-конфлікти, release notes, однотипні правки.</span></p></div>
+          <p><span class="en">Style warnings, clashes when two people edited the same lines, release notes, repetitive edits.</span><span class="ru">Замечания линтера, конфликты, когда двое правили одни и те же строки, release notes, однотипные правки.</span><span class="uk">Зауваження лінтера, конфлікти, коли двоє правили ті самі рядки, release notes, однотипні правки.</span></p></div>
       </div>
       <div class="ex fu" style="--i:6">
         <span class="exlab"><span class="en">One prompt, four of those abilities at once</span><span class="ru">Один промпт — четыре из этих умений сразу</span><span class="uk">Один промпт — чотири з цих умінь одразу</span></span>
@@ -751,8 +755,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
           <p><span class="en">surfaces — terminal, IDE, and cloud. Same agent, your choice of home.</span>
           <span class="ru">поверхности — терминал, IDE и облако. Один агент, дом выбираете вы.</span><span class="uk">поверхні — термінал, IDE та хмара. Один агент, дім обираєте ви.</span></p></div>
         <div class="stat fu" style="--i:1"><div class="big grad">100+</div>
-          <p><span class="en">external tools reachable through MCP: Figma, GitHub, Sentry, databases, browsers.</span>
-          <span class="ru">внешних инструментов через MCP: Figma, GitHub, Sentry, базы данных, браузеры.</span><span class="uk">зовнішніх інструментів через MCP: Figma, GitHub, Sentry, бази даних, браузери.</span></p></div>
+          <p><span class="en">external tools reachable through MCP — a standard plug for connecting outside tools: Figma, GitHub, Sentry, databases, browsers. Step 09 covers it.</span>
+          <span class="ru">внешних инструментов через MCP — стандартный разъём для подключения сторонних инструментов: Figma, GitHub, Sentry, базы данных, браузеры. Подробно — на шаге 09.</span><span class="uk">зовнішніх інструментів через MCP — стандартний роз’єм для під’єднання сторонніх інструментів: Figma, GitHub, Sentry, бази даних, браузери. Докладно — на кроці 09.</span></p></div>
         <div class="stat fu" style="--i:2"><div class="big grad">0<span style="font-size:.34em">&nbsp;<span class="en">copy-paste</span><span class="ru">копипасты</span><span class="uk">копіпасти</span></span></div>
           <p><span class="en">Claude edits files directly — you review the diff, a clear before/after list of every change, instead of shuttling snippets by hand.</span>
           <span class="ru">Claude правит файлы сам — вы смотрите дифф (наглядный список изменений «было → стало»), а не переносите куски кода руками.</span><span class="uk">Claude редагує файли сам — ви переглядаєте диф (наочний список змін «було → стало»), а не переносите шматки коду вручну.</span></p></div>
@@ -809,8 +813,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Log in once,</span><span class="ru">Один вход —</span><span class="uk">Один вхід —</span></span>
         <span class="kw grad" style="--i:1"><span class="en">work everywhere.</span><span class="ru">работа везде.</span><span class="uk">робота всюди.</span></span></span></h2>
       <p class="lead fu" style="--i:0">
-        <span class="en">On first run, Claude Code opens the browser to sign you in with a <strong>Claude subscription</strong> (Pro, Max, Team, Enterprise) or a Console API account. Credentials are stored in your system keychain.</span>
-        <span class="ru">При первом запуске Claude Code откроет браузер для входа через <strong>подписку Claude</strong> (Pro, Max, Team, Enterprise) или аккаунт Console API. Учётные данные хранятся в системном keychain.</span><span class="uk">Під час першого запуску Claude Code відкриє браузер для входу через <strong>підписку Claude</strong> (Pro, Max, Team, Enterprise) або акаунт Console API. Облікові дані зберігаються в системному keychain.</span>
+        <span class="en">On first run, Claude Code opens the browser to sign you in with a <strong>Claude subscription</strong> (Pro, Max, Team, Enterprise) or a Console API account. Your login is saved in your operating system's password store — not in any file in your project.</span>
+        <span class="ru">При первом запуске Claude Code откроет браузер для входа через <strong>подписку Claude</strong> (Pro, Max, Team, Enterprise) или аккаунт Console API. Данные входа сохраняются в системном хранилище паролей, а не в файлах вашего проекта.</span><span class="uk">Під час першого запуску Claude Code відкриє браузер для входу через <strong>підписку Claude</strong> (Pro, Max, Team, Enterprise) або акаунт Console API. Дані входу зберігаються в системному сховищі паролів, а не у файлах вашого проєкту.</span>
       </p>
       <div class="chips">
         <span class="chip fu" style="--i:1"><b>Pro / Max</b> — <span class="en">individuals</span><span class="ru">для индивидуальной работы</span><span class="uk">для індивідуальної роботи</span></span>
@@ -877,7 +881,11 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       </div>
       <p class="sub fu" style="--i:3"><span class="en"><strong style="color:var(--text)">Esc</strong> interrupts at any moment — context stays intact.</span>
         <span class="ru"><strong style="color:var(--text)">Esc</strong> прерывает в любой момент — контекст сохраняется.</span><span class="uk"><strong style="color:var(--text)">Esc</strong> перериває будь-якої миті — контекст зберігається.</span></p>
-      <div class="ex fu" style="--i:4">
+      <p class="sub fu" style="--i:4">
+        <span class="en">In plain words: Manual asks first, Plan Mode thinks first, Accept edits acts first. You can change your mind at any moment with Shift+Tab.</span>
+        <span class="ru">Простыми словами: Manual сначала спрашивает, Plan Mode сначала думает, Accept edits сначала делает. Передумать можно в любой момент — Shift+Tab.</span><span class="uk">Простими словами: Manual спершу запитує, Plan Mode спершу думає, Accept edits спершу робить. Передумати можна будь-якої миті — Shift+Tab.</span>
+      </p>
+      <div class="ex fu" style="--i:5">
         <span class="exlab"><span class="en">The current mode is shown above the input</span><span class="ru">Режим всегда виден над строкой ввода</span><span class="uk">Режим завжди видно над рядком введення</span></span>
 <div><span class="cm">╭────────────────────────────────────────────╮</span></div>
 <div><span class="cm">│</span> <span class="pp">&gt;</span> refactor the checkout flow                <span class="cm">│</span></div>
@@ -902,7 +910,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
           <h4><span class="en">Session &amp; context</span><span class="ru">Сессия и контекст</span><span class="uk">Сесія і контекст</span></h4>
           <div class="cmdrow"><code>/clear</code><span><span class="en">fresh start, memory kept</span><span class="ru">чистый старт, память сохраняется</span><span class="uk">чистий старт, пам’ять зберігається</span></span></div>
           <div class="cmdrow"><code>/compact</code><span><span class="en">summarize long history</span><span class="ru">сжать длинную историю</span><span class="uk">стиснути довгу історію</span></span></div>
-          <div class="cmdrow"><code>/context</code><span><span class="en">what fills the window</span><span class="ru">что занимает окно</span><span class="uk">що займає вікно</span></span></div>
+          <div class="cmdrow"><code>/context</code><span><span class="en">how much memory is used up</span><span class="ru">сколько памяти уже занято</span><span class="uk">скільки пам’яті вже зайнято</span></span></div>
           <div class="cmdrow"><code>/resume</code><span><span class="en">reopen a past session</span><span class="ru">вернуться к прошлой сессии</span><span class="uk">повернутися до минулої сесії</span></span></div>
           <div class="cmdrow"><code>/rewind</code><span><span class="en">roll back to a checkpoint</span><span class="ru">откатиться к чекпоинту</span><span class="uk">відкотитися до чекпоінта</span></span></div>
           <div class="cmdrow"><code>/usage</code><span><span class="en">what this session costs</span><span class="ru">сколько стоит сессия</span><span class="uk">скільки коштує сесія</span></span></div>
@@ -994,8 +1002,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
             <span class="en">When CLAUDE.md outgrows ~200 lines, don't let it bloat — split it. The <strong>.claude/rules/</strong> folder holds focused rule files that load together with CLAUDE.md: security rules, frontend conventions, database guidelines — each in its own small file, easy to review and easy to keep current.</span>
             <span class="ru">Когда CLAUDE.md перерастает ~200 строк, не давайте ему раздуваться — разделите его. Папка <strong>.claude/rules/</strong> хранит узкие файлы правил, которые загружаются вместе с CLAUDE.md: правила безопасности, конвенции фронтенда, гайдлайны по базе — каждое в своём небольшом файле, который легко ревьюить и держать актуальным.</span><span class="uk">Коли CLAUDE.md переростає ~200 рядків, не давайте йому роздуватися — розділіть його. Папка <strong>.claude/rules/</strong> зберігає вузькі файли правил, що завантажуються разом із CLAUDE.md: правила безпеки, конвенції фронтенду, гайдлайни для бази даних — кожне у своєму невеликому файлі, який легко переглядати й тримати актуальним.</span>
           </p>
-          <p class="sub fu" style="--i:1"><span class="en">Rules can be scoped to parts of the codebase — frontend rules don't tax backend work.</span>
-            <span class="ru">Правила можно ограничивать областью кода — правила фронтенда не мешают работе над бэкендом.</span><span class="uk">Правила можна обмежувати ділянкою коду — правила фронтенду не заважають роботі над бекендом.</span></p>
+          <p class="sub fu" style="--i:1"><span class="en">You can attach a rule file to one folder only, so frontend rules stay out of the way while Claude works on the backend.</span>
+            <span class="ru">Файл правил можно привязать только к одной папке, так что правила фронтенда не мешают, пока Claude работает над бэкендом.</span><span class="uk">Файл правил можна прив’язати лише до однієї теки, тож правила фронтенду не заважають, поки Claude працює над бекендом.</span></p>
         </div>
         <div class="term" style="margin-top:0">
           <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">.claude/rules/</span></div>
@@ -1026,6 +1034,9 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
             <span class="ru">В <strong>settings.json</strong> вы заранее разрешаете безопасное и блокируете опасное. Меньше вопросов, ноль сюрпризов. Три уровня: пользовательский, проектный (в git) и локальный.</span><span class="uk">У <strong>settings.json</strong> ви заздалегідь дозволяєте безпечне та блокуєте небезпечне. Менше запитань, нуль сюрпризів. Три рівні: користувацький, проєктний (у git) і локальний.</span>
           </p>
           <p class="sub fu" style="--i:1"><span class="en">Manage interactively with /permissions.</span><span class="ru">Управляйте интерактивно через /permissions.</span><span class="uk">Керуйте інтерактивно через /permissions.</span></p>
+          <p class="sub fu" style="--i:2">
+            <span class="en">In plain words: a list of things it may do without asking, and a list it may never do at all.</span>
+            <span class="ru">Простыми словами: список того, что можно делать без вопросов, и список того, чего нельзя никогда.</span><span class="uk">Простими словами: перелік того, що можна робити без запитань, і перелік того, чого не можна ніколи.</span></p>
         </div>
         <div class="term" style="margin-top:0">
           <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">.claude/settings.json</span></div>
@@ -1050,9 +1061,9 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">The pattern</span><span class="ru">Синтаксис</span><span class="uk">Синтаксис</span></span>
         <span class="kw grad" style="--i:1"><span class="en">language.</span><span class="ru">правил.</span><span class="uk">правил.</span></span></span></h2>
       <p class="lead fu" style="--i:0">
-        <span class="en">A rule is <strong>Tool(pattern)</strong>. The pattern is what makes it precise — narrow enough to be safe, broad enough to stop the prompts:</span>
-        <span class="ru">Правило — это <strong>Tool(шаблон)</strong>. Шаблон и даёт точность: достаточно узкий, чтобы быть безопасным, достаточно широкий, чтобы вас не спрашивали постоянно:</span>
-        <span class="uk">Правило — це <strong>Tool(шаблон)</strong>. Шаблон і дає точність: достатньо вузький, щоб бути безпечним, достатньо широкий, щоб не питати постійно:</span>
+        <span class="en">A rule names a tool and a pattern: <strong>Tool(pattern)</strong>. In the pattern, <strong>*</strong> means "anything from here on" — so <code>Bash(npm run test:*)</code> covers <code>test:unit</code> and <code>test:e2e</code>, and nothing else. Narrow enough to be safe, broad enough to stop the prompts:</span>
+        <span class="ru">Правило называет инструмент и шаблон: <strong>Tool(шаблон)</strong>. В шаблоне <strong>*</strong> значит «что угодно дальше» — поэтому <code>Bash(npm run test:*)</code> покрывает <code>test:unit</code> и <code>test:e2e</code>, и ничего сверх того. Достаточно узко, чтобы быть безопасным, достаточно широко, чтобы вас не спрашивали постоянно:</span>
+        <span class="uk">Правило називає інструмент і шаблон: <strong>Tool(шаблон)</strong>. У шаблоні <strong>*</strong> означає «будь-що далі» — тому <code>Bash(npm run test:*)</code> покриває <code>test:unit</code> і <code>test:e2e</code>, і нічого понад це. Достатньо вузько, щоб бути безпечним, достатньо широко, щоб не питати постійно:</span>
       </p>
       <div class="cheat">
         <div class="row fu" style="--i:0"><code>Bash(npm run test)</code><span><span class="en">exactly this command</span><span class="ru">ровно эта команда</span><span class="uk">саме ця команда</span></span></div>
@@ -1112,11 +1123,14 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <div class="cols">
         <div>
           <p class="lead fu" style="--i:0">
-            <span class="en">Subagents are specialists in <strong>.claude/agents/</strong> — a code reviewer, a security auditor, a test runner. Each works in its own context window, so heavy research never pollutes your main session. Several can run at once.</span>
-            <span class="ru">Субагенты — специалисты в <strong>.claude/agents/</strong>: ревьюер кода, аудитор безопасности, прогонщик тестов. Каждый работает в собственном контекстном окне, и тяжёлый ресёрч не засоряет основную сессию. Несколько могут работать одновременно.</span><span class="uk">Субагенти — спеціалісти в <strong>.claude/agents/</strong>: рев’юер коду, аудитор безпеки, виконавець тестів. Кожен працює у власному контекстному вікні, і важкий ресерч не засмічує основну сесію. Кілька можуть працювати одночасно.</span>
+            <span class="en">Subagents are specialists in <strong>.claude/agents/</strong> — a code reviewer, a security auditor, a test runner. Each one reads and thinks in a separate memory of its own, so a big investigation never clogs up your main conversation. Several can run at once.</span>
+            <span class="ru">Субагенты — специалисты в <strong>.claude/agents/</strong>: ревьюер кода, аудитор безопасности, прогонщик тестов. Каждый читает и думает в отдельной, своей памяти, поэтому большое исследование не забивает вашу основную беседу. Несколько могут работать одновременно.</span><span class="uk">Субагенти — спеціалісти в <strong>.claude/agents/</strong>: рев’юер коду, аудитор безпеки, виконавець тестів. Кожен читає й думає в окремій, власній пам’яті, тому велике дослідження не забиває вашу основну розмову. Кілька можуть працювати одночасно.</span>
           </p>
           <p class="sub fu" style="--i:1"><span class="en">Browse and create them with /agents. Example: "Use the code-reviewer subagent on my current diff while you keep implementing."</span>
             <span class="ru">Смотрите и создавайте через /agents. Пример: «Отдай мой текущий дифф субагенту code-reviewer, а сам продолжай реализацию».</span><span class="uk">Переглядайте і створюйте через /agents. Приклад: «Віддай мій поточний диф субагентові code-reviewer, а сам продовжуй реалізацію.»</span></p>
+          <p class="sub fu" style="--i:2">
+            <span class="en">In plain words: it hires a temp, hands them one job, and reads only their summary.</span>
+            <span class="ru">Простыми словами: он нанимает временного помощника, выдаёт ему одну задачу и читает только его итог.</span><span class="uk">Простими словами: він наймає тимчасового помічника, видає йому одну задачу й читає лише його підсумок.</span></p>
         </div>
         <div class="term" style="margin-top:0">
           <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">.claude/agents/code-reviewer.md</span></div>
@@ -1171,8 +1185,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <div class="cols">
         <div>
           <p class="lead fu" style="--i:0">
-            <span class="en">Every field is a lever. <strong>description</strong> decides when Claude delegates on its own. <strong>tools</strong> is least privilege — a reviewer needs to read, not to write. <strong>model</strong> lets you keep the expensive brain for the main work and a cheap one for bulk checks.</span>
-            <span class="ru">Каждое поле — рычаг. <strong>description</strong> решает, когда Claude делегирует сам. <strong>tools</strong> — минимум привилегий: ревьюеру нужно читать, а не писать. <strong>model</strong> позволяет держать дорогой мозг для главной работы, а дешёвый — для массовых проверок.</span><span class="uk">Кожне поле — важіль. <strong>description</strong> вирішує, коли Claude делегує сам. <strong>tools</strong> — мінімум привілеїв: рев’юеру треба читати, а не писати. <strong>model</strong> дозволяє тримати дорогий мозок для головної роботи, а дешевий — для масових перевірок.</span>
+            <span class="en">Every field is a lever. <strong>description</strong> decides when Claude delegates on its own. <strong>tools</strong> is the shortlist of what it's allowed to do — a reviewer needs to read, not to write. <strong>model</strong> lets you keep the expensive brain for the main work and a cheap one for bulk checks.</span>
+            <span class="ru">Каждое поле — рычаг. <strong>description</strong> решает, когда Claude делегирует сам. <strong>tools</strong> — короткий список того, что ему разрешено: ревьюеру нужно читать, а не писать. <strong>model</strong> позволяет держать дорогой мозг для главной работы, а дешёвый — для массовых проверок.</span><span class="uk">Кожне поле — важіль. <strong>description</strong> вирішує, коли Claude делегує сам. <strong>tools</strong> — короткий перелік того, що йому дозволено: рев’юеру треба читати, а не писати. <strong>model</strong> дозволяє тримати дорогий мозок для головної роботи, а дешевий — для масових перевірок.</span>
           </p>
           <div class="chips">
             <span class="chip fu" style="--i:1"><b>~/.claude/agents/</b> — <span class="en">personal</span><span class="ru">личные</span><span class="uk">особисті</span></span>
@@ -1204,8 +1218,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Plug in</span><span class="ru">Подключите</span><span class="uk">Підключіть</span></span>
         <span class="kw grad" style="--i:1"><span class="en">your tools.</span><span class="ru">ваши инструменты.</span><span class="uk">ваші інструменти.</span></span></span></h2>
       <p class="lead fu" style="--i:0">
-        <span class="en">The <strong>Model Context Protocol</strong> connects Claude Code to the outside world. Add a server once — the whole team gets it via <strong>.mcp.json</strong> in the repo.</span>
-        <span class="ru">Протокол <strong>MCP</strong> соединяет Claude Code с внешним миром. Добавьте сервер один раз — вся команда получит его через <strong>.mcp.json</strong> в репозитории.</span><span class="uk">Протокол <strong>MCP</strong> з’єднує Claude Code із зовнішнім світом. Додайте сервер один раз — уся команда отримає його через <strong>.mcp.json</strong> у репозиторії.</span>
+        <span class="en"><strong>MCP</strong> (Model Context Protocol) is a standard plug. Anything that speaks it — Figma, GitHub, Sentry, your database — becomes a tool Claude can use, without anyone writing an integration. Add a server once: the whole team gets it via <strong>.mcp.json</strong> in the repo.</span>
+        <span class="ru"><strong>MCP</strong> (Model Context Protocol) — стандартный разъём. Всё, что его понимает — Figma, GitHub, Sentry, ваша база данных — становится инструментом Claude, и никому не нужно писать интеграцию. Добавьте сервер один раз: вся команда получит его через <strong>.mcp.json</strong> в репозитории.</span><span class="uk"><strong>MCP</strong> (Model Context Protocol) — стандартний роз’єм. Усе, що його розуміє — Figma, GitHub, Sentry, ваша база даних — стає інструментом Claude, і нікому не треба писати інтеграцію. Додайте сервер один раз: уся команда отримає його через <strong>.mcp.json</strong> у репозиторії.</span>
       </p>
       <div class="term">
         <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">zsh</span></div>
@@ -1239,9 +1253,9 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
             <span class="uk">Закомітьте <strong>.mcp.json</strong> у корінь репозиторію — і кожен у команді отримає ті самі інструменти в наступній сесії: без інструкцій у вікі та без «у мене працює».</span>
           </p>
           <p class="sub fu" style="--i:1">
-            <span class="en">Secrets never go in the file — reference environment variables instead.</span>
-            <span class="ru">Секреты в файл не попадают — ссылайтесь на переменные окружения.</span>
-            <span class="uk">Секрети до файлу не потрапляють — посилайтеся на змінні оточення.</span></p>
+            <span class="en">Never put a password or key in this file — it's in git, so everyone can read it. Point at an environment variable that each person sets on their own machine.</span>
+            <span class="ru">Никогда не кладите пароль или ключ в этот файл — он лежит в git, его прочитают все. Ссылайтесь на переменную окружения, которую каждый задаёт у себя на машине.</span>
+            <span class="uk">Ніколи не кладіть пароль чи ключ у цей файл — він лежить у git, його прочитають усі. Посилайтеся на змінну оточення, яку кожен задає на своїй машині.</span></p>
         </div>
         <div class="term" style="margin-top:0">
           <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">.mcp.json</span></div>
@@ -1274,6 +1288,9 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
             <span class="en">Hooks run your scripts at fixed moments of the agent's life: <strong>PreToolUse</strong> — before an action (validate, block); <strong>PostToolUse</strong> — after (auto-format, log); <strong>Stop</strong> — at session end (final checks). Deterministic, not "if the model remembers".</span>
             <span class="ru">Хуки запускают ваши скрипты в фиксированные моменты жизни агента: <strong>PreToolUse</strong> — до действия (проверить, заблокировать), <strong>PostToolUse</strong> — после (автоформат, лог), <strong>Stop</strong> — в конце сессии (финальные проверки). Детерминированно, а не «если модель вспомнит».</span><span class="uk">Хуки запускають ваші скрипти у фіксовані моменти життя агента: <strong>PreToolUse</strong> — до дії (перевірити, заблокувати), <strong>PostToolUse</strong> — після (автоформат, лог), <strong>Stop</strong> — наприкінці сесії (фінальні перевірки). Детерміновано, а не «якщо модель згадає».</span>
           </p>
+          <p class="sub fu" style="--i:1">
+            <span class="en">That is: it runs every single time, because it's your command — not something the model has to remember to do.</span>
+            <span class="ru">То есть: срабатывает каждый раз, потому что это ваша команда, а не то, о чём модель должна вспомнить.</span><span class="uk">Тобто: спрацьовує щоразу, бо це ваша команда, а не те, про що модель має згадати.</span></p>
         </div>
         <div class="term" style="margin-top:0">
           <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">settings.json → hooks</span></div>
@@ -1308,8 +1325,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Context is</span><span class="ru">Контекст —</span><span class="uk">Контекст —</span></span>
         <span class="kw grad" style="--i:1"><span class="en">a budget.</span><span class="ru">это бюджет.</span><span class="uk">це бюджет.</span></span></span></h2>
       <p class="lead fu" style="--i:0">
-        <span class="en">The context window fills up — and a crowded context makes a worse agent. Spend it deliberately.</span>
-        <span class="ru">Контекстное окно заполняется — а переполненный контекст делает агента хуже. Расходуйте его осознанно.</span><span class="uk">Контекстне вікно заповнюється — а переповнений контекст робить агента гіршим. Витрачайте його свідомо.</span>
+        <span class="en">Context is everything Claude is holding in mind right now: your CLAUDE.md, every file it has read, and the whole conversation. It's a fixed size, like a whiteboard — and a crowded whiteboard makes a worse agent. Spend it deliberately.</span>
+        <span class="ru">Контекст — это всё, что Claude держит в голове прямо сейчас: ваш CLAUDE.md, каждый прочитанный файл и вся переписка. Он фиксированного размера, как доска, — а переполненная доска делает агента хуже. Расходуйте его осознанно.</span><span class="uk">Контекст — це все, що Claude тримає в голові просто зараз: ваш CLAUDE.md, кожен прочитаний файл і вся переписка. Він фіксованого розміру, як дошка, — а переповнена дошка робить агента гіршим. Витрачайте його свідомо.</span>
       </p>
       <div class="grid g2">
         <div class="card fu" style="--i:1"><h4>/clear</h4>
@@ -1410,7 +1427,10 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       </div>
       <p class="sub fu" style="--i:5"><span class="en">Conflict? The more specific level wins — except managed org policies, which can't be overridden.</span>
         <span class="ru">Конфликт? Побеждает более конкретный уровень — кроме managed-политик организации: их переопределить нельзя.</span><span class="uk">Конфлікт? Перемагає конкретніший рівень — крім managed-політик організації: їх перевизначити не можна.</span></p>
-      <div class="ex fu" style="--i:6">
+      <p class="sub fu" style="--i:6">
+        <span class="en">In plain words: your company sets the floor, you set your habits, the repo sets the team rules, and your local file is your private override.</span>
+        <span class="ru">Простыми словами: компания задаёт нижнюю планку, вы задаёте свои привычки, репозиторий — правила команды, а локальный файл — ваше личное переопределение.</span><span class="uk">Простими словами: компанія задає нижню межу, ви задаєте свої звички, репозиторій — правила команди, а локальний файл — ваше особисте перевизначення.</span></p>
+      <div class="ex fu" style="--i:7">
         <span class="exlab"><span class="en">A real conflict, resolved</span><span class="ru">Реальный конфликт и его разрешение</span><span class="uk">Реальний конфлікт і його розв’язання</span></span>
 <div><span class="cm">L2 ~/.claude/settings.json</span>        <span class="kk">"model"</span>: <span class="ss">"sonnet-5"</span></div>
 <div><span class="cm">L3 .claude/settings.json</span>          <span class="kk">"model"</span>: <span class="ss">"haiku-4-5"</span></div>
@@ -1470,7 +1490,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <div class="card fu" style="--i:2"><span class="num">3</span><h4><span class="en">Implement + tests</span><span class="ru">Реализация + тесты</span><span class="uk">Реалізація + тести</span></h4>
           <p><span class="en">It writes the code, runs the suite, fixes what fails.</span><span class="ru">Он пишет код, гоняет тесты и чинит упавшее.</span><span class="uk">Він пише код, ганяє тести й лагодить те, що впало.</span></p></div>
         <div class="card fu" style="--i:3"><span class="num">4</span><h4><span class="en">Ship the PR</span><span class="ru">Отправьте PR</span><span class="uk">Надішліть PR</span></h4>
-          <p><span class="en">Branch, commits, and a pull request ready for review — one prompt away.</span><span class="ru">Ветка, коммиты и PR (pull request — набор изменений, отправленный команде на ревью) — по одной просьбе.</span><span class="uk">Гілка, коміти та PR (pull request — набір змін на рев’ю команді) — за одним проханням.</span></p></div>
+          <p><span class="en">Branch, commits, and a pull request — the bundle of changes you hand the team to review — one prompt away.</span><span class="ru">Ветка, коммиты и PR (pull request — набор изменений, отправленный команде на ревью) — по одной просьбе.</span><span class="uk">Гілка, коміти та PR (pull request — набір змін на рев’ю команді) — за одним проханням.</span></p></div>
       </div>
       <p class="lead fu" style="--i:4"><span class="en">Also great at: debugging from a stack trace, surgical refactors, migrations, and running <strong>/code-review</strong> before merge.</span>
         <span class="ru">А ещё: дебаг по стектрейсу, точечные рефакторинги, миграции и <strong>/code-review</strong> перед мержем.</span><span class="uk">А ще: дебаг за стектрейсом, точкові рефакторинги, міграції та <strong>/code-review</strong> перед мержем.</span></p>
@@ -1493,8 +1513,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Debugging,</span><span class="ru">Дебаг</span><span class="uk">Дебаг</span></span>
         <span class="kw grad" style="--i:1"><span class="en">minus the grind.</span><span class="ru">без мучений.</span><span class="uk">без мук.</span></span></span></h2>
       <p class="lead fu" style="--i:0">
-        <span class="en">Paste the error exactly as you see it — stack trace and all. Claude reads the code around it and hunts for the cause, not just the symptom:</span>
-        <span class="ru">Вставьте ошибку как есть — вместе со стектрейсом. Claude прочитает код вокруг неё и найдёт причину, а не только симптом:</span><span class="uk">Вставте помилку як є — разом зі стектрейсом. Claude прочитає код довкола неї та знайде причину, а не лише симптом:</span>
+        <span class="en">Paste the error exactly as you see it — stack trace and all. The stack trace is the list of function calls the error fell through; it's the most useful part, so don't trim it. Claude reads the code around it and hunts for the cause, not just the symptom:</span>
+        <span class="ru">Вставьте ошибку как есть — вместе со стектрейсом. Стектрейс — это список вызовов функций, через которые провалилась ошибка; это самая полезная часть, не обрезайте её. Claude прочитает код вокруг неё и найдёт причину, а не только симптом:</span><span class="uk">Вставте помилку як є — разом зі стектрейсом. Стектрейс — це список викликів функцій, крізь які провалилася помилка; це найкорисніша частина, не обрізайте її. Claude прочитає код довкола неї та знайде причину, а не лише симптом:</span>
       </p>
       <div class="term">
         <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">claude — api-service</span></div>
@@ -1519,8 +1539,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <span class="kl"><span class="kw grad" style="--i:1"><span class="en">to living code.</span><span class="ru">в живой код.</span><span class="uk">у живий код.</span></span></span></h2>
       <div class="grid g3">
         <div class="card fu" style="--i:0"><h4><span class="en">Design → code</span><span class="ru">Дизайн → код</span><span class="uk">Дизайн → код</span></h4>
-          <p><span class="en">Connect the Figma MCP server, drop a frame link — get a faithful component in your stack.</span>
-          <span class="ru">Подключите Figma MCP, дайте ссылку на фрейм — получите точный компонент на вашем стеке.</span><span class="uk">Підключіть Figma MCP, дайте посилання на фрейм — отримаєте точний компонент на вашому стеку.</span></p></div>
+          <p><span class="en">Connect Figma, paste a frame link — get that block rebuilt as real code in whatever framework your product uses.</span>
+          <span class="ru">Подключите Figma, вставьте ссылку на фрейм — получите этот блок, собранный настоящим кодом на том фреймворке, что у вас в продукте.</span><span class="uk">Підключіть Figma, вставте посилання на фрейм — отримаєте цей блок, зібраний справжнім кодом на тому фреймворку, що у вас у продукті.</span></p></div>
         <div class="card fu" style="--i:1"><h4><span class="en">Code → design</span><span class="ru">Код → дизайн</span><span class="uk">Код → дизайн</span></h4>
           <p><span class="en">Push an existing screen back into Figma to iterate with the team.</span>
           <span class="ru">Отправьте существующий экран обратно в Figma, чтобы итерировать с командой.</span><span class="uk">Надішліть наявний екран назад у Figma, щоб ітерувати з командою.</span></p></div>
@@ -1568,8 +1588,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         </div>
       </div>
       <p class="lead fu" style="--i:3">
-        <span class="en">Also: audit design-token drift across the codebase, generate empty/error/loading states, check accessibility contrast — with receipts.</span>
-        <span class="ru">А ещё: аудит расползания дизайн-токенов по коду, генерация empty/error/loading-состояний, проверка контраста и доступности — с доказательствами.</span><span class="uk">А ще: аудит розповзання дизайн-токенів по коду, генерація empty/error/loading-станів, перевірка контрасту й доступності — з пруфами.</span>
+        <span class="en">Also: find every place where a colour or a spacing value was hard-coded instead of using your design tokens, generate the empty, error and loading states, check colour contrast — with receipts.</span>
+        <span class="ru">А ещё: найти каждое место, где цвет или отступ прописан вручную вместо дизайн-токена, сгенерировать состояния «пусто», «ошибка» и «загрузка», проверить контраст цветов — с доказательствами.</span><span class="uk">А ще: знайти кожне місце, де колір чи відступ прописано вручну замість дизайн-токена, згенерувати стани «порожньо», «помилка» та «завантаження», перевірити контраст кольорів — з доказами.</span>
       </p>
     </div>
   </section>
@@ -1930,7 +1950,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       </p>
       <div class="grid g3">
         <div class="card fu" style="--i:1"><h4><span class="en">Developer</span><span class="ru">Разработчик</span><span class="uk">Розробник</span></h4>
-          <p><span class="en">Task: fix a failing or flaky test (or a lint error) through Claude, then review your own diff.</span>
+          <p><span class="en">Task: fix a failing or flaky test — flaky means it passes sometimes and fails other times — or a lint error, through Claude, then review your own diff.</span>
           <span class="ru">Задание: почините падающий или нестабильный (flaky) тест (или ошибку линтера) через Claude, затем отревьюйте собственный дифф.</span><span class="uk">Завдання: полагодьте тест, що падає чи флакає (або помилку лінтера), через Claude, а потім перегляньте власний диф.</span></p>
           <div class="ptask"><span class="en">npm test fails on auth.spec.ts. Find the root cause, fix it, keep the suite green. Then run /code-review on the diff.</span>
           <span class="ru">npm test падает на auth.spec.ts. Найди первопричину, почини, доведи тесты до зелёных. Потом /code-review на дифф.</span><span class="uk">npm test падає на auth.spec.ts. Знайди першопричину, полагодь, доведи тести до зелених. Потім /code-review на диф.</span></div></div>
