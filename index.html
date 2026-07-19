@@ -2328,6 +2328,33 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 
   <section class="slide" data-ch-en="04 · Best practices" data-ch-ru="04 · Лучшие практики" data-ch-uk="04 · Найкращі практики">
     <div class="inner">
+      <span class="eyebrow"><span class="en">Habit 01 · by role</span><span class="ru">Привычка 01 · по ролям</span><span class="uk">Звичка 01 · за ролями</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Vague → specific,</span><span class="ru">Расплывчато → конкретно,</span><span class="uk">Розпливчасто → конкретно,</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">in your words.</span><span class="ru">вашими словами.</span><span class="uk">вашими словами.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">"Be specific" is easy to agree with and hard to apply to your own work. Here is the same upgrade made three times, once per role:</span>
+        <span class="ru">С «будьте конкретнее» легко согласиться и трудно применить к своей работе. Вот одно и то же улучшение, сделанное трижды — по разу на роль:</span><span class="uk">Із «будьте конкретнішими» легко погодитися і важко застосувати до своєї роботи. Ось те саме покращення, зроблене тричі — по разу на роль:</span>
+      </p>
+      <div class="grid g3">
+        <div class="card fu" style="--i:1"><h4><span class="en">Developer</span><span class="ru">Разработчик</span><span class="uk">Розробник</span></h4>
+          <p style="font-family:var(--mono);font-size:13px;color:var(--dim)">"make it faster"</p>
+          <div class="ptask"><span class="en">The /orders list takes 3.2s to load. Profile it, fix the single biggest cost, and show me a before/after timing.</span><span class="ru">Список /orders грузится 3.2с. Профилируй, устрани самую дорогую операцию и покажи замер «до/после».</span><span class="uk">Список /orders вантажиться 3.2с. Профілюй, усунь найдорожчу операцію й покажи замір «до/після».</span></div></div>
+        <div class="card fu" style="--i:2"><h4><span class="en">Designer</span><span class="ru">Дизайнер</span><span class="uk">Дизайнер</span></h4>
+          <p style="font-family:var(--mono);font-size:13px;color:var(--dim)">"make it prettier"</p>
+          <div class="ptask"><span class="en">Rebuild this card using our spacing scale and colour tokens, no hard-coded values. Screenshot it at 1440 and 390 and show me both.</span><span class="ru">Пересобери эту карточку на нашей шкале отступов и токенах цвета, без хардкода. Сделай скриншоты на 1440 и 390 и покажи оба.</span><span class="uk">Перезбери цю картку на нашій шкалі відступів і токенах кольору, без хардкоду. Зроби скріншоти на 1440 і 390 та покажи обидва.</span></div></div>
+        <div class="card fu" style="--i:3"><h4><span class="en">Manager / PO</span><span class="ru">Менеджер / PO</span><span class="uk">Менеджер / PO</span></h4>
+          <p style="font-family:var(--mono);font-size:13px;color:var(--dim)">"write the spec"</p>
+          <div class="ptask"><span class="en">Compare export.service.ts against this spec [paste] and list every gap as a numbered acceptance criterion. Mark which ones already work.</span><span class="ru">Сверь export.service.ts с этой спекой [вставка] и перечисли каждое расхождение как нумерованный критерий приёмки. Отметь, что уже работает.</span><span class="uk">Звір export.service.ts із цією специфікацією [вставка] і перелічи кожне розходження як нумерований критерій приймання. Познач, що вже працює.</span></div></div>
+      </div>
+      <p class="sub fu" style="--i:4">
+        <span class="en">Each rewrite added the same three things: a number to aim at, a file or a rule to work within, and a way to show you the result. Nothing about it is technical.</span>
+        <span class="ru">Каждая переписанная версия добавила одно и то же: число, к которому стремиться, файл или правило, в рамках которого работать, и способ показать вам результат. Ничего технического здесь нет.</span><span class="uk">Кожна переписана версія додала те саме: число, до якого прагнути, файл або правило, у межах якого працювати, і спосіб показати вам результат. Нічого технічного тут немає.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="04 · Best practices" data-ch-ru="04 · Лучшие практики" data-ch-uk="04 · Найкращі практики">
+    <div class="inner">
       <span class="eyebrow"><span class="en">Habit 02</span><span class="ru">Привычка 02</span><span class="uk">Звичка 02</span></span>
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Plan first.</span><span class="ru">Сначала план.</span><span class="uk">Спершу план.</span></span>
         <span class="kw grad" style="--i:1"><span class="en">Code second.</span><span class="ru">Потом код.</span><span class="uk">Потім код.</span></span></span></h2>
@@ -2342,6 +2369,42 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       </div>
       <p class="sub fu" style="--i:4"><span class="en">Example prompt: "/plan — research how our auth works and propose a step-by-step plan for adding OAuth. Don't touch code yet."</span>
         <span class="ru">Пример промпта: «/plan — разберись, как устроена наша авторизация, и предложи пошаговый план добавления OAuth. Код пока не трогай».</span><span class="uk">Приклад промпта: «/plan — розберися, як влаштована наша авторизація, і запропонуй покроковий план додавання OAuth. Код поки не чіпай.»</span></p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="04 · Best practices" data-ch-ru="04 · Лучшие практики" data-ch-uk="04 · Найкращі практики">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">Plan Mode</span><span class="ru">Plan Mode</span><span class="uk">Plan Mode</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">What a plan</span><span class="ru">Как на самом деле</span><span class="uk">Який вигляд</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">actually looks like.</span><span class="ru">выглядит план.</span><span class="uk">насправді має план.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">Most people have never seen one, so "plan first" stays abstract advice. This is the real output — and the reason it's worth the extra minute is in the last three lines.</span>
+        <span class="ru">Большинство никогда его не видели, поэтому «сначала план» остаётся абстрактным советом. Вот реальный вывод — а причина, ради которой стоит потратить лишнюю минуту, в последних трёх строках.</span><span class="uk">Більшість ніколи його не бачила, тому «спершу план» лишається абстрактною порадою. Ось справжній вивід — а причина, заради якої варто витратити зайву хвилину, в останніх трьох рядках.</span>
+      </p>
+      <div class="term">
+        <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">plan mode — add OAuth</span></div>
+        <div class="tbody">
+<div class="ln" style="--i:0"><span class="hl">●</span> <span class="en">Read 14 files across auth, session and the user model.</span><span class="ru">Прочитал 14 файлов: авторизация, сессии, модель пользователя.</span><span class="uk">Прочитав 14 файлів: авторизація, сесії, модель користувача.</span></div>
+<div class="ln" style="--i:1">&nbsp;</div>
+<div class="ln" style="--i:2"><span class="kk">  1.</span> <span class="en">Add the provider config</span><span class="ru">Добавить конфиг провайдера</span><span class="uk">Додати конфіг провайдера</span>          <span class="cm">auth/providers.ts <span class="ok">(new)</span></span></div>
+<div class="ln" style="--i:3"><span class="kk">  2.</span> <span class="en">Add the callback route</span><span class="ru">Добавить callback-роут</span><span class="uk">Додати callback-роут</span>             <span class="cm">api/auth/[...path].ts</span></div>
+<div class="ln" style="--i:4"><span class="kk">  3.</span> <span class="en">Link OAuth identity to our user</span><span class="ru">Связать OAuth-личность с юзером</span><span class="uk">Пов’язати OAuth-особу з юзером</span>    <span class="cm">user.service.ts</span></div>
+<div class="ln" style="--i:5"><span class="kk">  4.</span> <span class="en">Migration: accounts table</span><span class="ru">Миграция: таблица accounts</span><span class="uk">Міграція: таблиця accounts</span>          <span class="cm">prisma/schema.prisma</span></div>
+<div class="ln" style="--i:6"><span class="kk">  5.</span> <span class="en">Tests: new user, returning user, denied</span><span class="ru">Тесты: новый юзер, возвратный, отказ</span><span class="uk">Тести: новий юзер, повторний, відмова</span> <span class="cm">oauth.test.ts <span class="ok">(new)</span></span></div>
+<div class="ln" style="--i:7">&nbsp;</div>
+<div class="ln" style="--i:8"><span class="hl">⚠</span> <span class="en">Risk: session.ts is shared with the mobile app. I'd rather</span><span class="ru">Риск: session.ts общий с мобильным приложением. Я бы предпочёл</span><span class="uk">Ризик: session.ts спільний із мобільним застосунком. Я б волів</span></div>
+<div class="ln" style="--i:9">  <span class="en">extend it than change its existing shape.</span><span class="ru">расширить его, а не менять текущую форму.</span><span class="uk">розширити його, а не міняти поточну форму.</span></div>
+<div class="ln" style="--i:10">&nbsp;</div>
+<div class="ln" style="--i:11"><span class="pp">?</span> <span class="en">One decision from you: should an OAuth email that matches an</span><span class="ru">Одно решение за вами: если e-mail из OAuth совпал с существующим</span><span class="uk">Одне рішення за вами: якщо e-mail з OAuth збігся з наявним</span></div>
+<div class="ln" style="--i:12">  <span class="en">existing account link to it, or be rejected as a duplicate?</span><span class="ru">аккаунтом — связывать их или отклонять как дубликат?</span><span class="uk">акаунтом — пов’язувати їх чи відхиляти як дублікат?</span></div>
+<div class="ln" style="--i:13">&nbsp;</div>
+<div class="ln" style="--i:14"><span class="cm">[a] <span class="en">approve</span><span class="ru">принять</span><span class="uk">прийняти</span>   [e] <span class="en">edit the plan</span><span class="ru">изменить план</span><span class="uk">змінити план</span>   [n] <span class="en">reject</span><span class="ru">отклонить</span><span class="uk">відхилити</span></span></div>
+        </div>
+      </div>
+      <p class="sub fu" style="--i:2">
+        <span class="en">The ⚠ and the ? are the payoff. It found a shared file worth being careful with, and a product decision it correctly refused to make on your behalf — both before a single line changed.</span>
+        <span class="ru">Ради ⚠ и ? всё и затевалось. Он нашёл общий файл, с которым стоит быть осторожным, и продуктовое решение, которое справедливо отказался принимать за вас, — всё это до единой строки правок.</span><span class="uk">Заради ⚠ і ? усе й затівалося. Він знайшов спільний файл, з яким варто бути обережним, і продуктове рішення, яке справедливо відмовився ухвалювати за вас, — і все це до жодного рядка правок.</span>
+      </p>
     </div>
   </section>
 
@@ -2370,6 +2433,39 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div>  mobile. Only the token refresh in auth.ts.</div>
 <div><span class="ok">✓</span> <span class="en">Reverted the store, scoped to auth.ts. Continue?</span><span class="ru">Откатил хранилище, работаю только в auth.ts. Продолжать?</span><span class="uk">Відкотив сховище, працюю лише в auth.ts. Продовжувати?</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="04 · Best practices" data-ch-ru="04 · Лучшие практики" data-ch-uk="04 · Найкращі практики">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">Reading a diff</span><span class="ru">Как читать дифф</span><span class="uk">Як читати диф</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Thirty seconds,</span><span class="ru">Тридцать секунд,</span><span class="uk">Тридцять секунд,</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">three questions.</span><span class="ru">три вопроса.</span><span class="uk">три запитання.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">A diff is just a before-and-after list: <span class="bad">−</span> is a line that went away, <span class="ok">+</span> is a line that arrived. You don't need to understand the code to ask three useful questions about it.</span>
+        <span class="ru">Дифф — это просто список «было и стало»: <span class="bad">−</span> строка ушла, <span class="ok">+</span> строка появилась. Чтобы задать о нём три полезных вопроса, понимать код не нужно.</span><span class="uk">Диф — це просто список «було і стало»: <span class="bad">−</span> рядок пішов, <span class="ok">+</span> рядок з’явився. Щоб поставити про нього три корисні запитання, розуміти код не потрібно.</span>
+      </p>
+      <div class="ex fu" style="--i:1">
+        <span class="exlab">src/services/invoice.ts</span>
+<div>  <span class="cm">function formatDueDate(invoice) {</span></div>
+<div>    <span class="bad">−   return invoice.dueDate.toLocaleDateString()</span></div>
+<div>    <span class="ok">+   return invoice.dueDate.toLocaleDateString(user.locale, {</span></div>
+<div>    <span class="ok">+     timeZone: user.timeZone</span></div>
+<div>    <span class="ok">+   })</span></div>
+<div>  <span class="cm">}</span></div>
+<div>&nbsp;</div>
+<div>  <span class="cm">src/services/invoice.test.ts</span></div>
+<div>    <span class="ok">+ test('renders the due date in the user timezone', …)</span></div>
+      </div>
+      <div class="checks fu" style="--i:2">
+        <div><span class="ck">1</span><span><span class="en">Did it change more files than the task needed? Here: two — the fix and its test. Good.</span><span class="ru">Изменено больше файлов, чем требовала задача? Здесь два — фикс и тест к нему. Нормально.</span><span class="uk">Змінено більше файлів, ніж потребувала задача? Тут два — фікс і тест до нього. Нормально.</span></span></div>
+        <div><span class="ck">2</span><span><span class="en">Did it delete anything it wasn't asked to? Here: one line, replaced by the new version of itself. Fine.</span><span class="ru">Удалено что-то, о чём не просили? Здесь одна строка, заменённая своей же новой версией. Нормально.</span><span class="uk">Видалено щось, про що не просили? Тут один рядок, замінений своєю ж новою версією. Нормально.</span></span></div>
+        <div><span class="ck">3</span><span><span class="en">Does the test it added actually test the bug? Read the test's name out loud — here it names the exact thing that was broken.</span><span class="ru">Добавленный тест правда проверяет этот баг? Прочитайте название теста вслух — здесь оно называет ровно то, что было сломано.</span><span class="uk">Доданий тест справді перевіряє цей баг? Прочитайте назву тесту вголос — тут вона називає саме те, що було зламано.</span></span></div>
+      </div>
+      <p class="sub fu" style="--i:3">
+        <span class="en">You don't need to read the code to ask these. If any answer worries you, say so in plain words — "why did you touch the second file?" is a complete review comment.</span>
+        <span class="ru">Чтобы задать эти вопросы, читать код не нужно. Если какой-то ответ настораживает — скажите об этом обычными словами: «зачем ты трогал второй файл?» — это полноценный комментарий на ревью.</span><span class="uk">Щоб поставити ці запитання, читати код не потрібно. Якщо якась відповідь насторожує — скажіть про це звичайними словами: «навіщо ти чіпав другий файл?» — це повноцінний коментар на рев’ю.</span>
+      </p>
     </div>
   </section>
 
@@ -2405,6 +2501,38 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 
   <section class="slide" data-ch-en="04 · Best practices" data-ch-ru="04 · Лучшие практики" data-ch-uk="04 · Найкращі практики">
     <div class="inner">
+      <span class="eyebrow"><span class="en">Safety · the short version</span><span class="ru">Безопасность · коротко</span><span class="uk">Безпека · коротко</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">The four rules</span><span class="ru">Четыре правила,</span><span class="uk">Чотири правила,</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">never to allow.</span><span class="ru">которые нельзя разрешать.</span><span class="uk">які не можна дозволяти.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">If you read nothing else about permissions, paste this. Four denials cover the mistakes that are expensive to undo — and unlike the allow list, they don't depend on your stack.</span>
+        <span class="ru">Если вы не станете читать о разрешениях ничего больше — вставьте вот это. Четыре запрета закрывают ошибки, которые дорого откатывать, и, в отличие от allow, не зависят от вашего стека.</span><span class="uk">Якщо ви не читатимете про дозволи більше нічого — вставте ось це. Чотири заборони закривають помилки, які дорого відкочувати, і, на відміну від allow, не залежать від вашого стеку.</span>
+      </p>
+      <div class="ex fu" style="--i:1">
+        <span class="exlab"><span class="en">Paste into permissions.deny and forget about it</span><span class="ru">Вставьте в permissions.deny и забудьте</span><span class="uk">Вставте в permissions.deny і забудьте</span></span>
+<div><span class="bad">✗</span> <span class="ss">"Bash(rm -rf *)"</span></div>
+<div>  <span class="cm"><span class="en">deleting in bulk is never worth the time it saves</span><span class="ru">массовое удаление никогда не стоит сэкономленного времени</span><span class="uk">масове видалення ніколи не варте заощадженого часу</span></span></div>
+<div>&nbsp;</div>
+<div><span class="bad">✗</span> <span class="ss">"Bash(git push --force *)"</span></div>
+<div>  <span class="cm"><span class="en">rewriting shared history costs the whole team, not just you</span><span class="ru">переписанная общая история бьёт по всей команде, а не по вам одному</span><span class="uk">переписана спільна історія б’є по всій команді, а не по вас одному</span></span></div>
+<div>&nbsp;</div>
+<div><span class="bad">✗</span> <span class="ss">"Read(.env)"</span>, <span class="ss">"Read(**/.env)"</span>, <span class="ss">"Read(**/*.pem)"</span></div>
+<div>  <span class="cm"><span class="en">a secret that reaches the model is a secret you must now rotate</span><span class="ru">секрет, попавший в модель, — это секрет, который придётся менять</span><span class="uk">секрет, що потрапив у модель, — це секрет, який доведеться міняти</span></span></div>
+<div>&nbsp;</div>
+<div><span class="bad">✗</span> <span class="en">unrestricted outbound fetching</span><span class="ru">неограниченные исходящие запросы</span><span class="uk">необмежені вихідні запити</span></div>
+<div>  <span class="cm"><span class="en">allow the domains you trust: WebFetch(domain:docs.your-company.com)</span><span class="ru">разрешайте домены, которым доверяете: WebFetch(domain:docs.your-company.com)</span><span class="uk">дозволяйте домени, яким довіряєте: WebFetch(domain:docs.your-company.com)</span></span></div>
+<div>&nbsp;</div>
+<div><span class="ok">✓</span> <span class="cm"><span class="en">deny always beats allow — you can be generous everywhere else</span><span class="ru">deny всегда сильнее allow — во всём остальном можно быть щедрым</span><span class="uk">deny завжди сильніший за allow — в усьому іншому можна бути щедрим</span></span></div>
+      </div>
+      <p class="sub fu" style="--i:2">
+        <span class="en">Notice what these have in common: each one is cheap to live without and expensive to undo. That's the whole test for whether something belongs in <code>deny</code>.</span>
+        <span class="ru">Обратите внимание на общее: без каждого из них легко обойтись, а откатывать дорого. В этом и весь критерий, попадает ли что-то в <code>deny</code>.</span><span class="uk">Зверніть увагу на спільне: без кожного з них легко обійтися, а відкочувати дорого. У цьому й весь критерій, чи потрапляє щось у <code>deny</code>.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="04 · Best practices" data-ch-ru="04 · Лучшие практики" data-ch-uk="04 · Найкращі практики">
+    <div class="inner">
       <span class="eyebrow"><span class="en">Habit 05 · Anti-patterns</span><span class="ru">Привычка 05 · Антипаттерны</span><span class="uk">Звичка 05 · Антипатерни</span></span>
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Four ways</span><span class="ru">Четыре способа</span><span class="uk">Чотири способи</span></span>
         <span class="kw grad" style="--i:1"><span class="en">to fail.</span><span class="ru">всё испортить.</span><span class="uk">все зіпсувати.</span></span></span></h2>
@@ -2434,6 +2562,33 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div><span class="ok">✓</span> <span class="cm">2.</span> <span class="cm"><span class="en">port the users table only, keep tests green</span><span class="ru">перенести только таблицу юзеров, тесты зелёные</span><span class="uk">перенести лише таблицю юзерів, тести зелені</span></span></div>
 <div><span class="ok">✓</span> <span class="cm">3.</span> /clear <span class="cm">→ <span class="en">next route, fresh context</span><span class="ru">следующий роут, чистый контекст</span><span class="uk">наступний роут, чистий контекст</span></span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="04 · Best practices" data-ch-ru="04 · Лучшие практики" data-ch-uk="04 · Найкращі практики">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">Anti-patterns · repaired</span><span class="ru">Антипаттерны · починенные</span><span class="uk">Антипатерни · полагоджені</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">The other three,</span><span class="ru">Остальные три,</span><span class="uk">Решта три,</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">repaired.</span><span class="ru">починенные.</span><span class="uk">полагоджені.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">The previous slide fixed the mega-prompt. Here are the other three failures, each with the smallest change that actually resolves it:</span>
+        <span class="ru">На прошлом слайде мы починили мегапромпт. Вот остальные три провала — и для каждого минимальное изменение, которое его действительно закрывает:</span><span class="uk">На попередньому слайді ми полагодили мегапромпт. Ось решта три провали — і для кожного мінімальна зміна, яка його справді закриває:</span>
+      </p>
+      <div class="grid g3">
+        <div class="card fu" style="--i:1"><h4><span class="en">Blind auto-accept</span><span class="ru">Слепое автопринятие</span><span class="uk">Сліпе автоприйняття</span></h4>
+          <p><span class="en"><strong>Fails as:</strong> you turn on Accept edits, stop reading, and find out three days later.</span><span class="ru"><strong>Как проваливается:</strong> включаете Accept edits, перестаёте читать и узнаёте об этом через три дня.</span><span class="uk"><strong>Як провалюється:</strong> вмикаєте Accept edits, перестаєте читати й дізнаєтеся про це за три дні.</span></p>
+          <p style="margin-top:10px"><span class="en"><strong style="color:var(--coral)">Fix:</strong> keep Accept edits, but add a Stop hook that runs the tests, and read the diff before you commit. Speed stays, blindness goes.</span><span class="ru"><strong style="color:var(--coral)">Починка:</strong> оставьте Accept edits, но добавьте Stop-хук с прогоном тестов и читайте дифф перед коммитом. Скорость остаётся, слепота уходит.</span><span class="uk"><strong style="color:var(--coral)">Лагодження:</strong> залиште Accept edits, але додайте Stop-хук із прогоном тестів і читайте диф перед комітом. Швидкість лишається, сліпота зникає.</span></p></div>
+        <div class="card fu" style="--i:2"><h4><span class="en">The CLAUDE.md nobody follows</span><span class="ru">CLAUDE.md, которому никто не следует</span><span class="uk">CLAUDE.md, якого ніхто не дотримується</span></h4>
+          <p><span class="en"><strong>Fails as:</strong> it ignored a rule, so you added another rule. Now it's 400 lines and it ignores more of them.</span><span class="ru"><strong>Как проваливается:</strong> он проигнорировал правило — вы дописали ещё одно. Теперь там 400 строк, и игнорируется больше.</span><span class="uk"><strong>Як провалюється:</strong> він проігнорував правило — ви дописали ще одне. Тепер там 400 рядків, і ігнорується більше.</span></p>
+          <p style="margin-top:10px"><span class="en"><strong style="color:var(--coral)">Fix:</strong> if a rule was ignored twice, delete three other lines rather than adding a fourth. Attention is the scarce thing, not space.</span><span class="ru"><strong style="color:var(--coral)">Починка:</strong> если правило проигнорировано дважды — удалите три другие строки вместо добавления четвёртой. Дефицитно внимание, а не место.</span><span class="uk"><strong style="color:var(--coral)">Лагодження:</strong> якщо правило проігноровано двічі — видаліть три інші рядки замість додавання четвертого. Дефіцитна увага, а не місце.</span></p></div>
+        <div class="card fu" style="--i:3"><h4><span class="en">The session that never ends</span><span class="ru">Бесконечная сессия</span><span class="uk">Нескінченна сесія</span></h4>
+          <p><span class="en"><strong>Fails as:</strong> one conversation covers four tickets, and by the fourth the answers have quietly got worse.</span><span class="ru"><strong>Как проваливается:</strong> одна переписка тянет четыре тикета, и к четвёртому ответы незаметно ухудшились.</span><span class="uk"><strong>Як провалюється:</strong> одне листування тягне чотири тикети, і до четвертого відповіді непомітно погіршилися.</span></p>
+          <p style="margin-top:10px"><span class="en"><strong style="color:var(--coral)">Fix:</strong> one <code>/clear</code> per ticket. If the session taught you something worth keeping, put it in CLAUDE.md first — then clear without regret.</span><span class="ru"><strong style="color:var(--coral)">Починка:</strong> один <code>/clear</code> на тикет. Если сессия научила чему-то важному — сначала запишите это в CLAUDE.md, потом очищайте без сожалений.</span><span class="uk"><strong style="color:var(--coral)">Лагодження:</strong> один <code>/clear</code> на тикет. Якщо сесія навчила чогось важливого — спершу запишіть це в CLAUDE.md, потім очищайте без жалю.</span></p></div>
+      </div>
+      <p class="sub fu" style="--i:4">
+        <span class="en">All four anti-patterns are the same mistake wearing different clothes: letting the agent run further than you're still reading.</span>
+        <span class="ru">Все четыре антипаттерна — одна и та же ошибка в разной одежде: агент убегает дальше, чем вы всё ещё читаете.</span><span class="uk">Усі чотири антипатерни — та сама помилка в різному одязі: агент забігає далі, ніж ви ще читаєте.</span>
+      </p>
     </div>
   </section>
 
