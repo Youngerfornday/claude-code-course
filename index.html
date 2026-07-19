@@ -417,7 +417,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
   .inner{margin:auto 0}
 }
 /* sideways scrollers must keep their gesture to themselves */
-.tw,.code,.tbody,.chips,.pre{overscroll-behavior-x:contain}
+.tw,.code,.tbody,.chips,.pre,.ex{overscroll-behavior-x:contain}
 /* edge tap-zones cause accidental slide changes on touch — swipe handles it there */
 @media (hover:none){.zone{display:none}}
 @media (max-width:620px){
@@ -500,7 +500,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
   .cmap .side,.cmap .pane{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 }
 /* keep sideways scrollers from chaining into Safari's back-swipe */
-.tw,.tbody,.chips,.cmap pre,.cmap .pbox code{overscroll-behavior-x:contain}
+.tw,.tbody,.chips,.ex,.cmap pre,.cmap .pbox code{overscroll-behavior-x:contain}
 
 /* ---------- print / PDF handout ---------- */
 @media print{
