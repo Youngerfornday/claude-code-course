@@ -893,6 +893,37 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 
   <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
     <div class="inner">
+      <span class="eyebrow"><span class="en">If the terminal is new to you</span><span class="ru">Если терминал для вас в новинку</span><span class="uk">Якщо термінал для вас новий</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Sixty seconds</span><span class="ru">Шестьдесят секунд</span><span class="uk">Шістдесят секунд</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">of terminal.</span><span class="ru">терминала.</span><span class="uk">термінала.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">The terminal is a window where you type commands instead of clicking. You need exactly four of them to start — and after that, you talk to Claude in ordinary language.</span>
+        <span class="ru">Терминал — это окно, где вы печатаете команды вместо того, чтобы кликать. Чтобы начать, нужно ровно четыре команды — а дальше вы говорите с Claude обычным языком.</span><span class="uk">Термінал — це вікно, де ви друкуєте команди замість того, щоб клікати. Щоб почати, потрібно рівно чотири команди — а далі ви говорите з Claude звичайною мовою.</span>
+      </p>
+      <div class="cheat">
+        <div class="row fu" style="--i:0"><code>pwd</code><span><span class="en">which folder am I in right now?</span><span class="ru">в какой папке я сейчас?</span><span class="uk">у якій теці я зараз?</span></span></div>
+        <div class="row fu" style="--i:1"><code>ls</code><span><span class="en">what's inside this folder?</span><span class="ru">что лежит в этой папке?</span><span class="uk">що лежить у цій теці?</span></span></div>
+        <div class="row fu" style="--i:2"><code>cd my-project</code><span><span class="en">go into the folder called my-project</span><span class="ru">зайти в папку my-project</span><span class="uk">зайти в теку my-project</span></span></div>
+        <div class="row fu" style="--i:3"><code>cd ..</code><span><span class="en">go back out, one level up</span><span class="ru">выйти обратно, на уровень вверх</span><span class="uk">вийти назад, на рівень вище</span></span></div>
+        <div class="row fu" style="--i:4"><code>claude</code><span><span class="en">start the agent here, in this folder</span><span class="ru">запустить агента здесь, в этой папке</span><span class="uk">запустити агента тут, у цій теці</span></span></div>
+        <div class="row fu" style="--i:5"><code>Ctrl+C</code><span><span class="en">stop whatever is running</span><span class="ru">остановить то, что выполняется</span><span class="uk">зупинити те, що виконується</span></span></div>
+      </div>
+      <div class="ex fu" style="--i:6">
+        <span class="exlab"><span class="en">The whole thing, start to finish</span><span class="ru">Всё целиком, от начала до конца</span><span class="uk">Усе цілком, від початку до кінця</span></span>
+<div><span class="pp">$</span> pwd</div>
+<div>  /Users/you            <span class="cm">← <span class="en">I'm in my home folder</span><span class="ru">я в домашней папке</span><span class="uk">я в домашній теці</span></span></div>
+<div><span class="pp">$</span> cd projects/website  <span class="cm">← <span class="en">go where the project lives</span><span class="ru">иду туда, где лежит проект</span><span class="uk">іду туди, де лежить проєкт</span></span></div>
+<div><span class="pp">$</span> claude                <span class="cm">← <span class="en">and that's it. Now just type.</span><span class="ru">и всё. Дальше просто пишите.</span><span class="uk">і все. Далі просто пишіть.</span></span></div>
+      </div>
+      <p class="sub fu" style="--i:7">
+        <span class="en">Claude only ever works inside the folder you started it in. That's the whole safety model of "where am I" — so <code>pwd</code> is worth checking before you begin.</span>
+        <span class="ru">Claude работает только внутри той папки, в которой вы его запустили. В этом вся модель безопасности «где я нахожусь» — поэтому перед началом стоит проверить <code>pwd</code>.</span><span class="uk">Claude працює лише всередині тієї теки, у якій ви його запустили. У цьому вся модель безпеки «де я перебуваю» — тому перед початком варто перевірити <code>pwd</code>.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
       <span class="eyebrow"><span class="en">Step 02 · Sign in</span><span class="ru">Шаг 02 · Вход</span><span class="uk">Крок 02 · Вхід</span></span>
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Log in once,</span><span class="ru">Один вход —</span><span class="uk">Один вхід —</span></span>
         <span class="kw grad" style="--i:1"><span class="en">work everywhere.</span><span class="ru">работа везде.</span><span class="uk">робота всюди.</span></span></span></h2>
@@ -944,6 +975,33 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 
   <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
     <div class="inner">
+      <span class="eyebrow"><span class="en">The shape of a good brief</span><span class="ru">Форма хорошего брифа</span><span class="uk">Форма хорошого брифа</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Goal · Constraints</span><span class="ru">Цель · Ограничения</span><span class="uk">Ціль · Обмеження</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">· Done.</span><span class="ru">· Готово.</span><span class="uk">· Готово.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">That three-part shape is the whole skill, and it doesn't depend on your job. Same formula, three very different tasks:</span>
+        <span class="ru">Эта трёхчастная форма — и есть весь навык, и она не зависит от вашей профессии. Одна формула, три совсем разные задачи:</span><span class="uk">Ця тричастинна форма — і є вся навичка, і вона не залежить від вашої професії. Одна формула, три зовсім різні задачі:</span>
+      </p>
+      <div class="grid g3">
+        <div class="card fu" style="--i:1"><h4><span class="en">Developer</span><span class="ru">Разработчик</span><span class="uk">Розробник</span></h4>
+          <p><span class="en">Goal · within our stack · proven by tests.</span><span class="ru">Цель · в рамках нашего стека · доказано тестами.</span><span class="uk">Ціль · у межах нашого стеку · доведено тестами.</span></p>
+          <div class="ptask"><span class="en">Add pagination to the orders list. Use the same cursor helper as the invoices list. Done when the existing tests pass and you've added one for an empty page.</span><span class="ru">Добавь пагинацию в список заказов. Используй тот же курсорный хелпер, что и в списке счетов. Готово, когда существующие тесты проходят и добавлен тест на пустую страницу.</span><span class="uk">Додай пагінацію до списку замовлень. Використай той самий курсорний хелпер, що й у списку рахунків. Готово, коли наявні тести проходять і додано тест на порожню сторінку.</span></div></div>
+        <div class="card fu" style="--i:2"><h4><span class="en">Designer</span><span class="ru">Дизайнер</span><span class="uk">Дизайнер</span></h4>
+          <p><span class="en">Goal · within our tokens · proven by a screenshot.</span><span class="ru">Цель · в рамках наших токенов · доказано скриншотом.</span><span class="uk">Ціль · у межах наших токенів · доведено скріншотом.</span></p>
+          <div class="ptask"><span class="en">Build the testimonial card from this frame. Use only our existing colour and spacing tokens. Done when you show me a screenshot at 1440 and 390 wide.</span><span class="ru">Собери карточку с отзывом из этого фрейма. Используй только наши существующие токены цвета и отступов. Готово, когда покажешь скриншот на ширине 1440 и 390.</span><span class="uk">Збери картку з відгуком із цього фрейму. Використовуй лише наші наявні токени кольору й відступів. Готово, коли покажеш скріншот на ширині 1440 і 390.</span></div></div>
+        <div class="card fu" style="--i:3"><h4><span class="en">Manager / PO</span><span class="ru">Менеджер / PO</span><span class="uk">Менеджер / PO</span></h4>
+          <p><span class="en">Goal · grounded in real code · proven by a list.</span><span class="ru">Цель · опираясь на реальный код · доказано списком.</span><span class="uk">Ціль · спираючись на справжній код · доведено списком.</span></p>
+          <div class="ptask"><span class="en">Draft the spec for the export feature. Base it on what export.service.ts actually does today, not on what we wish it did. Done when every edge case is a separate numbered line.</span><span class="ru">Набросай спеку по фиче экспорта. Опирайся на то, что export.service.ts делает сегодня, а не на то, чего нам хотелось бы. Готово, когда каждый краевой случай — отдельный нумерованный пункт.</span><span class="uk">Накидай специфікацію фічі експорту. Спирайся на те, що export.service.ts робить сьогодні, а не на те, чого нам хотілося б. Готово, коли кожен крайовий випадок — окремий нумерований пункт.</span></div></div>
+      </div>
+      <p class="sub fu" style="--i:4">
+        <span class="en">The third part matters most. "Done when…" is what lets the agent check its own work instead of handing it back to you half-finished.</span>
+        <span class="ru">Важнее всего третья часть. «Готово, когда…» — именно она позволяет агенту проверить себя, а не возвращать вам недоделанное.</span><span class="uk">Найважливіша третя частина. «Готово, коли…» — саме вона дозволяє агентові перевірити себе, а не повертати вам недороблене.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
       <span class="eyebrow"><span class="en">Step 04 · Modes</span><span class="ru">Шаг 04 · Режимы</span><span class="uk">Крок 04 · Режими</span></span>
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Three gears.</span><span class="ru">Три передачи.</span><span class="uk">Три передачі.</span></span>
         <span class="kw" style="--i:1"><span class="en">Shift with</span><span class="ru">Переключайте по</span><span class="uk">Перемикайте через</span></span>
@@ -977,6 +1035,32 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div>  <span class="ok">⏵⏵ accept edits on</span>   <span class="cm">shift+tab <span class="en">to cycle</span><span class="ru">— переключить</span><span class="uk">— перемкнути</span></span></div>
 <div>  <span class="cm"><span class="en">other modes: plan mode on · manual (asks every time)</span><span class="ru">другие режимы: plan mode on · manual (спрашивает каждый раз)</span><span class="uk">інші режими: plan mode on · manual (питає щоразу)</span></span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">Modes · in practice</span><span class="ru">Режимы · на практике</span><span class="uk">Режими · на практиці</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Which gear</span><span class="ru">Какая передача</span><span class="uk">Яка передача</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">for which task.</span><span class="ru">под какую задачу.</span><span class="uk">під яку задачу.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">Knowing the three modes is easy; knowing which one to pick is the part that takes a week. Here's that week, compressed:</span>
+        <span class="ru">Знать три режима легко; понимать, какой выбрать, — вот на это уходит неделя. Вот эта неделя, сжатая до таблицы:</span><span class="uk">Знати три режими легко; розуміти, який обрати, — ось на це йде тиждень. Ось цей тиждень, стиснутий у таблицю:</span>
+      </p>
+      <div class="cheat">
+        <div class="row fu" style="--i:0"><code>Manual</code><span><span class="en">your first day in a repo you don't know</span><span class="ru">первый день в незнакомом репозитории</span><span class="uk">перший день у незнайомому репозиторії</span></span></div>
+        <div class="row fu" style="--i:1"><code>Manual</code><span><span class="en">anything touching payments, auth or migrations</span><span class="ru">всё, что трогает платежи, авторизацию или миграции</span><span class="uk">усе, що торкається платежів, авторизації чи міграцій</span></span></div>
+        <div class="row fu" style="--i:2"><code>Manual</code><span><span class="en">someone else's production hotfix</span><span class="ru">чужой хотфикс на проде</span><span class="uk">чужий хотфікс на проді</span></span></div>
+        <div class="row fu" style="--i:3"><code>Plan Mode</code><span><span class="en">"add OAuth" — big, and you're not sure of the shape</span><span class="ru">«добавить OAuth» — крупно, и форма решения неясна</span><span class="uk">«додати OAuth» — велике, і форма рішення неясна</span></span></div>
+        <div class="row fu" style="--i:4"><code>Plan Mode</code><span><span class="en">anything you'd want a second opinion on before starting</span><span class="ru">всё, где перед стартом хочется второго мнения</span><span class="uk">усе, де перед стартом хочеться другої думки</span></span></div>
+        <div class="row fu" style="--i:5"><code>Accept edits</code><span><span class="en">rename a prop across 40 files</span><span class="ru">переименовать проп в 40 файлах</span><span class="uk">перейменувати проп у 40 файлах</span></span></div>
+        <div class="row fu" style="--i:6"><code>Accept edits</code><span><span class="en">regenerate fixtures, fix lint, apply a codemod</span><span class="ru">перегенерировать фикстуры, починить линт, применить кодмод</span><span class="uk">перегенерувати фікстури, полагодити лінт, застосувати кодмод</span></span></div>
+        <div class="row fu" style="--i:7"><code>Accept edits</code><span><span class="en">a task you've already watched it do correctly twice</span><span class="ru">задача, которую вы дважды видели сделанной верно</span><span class="uk">задача, яку ви двічі бачили зробленою правильно</span></span></div>
+      </div>
+      <p class="sub fu" style="--i:8">
+        <span class="en">One pattern runs through all of it: the less certain you are about what should happen, the more you want it to stop and show you first.</span>
+        <span class="ru">Через всё это проходит один принцип: чем меньше вы уверены в том, что должно произойти, тем сильнее вам нужно, чтобы он сначала остановился и показал.</span><span class="uk">Крізь усе це проходить один принцип: що менше ви впевнені в тому, що має статися, то більше вам потрібно, щоб він спершу зупинився й показав.</span>
+      </p>
     </div>
   </section>
 
@@ -1020,6 +1104,39 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       </div>
       <p class="sub fu" style="--i:4"><span class="en">You can add your own: a markdown file in .claude/commands/ becomes a /command for the whole team.</span>
         <span class="ru">Можно добавлять свои: markdown-файл в .claude/commands/ становится /командой для всей команды.</span><span class="uk">Можна додавати свої: markdown-файл у .claude/commands/ стає /командою для всієї команди.</span></p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">Slash commands · a real day</span><span class="ru">Слэш-команды · обычный день</span><span class="uk">Слеш-команди · звичайний день</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Nine commands,</span><span class="ru">Девять команд,</span><span class="uk">Дев’ять команд,</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">one Tuesday.</span><span class="ru">один вторник.</span><span class="uk">один вівторок.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">A list of commands tells you what exists. This tells you the rhythm — which one you reach for, and when.</span>
+        <span class="ru">Список команд говорит, что существует. А вот ритм: за какой командой вы тянетесь и в какой момент.</span><span class="uk">Список команд каже, що існує. А ось ритм: до якої команди ви тягнетеся і в який момент.</span>
+      </p>
+      <div class="term">
+        <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">one working day</span></div>
+        <div class="tbody">
+<div class="ln" style="--i:0"><span class="pp">$</span> claude</div>
+<div class="ln" style="--i:1"><span class="pp">&gt;</span> <span class="kk">/resume</span>        <span class="cm"><span class="en">09:10 — pick up yesterday's half-finished ticket</span><span class="ru">09:10 — поднять вчерашний недоделанный тикет</span><span class="uk">09:10 — підняти вчорашній недороблений тикет</span></span></div>
+<div class="ln" style="--i:2"><span class="pp">&gt;</span> <span class="kk">/context</span>       <span class="cm"><span class="en">09:12 — 72% full from yesterday. Too much.</span><span class="ru">09:12 — 72% занято со вчера. Многовато.</span><span class="uk">09:12 — 72% зайнято з учора. Забагато.</span></span></div>
+<div class="ln" style="--i:3"><span class="pp">&gt;</span> <span class="kk">/compact</span>       <span class="cm"><span class="en">09:12 — squeeze it down, keep the thread</span><span class="ru">09:12 — сжать, но сохранить нить</span><span class="uk">09:12 — стиснути, але зберегти нитку</span></span></div>
+<div class="ln" style="--i:4">&nbsp;</div>
+<div class="ln" style="--i:5"><span class="pp">&gt;</span> <span class="kk">/clear</span>         <span class="cm"><span class="en">11:30 — ticket shipped. New task, clean slate.</span><span class="ru">11:30 — тикет уехал. Новая задача, чистый лист.</span><span class="uk">11:30 — тикет поїхав. Нова задача, чистий аркуш.</span></span></div>
+<div class="ln" style="--i:6"><span class="pp">&gt;</span> <span class="cm">Shift+Tab</span>      <span class="cm"><span class="en">11:31 — into Plan Mode; this one is big</span><span class="ru">11:31 — в Plan Mode; задача крупная</span><span class="uk">11:31 — у Plan Mode; задача велика</span></span></div>
+<div class="ln" style="--i:7"><span class="pp">&gt;</span> <span class="kk">/model</span>         <span class="cm"><span class="en">11:45 — plan approved, switch down for the grind</span><span class="ru">11:45 — план принят, переключаюсь вниз на рутину</span><span class="uk">11:45 — план ухвалено, перемикаюся вниз на рутину</span></span></div>
+<div class="ln" style="--i:8">&nbsp;</div>
+<div class="ln" style="--i:9"><span class="pp">&gt;</span> <span class="kk">/rewind</span>        <span class="cm"><span class="en">14:20 — that refactor went sideways. Undo it.</span><span class="ru">14:20 — рефакторинг пошёл не туда. Откатить.</span><span class="uk">14:20 — рефакторинг пішов не туди. Відкотити.</span></span></div>
+<div class="ln" style="--i:10"><span class="pp">&gt;</span> <span class="kk">/code-review</span>   <span class="cm"><span class="en">16:40 — read my own diff before anyone else does</span><span class="ru">16:40 — прочитать свой дифф раньше других</span><span class="uk">16:40 — прочитати свій диф раніше за інших</span></span></div>
+<div class="ln" style="--i:11"><span class="pp">&gt;</span> <span class="kk">/cost</span>          <span class="cm"><span class="en">17:55 — what did today actually cost?</span><span class="ru">17:55 — во что обошёлся день?</span><span class="uk">17:55 — у що обійшовся день?</span></span></div>
+        </div>
+      </div>
+      <p class="sub fu" style="--i:2">
+        <span class="en">Two of these do most of the work: <code>/clear</code> between unrelated tasks, and <code>/context</code> whenever answers start getting vague.</span>
+        <span class="ru">Две из них делают большую часть работы: <code>/clear</code> между несвязанными задачами и <code>/context</code>, как только ответы начинают расплываться.</span><span class="uk">Дві з них роблять більшу частину роботи: <code>/clear</code> між непов’язаними задачами і <code>/context</code>, щойно відповіді починають розпливатися.</span>
+      </p>
     </div>
   </section>
 
@@ -1072,6 +1189,36 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       </div>
       <p class="sub fu" style="--i:8"><span class="en">Keep it under ~200 lines: Claude reads this file at the start of every session, so every extra line costs attention. Short, specific, ruthlessly pruned.</span>
         <span class="ru">Держите файл короче ~200 строк: Claude читает его в начале каждой сессии, и каждая лишняя строка расходует его внимание. Коротко, конкретно, безжалостно вычищено.</span><span class="uk">Тримайте файл коротшим за ~200 рядків: Claude читає його на початку кожної сесії, і кожен зайвий рядок витрачає його увагу. Коротко, конкретно, безжально вичищено.</span></p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">CLAUDE.md · good vs bad</span><span class="ru">CLAUDE.md · хороший и плохой</span><span class="uk">CLAUDE.md · хороший і поганий</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Two files.</span><span class="ru">Два файла.</span><span class="uk">Два файли.</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">One works.</span><span class="ru">Работает один.</span><span class="uk">Працює один.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">Almost every weak CLAUDE.md fails the same way: it gives advice instead of facts. Compare.</span>
+        <span class="ru">Почти каждый слабый CLAUDE.md проваливается одинаково: он даёт советы вместо фактов. Сравните.</span><span class="uk">Майже кожен слабкий CLAUDE.md провалюється однаково: він дає поради замість фактів. Порівняйте.</span>
+      </p>
+      <div class="grid g2">
+        <div class="card bad fu" style="--i:1">
+          <h4><span class="en">Advice — Claude can only agree with it</span><span class="ru">Советы — с ними можно только согласиться</span><span class="uk">Поради — з ними можна лише погодитися</span></h4>
+          <p style="font-family:var(--mono);font-size:13px;line-height:1.9">
+            <span class="en"># Rules<br>- Write clean, maintainable code<br>- Follow best practices<br>- Be careful with the database<br>- Don't break anything<br>- Use good variable names</span>
+            <span class="ru"># Правила<br>- Пиши чистый, поддерживаемый код<br>- Следуй лучшим практикам<br>- Будь осторожен с базой данных<br>- Ничего не ломай<br>- Используй хорошие имена переменных</span><span class="uk"># Правила<br>- Пиши чистий, підтримуваний код<br>- Дотримуйся найкращих практик<br>- Будь обережний із базою даних<br>- Нічого не ламай<br>- Використовуй хороші імена змінних</span></p>
+        </div>
+        <div class="card hot fu" style="--i:2">
+          <h4><span class="en">Facts — Claude can check itself against them</span><span class="ru">Факты — по ним можно себя проверить</span><span class="uk">Факти — за ними можна себе перевірити</span></h4>
+          <p style="font-family:var(--mono);font-size:13px;line-height:1.9">
+            <span class="en"># Rules<br>- Package manager is pnpm, never npm<br>- Tests live next to source as *.test.ts<br>- Run `pnpm db:generate` after editing schema.prisma<br>- Never edit src/generated/ — it is regenerated<br>- Dates are stored UTC, rendered in the user's zone</span>
+            <span class="ru"># Правила<br>- Пакетный менеджер — pnpm, никогда не npm<br>- Тесты лежат рядом с исходником как *.test.ts<br>- После правки schema.prisma запусти `pnpm db:generate`<br>- Не трогай src/generated/ — он перегенерируется<br>- Даты хранятся в UTC, показываются в зоне пользователя</span><span class="uk"># Правила<br>- Пакетний менеджер — pnpm, ніколи не npm<br>- Тести лежать поруч із джерелом як *.test.ts<br>- Після правки schema.prisma запусти `pnpm db:generate`<br>- Не чіпай src/generated/ — він перегенерується<br>- Дати зберігаються в UTC, показуються в зоні користувача</span></p>
+        </div>
+      </div>
+      <p class="sub fu" style="--i:3">
+        <span class="en">The test for any line you're about to add: could Claude tell whether it broke this rule? "Write clean code" — no. "Never npm" — yes. A rule it can check beats a rule it can only agree with.</span>
+        <span class="ru">Проверка для любой строки, которую вы собираетесь добавить: сможет ли Claude понять, нарушил ли он это правило? «Пиши чистый код» — нет. «Никогда не npm» — да. Правило, которое можно проверить, лучше правила, с которым можно лишь согласиться.</span><span class="uk">Перевірка для будь-якого рядка, який ви збираєтеся додати: чи зможе Claude зрозуміти, чи порушив він це правило? «Пиши чистий код» — ні. «Ніколи не npm» — так. Правило, яке можна перевірити, краще за правило, з яким можна лише погодитися.</span>
+      </p>
     </div>
   </section>
 
@@ -1161,6 +1308,44 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <span class="en"><strong style="color:var(--text)">deny</strong> always beats <strong style="color:var(--text)">allow</strong> — put secrets and destructive commands there.</span>
         <span class="ru"><strong style="color:var(--text)">deny</strong> всегда сильнее <strong style="color:var(--text)">allow</strong> — положите туда секреты и разрушительные команды — и спите спокойно.</span>
         <span class="uk"><strong style="color:var(--text)">deny</strong> завжди сильніший за <strong style="color:var(--text)">allow</strong> — покладіть туди секрети й руйнівні команди та забудьте про тривогу.</span></p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">Permissions · a starter set</span><span class="ru">Permissions · стартовый набор</span><span class="uk">Permissions · стартовий набір</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Paste this,</span><span class="ru">Вставьте это —</span><span class="uk">Вставте це —</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">stop being asked.</span><span class="ru">и вопросы кончатся.</span><span class="uk">і питання скінчаться.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">A working starting point for a typical JavaScript repo. Adjust the command names to your project, commit it, and the whole team stops clicking "yes" forty times a day.</span>
+        <span class="ru">Рабочая отправная точка для типичного JavaScript-репозитория. Подставьте свои команды, закоммитьте — и вся команда перестанет сорок раз в день нажимать «да».</span><span class="uk">Робоча відправна точка для типового JavaScript-репозиторію. Підставте свої команди, закомітьте — і вся команда перестане сорок разів на день натискати «так».</span>
+      </p>
+      <div class="term">
+        <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">.claude/settings.json</span></div>
+        <div class="tbody">
+<div class="ln" style="--i:0">{</div>
+<div class="ln" style="--i:1">  <span class="kk">"permissions"</span>: {</div>
+<div class="ln" style="--i:2">    <span class="kk">"allow"</span>: [</div>
+<div class="ln" style="--i:3">      <span class="ss">"Bash(pnpm test:*)"</span>,     <span class="cm"># <span class="en">run any test script</span><span class="ru">любой тестовый скрипт</span><span class="uk">будь-який тестовий скрипт</span></span></div>
+<div class="ln" style="--i:4">      <span class="ss">"Bash(pnpm lint:*)"</span>,     <span class="cm"># <span class="en">and any lint script</span><span class="ru">и любой скрипт линтера</span><span class="uk">і будь-який скрипт лінтера</span></span></div>
+<div class="ln" style="--i:5">      <span class="ss">"Bash(git status)"</span>,      <span class="cm"># <span class="en">reading git is harmless</span><span class="ru">читать git безопасно</span><span class="uk">читати git безпечно</span></span></div>
+<div class="ln" style="--i:6">      <span class="ss">"Bash(git diff:*)"</span>,</div>
+<div class="ln" style="--i:7">      <span class="ss">"Edit(src/**)"</span>           <span class="cm"># <span class="en">edit our code, nothing outside it</span><span class="ru">править наш код и ничего вне его</span><span class="uk">редагувати наш код і нічого поза ним</span></span></div>
+<div class="ln" style="--i:8">    ],</div>
+<div class="ln" style="--i:9">    <span class="kk">"deny"</span>: [</div>
+<div class="ln" style="--i:10">      <span class="ss">"Read(.env)"</span>,             <span class="cm"># <span class="en">never read our secrets</span><span class="ru">никогда не читать наши секреты</span><span class="uk">ніколи не читати наші секрети</span></span></div>
+<div class="ln" style="--i:11">      <span class="ss">"Read(**/.env)"</span>,</div>
+<div class="ln" style="--i:12">      <span class="ss">"Bash(rm -rf *)"</span>,          <span class="cm"># <span class="en">never delete in bulk</span><span class="ru">никогда не удалять массово</span><span class="uk">ніколи не видаляти масово</span></span></div>
+<div class="ln" style="--i:13">      <span class="ss">"Bash(git push --force *)"</span> <span class="cm"># <span class="en">never rewrite shared history</span><span class="ru">никогда не переписывать общую историю</span><span class="uk">ніколи не переписувати спільну історію</span></span></div>
+<div class="ln" style="--i:14">    ]</div>
+<div class="ln" style="--i:15">  }</div>
+<div class="ln" style="--i:16">}</div>
+        </div>
+      </div>
+      <p class="sub fu" style="--i:2">
+        <span class="en">Note the space in <code>Bash(rm -rf *)</code>: it forces a word boundary, so the rule matches <code>rm -rf build</code> and not some unrelated command that merely starts with the same letters.</span>
+        <span class="ru">Обратите внимание на пробел в <code>Bash(rm -rf *)</code>: он задаёт границу слова, поэтому правило совпадает с <code>rm -rf build</code>, а не с посторонней командой, начинающейся с тех же букв.</span><span class="uk">Зверніть увагу на пробіл у <code>Bash(rm -rf *)</code>: він задає межу слова, тому правило збігається з <code>rm -rf build</code>, а не зі сторонньою командою, що починається з тих самих літер.</span>
+      </p>
     </div>
   </section>
 
@@ -1405,6 +1590,40 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 
   <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
     <div class="inner">
+      <span class="eyebrow"><span class="en">Steps 07–10 · why they exist</span><span class="ru">Шаги 07–10 · зачем это всё</span><span class="uk">Кроки 07–10 · навіщо це все</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Four features.</span><span class="ru">Четыре механизма.</span><span class="uk">Чотири механізми.</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">Four things you stop doing.</span><span class="ru">Четыре дела, которых больше нет.</span><span class="uk">Чотири справи, яких більше немає.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">Skills, subagents, MCP and hooks are the four that sound most abstract. Each one exists to remove one specific chore — here they are as the chore, not the config:</span>
+        <span class="ru">Скиллы, субагенты, MCP и хуки звучат абстрактнее всего. Каждый из них существует, чтобы убрать одну конкретную рутину — вот они как рутина, а не как конфиг:</span><span class="uk">Скіли, субагенти, MCP і хуки звучать найабстрактніше. Кожен із них існує, щоб прибрати одну конкретну рутину — ось вони як рутина, а не як конфіг:</span>
+      </p>
+      <div class="grid g4">
+        <div class="card fu" style="--i:1"><h4><span class="en">Skill</span><span class="ru">Скилл</span><span class="uk">Скіл</span></h4>
+          <p><span class="en"><strong>Before:</strong> every release you retype the same eight steps and forget the third one.</span><span class="ru"><strong>Было:</strong> каждый релиз вы заново диктуете те же восемь шагов и забываете третий.</span><span class="uk"><strong>Було:</strong> кожен реліз ви наново диктуєте ті самі вісім кроків і забуваєте третій.</span></p>
+          <div class="ptask"><span class="en">/pr-ready</span><span class="ru">/pr-ready</span><span class="uk">/pr-ready</span></div>
+          <p style="margin-top:10px"><span class="en">Tests, lint, review, PR description — one word.</span><span class="ru">Тесты, линт, ревью, описание PR — одним словом.</span><span class="uk">Тести, лінт, рев’ю, опис PR — одним словом.</span></p></div>
+        <div class="card fu" style="--i:2"><h4><span class="en">Subagent</span><span class="ru">Субагент</span><span class="uk">Субагент</span></h4>
+          <p><span class="en"><strong>Before:</strong> you stop writing code to review the last thing you wrote.</span><span class="ru"><strong>Было:</strong> вы бросаете писать код, чтобы отревьюить только что написанное.</span><span class="uk"><strong>Було:</strong> ви кидаєте писати код, щоб зробити рев’ю щойно написаного.</span></p>
+          <div class="ptask"><span class="en">Have the reviewer read my diff while you keep implementing.</span><span class="ru">Пусть ревьюер читает мой дифф, а ты продолжай реализацию.</span><span class="uk">Хай рев’юер читає мій диф, а ти продовжуй реалізацію.</span></div>
+          <p style="margin-top:10px"><span class="en">Two things at once, one summary back.</span><span class="ru">Два дела сразу, назад — один итог.</span><span class="uk">Дві справи одразу, назад — один підсумок.</span></p></div>
+        <div class="card fu" style="--i:3"><h4>MCP</h4>
+          <p><span class="en"><strong>Before:</strong> you copy the error out of Sentry and paste it into the chat by hand.</span><span class="ru"><strong>Было:</strong> вы вручную копируете ошибку из Sentry и вставляете её в чат.</span><span class="uk"><strong>Було:</strong> ви вручну копіюєте помилку із Sentry і вставляєте її в чат.</span></p>
+          <div class="ptask"><span class="en">What's our top production error this week? Find the cause and open a PR.</span><span class="ru">Какая у нас самая частая ошибка на проде за неделю? Найди причину и открой PR.</span><span class="uk">Яка в нас найчастіша помилка на проді за тиждень? Знайди причину й відкрий PR.</span></div>
+          <p style="margin-top:10px"><span class="en">It reads Sentry itself.</span><span class="ru">Он сам читает Sentry.</span><span class="uk">Він сам читає Sentry.</span></p></div>
+        <div class="card fu" style="--i:4"><h4><span class="en">Hook</span><span class="ru">Хук</span><span class="uk">Хук</span></h4>
+          <p><span class="en"><strong>Before:</strong> half the pull requests fail CI on formatting nobody ran.</span><span class="ru"><strong>Было:</strong> половина пул-реквестов валит CI на форматировании, которое никто не прогнал.</span><span class="uk"><strong>Було:</strong> половина пул-реквестів валить CI на форматуванні, яке ніхто не прогнав.</span></p>
+          <div class="ptask"><span class="en">PostToolUse → prettier --write</span><span class="ru">PostToolUse → prettier --write</span><span class="uk">PostToolUse → prettier --write</span></div>
+          <p style="margin-top:10px"><span class="en">Every saved file, formatted. No one has to remember.</span><span class="ru">Каждый сохранённый файл отформатирован. Помнить не нужно.</span><span class="uk">Кожен збережений файл відформатовано. Пам’ятати не треба.</span></p></div>
+      </div>
+      <p class="sub fu" style="--i:5">
+        <span class="en">You don't need all four. Most people set up one hook and one skill in the first month and never touch the rest — that alone is worth the afternoon.</span>
+        <span class="ru">Все четыре не нужны. Большинство за первый месяц настраивает один хук и один скилл и больше ничего не трогает — уже ради этого стоит потратить полдня.</span><span class="uk">Усі чотири не потрібні. Більшість за перший місяць налаштовує один хук і один скіл і більше нічого не чіпає — уже заради цього варто витратити півдня.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
       <span class="eyebrow"><span class="en">Context</span><span class="ru">Контекст</span><span class="uk">Контекст</span></span>
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Context is</span><span class="ru">Контекст —</span><span class="uk">Контекст —</span></span>
         <span class="kw grad" style="--i:1"><span class="en">a budget.</span><span class="ru">это бюджет.</span><span class="uk">це бюджет.</span></span></span></h2>
@@ -1432,6 +1651,30 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div>  <span class="cm"><span class="en">conversation</span><span class="ru">переписка</span><span class="uk">листування</span></span>               34k  <span class="cm">17%</span></div>
 <div><span class="cm">→ <span class="en">next task unrelated? /clear beats /compact here</span><span class="ru">следующая задача не связана? тут /clear лучше /compact</span><span class="uk">наступна задача не пов’язана? тут /clear краще за /compact</span></span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
+    <div class="inner">
+      <span class="eyebrow"><span class="en">Clear or compact?</span><span class="ru">Clear или compact?</span><span class="uk">Clear чи compact?</span></span>
+      <h2 class="h1"><span class="kl"><span class="kw"><span class="en">A rule you can follow</span><span class="ru">Правило, которое сработает</span><span class="uk">Правило, яке спрацює</span></span>
+        <span class="kw grad" style="--i:1"><span class="en">at 11pm.</span><span class="ru">и в одиннадцать вечера.</span><span class="uk">і об одинадцятій вечора.</span></span></span></h2>
+      <p class="lead fu" style="--i:0">
+        <span class="en">Four commands manage the agent's memory, and picking between them is the single most common beginner hesitation. The whole decision:</span>
+        <span class="ru">Памятью агента управляют четыре команды, и выбор между ними — самое частое замешательство новичка. Всё решение целиком:</span><span class="uk">Пам’яттю агента керують чотири команди, і вибір між ними — найчастіше вагання новачка. Усе рішення цілком:</span>
+      </p>
+      <div class="cheat">
+        <div class="row fu" style="--i:0"><code>/clear</code><span><span class="en">the next task has nothing to do with this one</span><span class="ru">следующая задача никак не связана с этой</span><span class="uk">наступна задача ніяк не пов’язана з цією</span></span></div>
+        <div class="row fu" style="--i:1"><code>/clear</code><span><span class="en">it started ignoring a rule you gave it earlier</span><span class="ru">он начал игнорировать правило, которое вы дали раньше</span><span class="uk">він почав ігнорувати правило, яке ви дали раніше</span></span></div>
+        <div class="row fu" style="--i:2"><code>/clear</code><span><span class="en">the answers got vague, generic or slightly wrong</span><span class="ru">ответы стали расплывчатыми, общими или слегка неверными</span><span class="uk">відповіді стали розпливчастими, загальними чи трохи хибними</span></span></div>
+        <div class="row fu" style="--i:3"><code>/compact</code><span><span class="en">same task, but the conversation got long</span><span class="ru">задача та же, но переписка стала длинной</span><span class="uk">задача та сама, але листування стало довгим</span></span></div>
+        <div class="row fu" style="--i:4"><code>/resume</code><span><span class="en">you want yesterday's thread back</span><span class="ru">нужно вернуть вчерашнюю нить</span><span class="uk">треба повернути вчорашню нитку</span></span></div>
+        <div class="row fu" style="--i:5"><code>/rewind</code><span><span class="en">you want the last few edits undone</span><span class="ru">нужно откатить несколько последних правок</span><span class="uk">треба відкотити кілька останніх правок</span></span></div>
+      </div>
+      <p class="sub fu" style="--i:6">
+        <span class="en">The difference in one line: <strong>/compact</strong> keeps the thread and drops the detail; <strong>/clear</strong> drops everything except your CLAUDE.md. When in doubt, <strong>/clear</strong> — starting fresh costs you one sentence of re-explaining, and a crowded context costs you every answer after it.</span>
+        <span class="ru">Разница в одну строку: <strong>/compact</strong> сохраняет нить и выбрасывает детали; <strong>/clear</strong> выбрасывает всё, кроме вашего CLAUDE.md. Сомневаетесь — <strong>/clear</strong>: начать заново стоит одного предложения объяснений, а забитый контекст портит каждый следующий ответ.</span><span class="uk">Різниця в один рядок: <strong>/compact</strong> зберігає нитку й викидає деталі; <strong>/clear</strong> викидає все, крім вашого CLAUDE.md. Вагаєтеся — <strong>/clear</strong>: почати спочатку коштує одного речення пояснень, а забитий контекст псує кожну наступну відповідь.</span>
+      </p>
     </div>
   </section>
 
