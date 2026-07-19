@@ -55,7 +55,17 @@ body{
 .navbtns button:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
 .navbtns .pos{font-family:var(--mono);font-size:11.5px;color:var(--dim);
   min-width:5.5em;text-align:center;font-variant-numeric:tabular-nums}
-@media (max-width:620px){.navbtns{bottom:12px}.navbtns button{width:34px;height:34px}}
+@media (max-width:620px){
+  /* one compact glass pill instead of buttons + two loose counters */
+  .navbtns{bottom:calc(12px + env(safe-area-inset-bottom,0px));gap:2px;padding:4px 6px;
+    border:1px solid var(--border);border-radius:999px;background:rgba(14,14,20,.72);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    transition:opacity .3s var(--ease)}
+  .navbtns button{width:40px;height:40px;border:0;background:none;font-size:19px}
+  .navbtns .pos{font-size:12px;min-width:4.6em}
+  /* stay out of the way while the slide is being read */
+  body.scrolling .navbtns{opacity:.18}
+}
 .hud{position:fixed;bottom:20px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
   padding:0 26px;z-index:60;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);pointer-events:none}
 .hud .chap{max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -306,17 +316,24 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 @media (max-width:900px){
   .g3,.g4{grid-template-columns:repeat(2,1fr)}
   .cols,.tsplit{grid-template-columns:1fr;gap:24px}
-  .slide{padding:8vh 6vw 12vh}
+  .slide{padding:8vh 6vw 14vh;align-items:flex-start;
+    overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .slide.divider{align-items:center}
+  .inner{margin:auto 0}
 }
+/* sideways scrollers must keep their gesture to themselves */
+.tw,.code,.tbody,.chips,.pre{overscroll-behavior-x:contain}
+/* edge tap-zones cause accidental slide changes on touch — swipe handles it there */
+@media (hover:none){.zone{display:none}}
 @media (max-width:620px){
   .g2,.g3,.g4{grid-template-columns:1fr}
   .checks,.cheat{grid-template-columns:1fr}
   .grid{margin-top:24px;gap:10px}
   .card{padding:18px 16px}
-  .hud{padding:0 14px;font-size:10px}
-  .slide{align-items:flex-start;padding:74px 6vw 112px;overflow-y:auto}
-  .hud{background:linear-gradient(transparent,rgba(10,10,14,.92) 42%);padding-bottom:8px;
-    height:52px;align-items:flex-end}
+  /* the HUD chapter+count duplicated the nav pill and crowded the bottom edge */
+  .hud{display:none}
+  .slide{align-items:flex-start;overflow-y:auto;
+    padding:74px 6vw calc(96px + env(safe-area-inset-bottom,0px))}
   .slide.divider{align-items:center}
   .inner{margin:auto 0}
   .eyebrow{margin-bottom:16px;font-size:11px}
@@ -1953,6 +1970,7 @@ document.documentElement.classList.add('jsboot');
     slides[idx].classList.remove('active');
     idx=i;
     var s=slides[idx];
+    s.scrollTop=0;                 /* a scrolled slide must not reopen half-way down */
     void s.offsetWidth;
     s.classList.add('active');
     document.body.classList.toggle('nozones', s.classList.contains('mapslide'));
@@ -1994,14 +2012,48 @@ document.documentElement.classList.add('jsboot');
   on('navNext','click',next);
   on('navPrev','click',prev);
 
-  var tx=null;
-  document.addEventListener('touchstart',function(e){tx=e.changedTouches[0].clientX},{passive:true});
+  /* ---- swipe: only when the gesture is unambiguously horizontal ---- */
+  var tx=null,ty=0,tt=0,tScroll=null;
+
+  /* nearest ancestor that can actually scroll on the given axis */
+  function scroller(el,axis){
+    while(el&&el.nodeType===1&&el!==document.body){
+      var st=getComputedStyle(el),
+          ov=axis==='x'?st.overflowX:st.overflowY,
+          can=axis==='x'?el.scrollWidth>el.clientWidth+1:el.scrollHeight>el.clientHeight+1;
+      if((ov==='auto'||ov==='scroll')&&can)return el;
+      el=el.parentNode;
+    }
+    return null;
+  }
+
+  document.addEventListener('touchstart',function(e){
+    if(e.touches.length>1){tx=null;return}           /* pinch-zoom is not a swipe */
+    var t=e.changedTouches[0];
+    tx=t.clientX;ty=t.clientY;tt=Date.now();
+    tScroll=scroller(e.target,'x');                  /* code blocks / tables scroll sideways */
+  },{passive:true});
+
   document.addEventListener('touchend',function(e){
     if(tx===null)return;
-    var dx=e.changedTouches[0].clientX-tx;
-    if(Math.abs(dx)>60){dx<0?next():prev()}
-    tx=null;
+    var t=e.changedTouches[0],
+        dx=t.clientX-tx, dy=t.clientY-ty, dt=Date.now()-tt,
+        sc=tScroll;
+    tx=null;tScroll=null;
+    if(dt>700)return;                                /* slow drag = reading, not navigating */
+    if(Math.abs(dx)<70)return;
+    if(Math.abs(dx)<Math.abs(dy)*1.8)return;         /* vertical intent wins */
+    if(sc)return;      /* started inside a sideways scroller (code, table, chips) — never navigate */
+    dx<0?next():prev();
   },{passive:true});
+
+  /* ---- fade the bottom control out while the slide is being scrolled ---- */
+  var chromeT=null;
+  document.addEventListener('scroll',function(){
+    document.body.classList.add('scrolling');
+    clearTimeout(chromeT);
+    chromeT=setTimeout(function(){document.body.classList.remove('scrolling')},900);
+  },{capture:true,passive:true});
 
 
 /* ============ embedded config file map ============ */
