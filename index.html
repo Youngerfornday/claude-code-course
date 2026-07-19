@@ -611,7 +611,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <div class="grid g4">
         <div class="card fu" style="--i:1"><span class="ic">⌘</span><h4><span class="en">Terminal</span><span class="ru">Терминал</span><span class="uk">Термінал</span></h4>
           <p><span class="en">The original CLI. Full power, any stack.</span><span class="ru">Исходный CLI. Вся мощь, любой стек.</span><span class="uk">Оригінальний CLI. Уся міць, будь-який стек.</span></p></div>
-        <div class="card fu" style="--i:2"><span class="ic">⌥</span><h4><span class="en">IDE</span><span class="ru">IDE</span><span class="uk">IDE</span></h4>
+        <div class="card fu" style="--i:2"><span class="ic">⌥</span><h4>IDE</h4>
           <p><span class="en">VS Code and JetBrains extensions, inline diffs.</span><span class="ru">Расширения для VS Code и JetBrains, диффы прямо в редакторе.</span><span class="uk">Розширення для VS Code і JetBrains, дифи прямо в редакторі.</span></p></div>
         <div class="card fu" style="--i:3"><span class="ic">◱</span><h4><span class="en">Desktop &amp; Web</span><span class="ru">Десктоп и веб</span><span class="uk">Десктоп і веб</span></h4>
           <p><span class="en">Native app and claude.ai/code — parallel sessions in the cloud.</span><span class="ru">Приложение и claude.ai/code — параллельные сессии в облаке.</span><span class="uk">Застосунок і claude.ai/code — паралельні сесії в хмарі.</span></p></div>
@@ -619,11 +619,14 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
           <p><span class="en">Tag @claude on issues and PRs, run headless in pipelines.</span><span class="ru">Тегните @claude в issue или PR, запускайте headless в пайплайнах.</span><span class="uk">Тегніть @claude в issue чи PR, запускайте headless у пайплайнах.</span></p></div>
       </div>
       <div class="ex fu" style="--i:5">
-        <span class="exlab"><span class="en">Same agent, three entry points</span><span class="ru">Один агент, три точки входа</span><span class="uk">Один агент, три точки входу</span></span>
-<div><span class="cm"># <span class="en">terminal — interactive session</span><span class="ru">терминал — интерактивная сессия</span><span class="uk">термінал — інтерактивна сесія</span></span></div>
+        <span class="exlab"><span class="en">Same agent, every surface</span><span class="ru">Один агент, все поверхности</span><span class="uk">Один агент, усі поверхні</span></span>
+<div><span class="cm"># <span class="en">terminal — interactive, or one-shot for scripts</span><span class="ru">терминал — интерактивно или разово, для скриптов</span><span class="uk">термінал — інтерактивно або разово, для скриптів</span></span></div>
 <div><span class="pp">$</span> claude</div>
-<div><span class="cm"># <span class="en">terminal — one-shot, scriptable</span><span class="ru">терминал — разово, для скриптов</span><span class="uk">термінал — разово, для скриптів</span></span></div>
 <div><span class="pp">$</span> claude -p <span class="ss">"summarize what changed in the last 10 commits"</span></div>
+<div><span class="cm"># <span class="en">IDE — same session, diffs inline in the editor</span><span class="ru">IDE — та же сессия, диффы прямо в редакторе</span><span class="uk">IDE — та сама сесія, дифи просто в редакторі</span></span></div>
+<div><span class="pp">$</span> code . <span class="cm">→ ⌘Esc</span></div>
+<div><span class="cm"># <span class="en">desktop &amp; web — no terminal at all</span><span class="ru">десктоп и веб — вообще без терминала</span><span class="uk">десктоп і веб — узагалі без термінала</span></span></div>
+<div>  <span class="ss">claude.ai/code</span></div>
 <div><span class="cm"># <span class="en">GitHub — right in the issue thread</span><span class="ru">GitHub — прямо в треде issue</span><span class="uk">GitHub — прямо в треді issue</span></span></div>
 <div>  <span class="pp">@claude</span> this test is flaky on CI — find out why</div>
       </div>
@@ -646,7 +649,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
           <span class="ru">Предлагает сниппеты, которые вы вставляете руками. Видит только то, что вы прислали. Забывает проект, как только вы закрываете вкладку.</span><span class="uk">Пропонує сніпети, які ви вставляєте вручну. Бачить лише те, що ви надіслали. Забуває проєкт, щойно ви закрили вкладку.</span></p>
         </div>
         <div class="card hot fu" style="--i:1">
-          <h4><span class="en">Claude Code</span><span class="ru">Claude Code</span><span class="uk">Claude Code</span></h4>
+          <h4>Claude Code</h4>
           <p><span class="en">Reads your actual codebase. Edits files, runs tests and git itself. Verifies the result, fixes what broke, and iterates until it works.</span>
           <span class="ru">Читает вашу настоящую кодовую базу. Сам правит файлы, запускает тесты и git. Проверяет результат, чинит сломанное и итерирует, пока не заработает.</span><span class="uk">Читає вашу справжню кодову базу. Сам редагує файли, запускає тести й git. Перевіряє результат, лагодить зламане та ітерує, доки не запрацює.</span></p>
         </div>
@@ -694,7 +697,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       </p>
       <div class="ex fu" style="--i:6">
         <span class="exlab"><span class="en">The same loop, in one real task</span><span class="ru">Тот же цикл на одной реальной задаче</span><span class="uk">Той самий цикл на одній реальній задачі</span></span>
-<div><span class="pp">&gt;</span> <span class="en">The date on invoices is off by one day for EU users</span><span class="ru">The date on invoices is off by one day for EU users</span><span class="uk">The date on invoices is off by one day for EU users</span></div>
+<div><span class="pp">&gt;</span> The date on invoices is off by one day for EU users</div>
 <div><span class="hl">●</span> <span class="cm">1 · <span class="en">understand</span><span class="ru">понять</span><span class="uk">зрозуміти</span></span>  <span class="en">timezone bug, EU only, invoices</span><span class="ru">баг таймзоны, только EU, счета</span><span class="uk">баг таймзони, лише EU, рахунки</span></div>
 <div><span class="hl">●</span> <span class="cm">2 · <span class="en">explore</span><span class="ru">изучить</span><span class="uk">вивчити</span></span>     <span class="en">read invoice.ts, date-utils.ts, 2 tests</span><span class="ru">читаю invoice.ts, date-utils.ts, 2 теста</span><span class="uk">читаю invoice.ts, date-utils.ts, 2 тести</span></div>
 <div><span class="hl">●</span> <span class="cm">3 · <span class="en">act</span><span class="ru">действовать</span><span class="uk">діяти</span></span>        <span class="en">toLocaleDateString() used UTC — switched to user tz</span><span class="ru">toLocaleDateString() брал UTC — перевёл на tz юзера</span><span class="uk">toLocaleDateString() брав UTC — перевів на tz юзера</span></div>
@@ -838,8 +841,8 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <div class="term">
         <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">claude — my-project</span></div>
         <div class="tbody">
-<div class="ln" style="--i:0"><span class="pp">&gt;</span> <span class="en">Add rate limiting to POST /api/login — max 5 attempts</span><span class="ru">Add rate limiting to POST /api/login — max 5 attempts</span><span class="uk">Add rate limiting to POST /api/login — max 5 attempts</span></div>
-<div class="ln" style="--i:1">  <span class="en">per minute per IP. Use our existing Redis client. Add tests.</span><span class="ru">per minute per IP. Use our existing Redis client. Add tests.</span><span class="uk">per minute per IP. Use our existing Redis client. Add tests.</span></div>
+<div class="ln" style="--i:0"><span class="pp">&gt;</span> Add rate limiting to POST /api/login — max 5 attempts</div>
+<div class="ln" style="--i:1">  per minute per IP. Use our existing Redis client. Add tests.</div>
 <div class="ln" style="--i:2">&nbsp;</div>
 <div class="ln" style="--i:3"><span class="hl">●</span> <span class="en">Reading src/middleware, src/lib/redis.ts…</span><span class="ru">Читаю src/middleware, src/lib/redis.ts…</span><span class="uk">Читаю src/middleware, src/lib/redis.ts…</span></div>
 <div class="ln" style="--i:4"><span class="hl">●</span> <span class="en">Edited 3 files · created rateLimit.test.ts</span><span class="ru">Изменил 3 файла · создал rateLimit.test.ts</span><span class="uk">Змінив 3 файли · створив rateLimit.test.ts</span></div>
@@ -862,13 +865,13 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
         <span class="ru">Сколько свободы дать агенту — это регулятор, который вы выставляете под задачу, а не жёсткое правило. Три режима закрывают почти всё:</span><span class="uk">Скільки свободи дати агентові — регулятор, який ви виставляєте під задачу, а не жорстке правило. Три режими закривають майже все:</span>
       </p>
       <div class="grid g3">
-        <div class="card fu" style="--i:0"><h4><span class="en">Manual</span><span class="ru">Manual</span><span class="uk">Manual</span></h4>
+        <div class="card fu" style="--i:0"><h4>Manual</h4>
           <p><span class="en">Asks before every change. Default — and right for anything unfamiliar.</span>
           <span class="ru">Спрашивает перед каждым изменением. По умолчанию — и правильно для всего незнакомого.</span><span class="uk">Питає перед кожною зміною. За замовчуванням — і правильно для всього незнайомого.</span></p></div>
-        <div class="card hot fu" style="--i:1"><h4><span class="en">Plan Mode</span><span class="ru">Plan Mode</span><span class="uk">Plan Mode</span></h4>
+        <div class="card hot fu" style="--i:1"><h4>Plan Mode</h4>
           <p><span class="en">Read-only research first: Claude explores and writes a plan you approve before a single edit. Also via /plan.</span>
           <span class="ru">Сначала только чтение: Claude изучает код и пишет план, который вы одобряете прежде, чем будет сделана хоть одна правка. Также через /plan.</span><span class="uk">Спершу лише читання: Claude вивчає код і пише план, який ви схвалюєте ще до першої правки. Також через /plan.</span></p></div>
-        <div class="card fu" style="--i:2"><h4><span class="en">Accept edits</span><span class="ru">Accept edits</span><span class="uk">Accept edits</span></h4>
+        <div class="card fu" style="--i:2"><h4>Accept edits</h4>
           <p><span class="en">Auto-approves file edits for trusted, well-scoped tasks. You review the full list of changes (the diff) afterwards.</span>
           <span class="ru">Автопринятие правок для доверенных, чётко очерченных задач. Полный список изменений (дифф) проверяете после.</span><span class="uk">Автоприйняття правок для довірених, чітко окреслених задач. Повний список змін (диф) переглядаєте потім.</span></p></div>
       </div>
@@ -1211,7 +1214,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div class="ln" style="--i:1"><span class="ok">✓</span> <span class="en">Added — check status anytime with /mcp</span><span class="ru">Добавлено — статус в любой момент через /mcp</span><span class="uk">Додано — статус будь-якої миті через /mcp</span></div>
 <div class="ln" style="--i:2">&nbsp;</div>
 <div class="ln" style="--i:3"><span class="cm"># <span class="en">and now this just works:</span><span class="ru">и теперь такое просто работает:</span><span class="uk">і тепер таке просто працює:</span></span></div>
-<div class="ln" style="--i:4"><span class="pp">&gt;</span> <span class="en">Find our open PRs older than a week and summarize what blocks them</span><span class="ru">Find our open PRs older than a week and summarize what blocks them</span><span class="uk">Find our open PRs older than a week and summarize what blocks them</span></div>
+<div class="ln" style="--i:4"><span class="pp">&gt;</span> Find our open PRs older than a week and summarize what blocks them</div>
         </div>
       </div>
       <div class="chips">
@@ -1462,7 +1465,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <div class="grid g4">
         <div class="card fu" style="--i:0"><span class="num">1</span><h4><span class="en">Paste the ticket</span><span class="ru">Вставьте тикет</span><span class="uk">Вставте тікет</span></h4>
           <p><span class="en">Requirements, links, screenshots — straight into the prompt.</span><span class="ru">Требования, ссылки, скриншоты — прямо в промпт.</span><span class="uk">Вимоги, посилання, скріншоти — просто в промпт.</span></p></div>
-        <div class="card fu" style="--i:1"><span class="num">2</span><h4><span class="en">Plan Mode</span><span class="ru">Plan Mode</span><span class="uk">Plan Mode</span></h4>
+        <div class="card fu" style="--i:1"><span class="num">2</span><h4>Plan Mode</h4>
           <p><span class="en">Claude explores the code and proposes a plan. You approve it.</span><span class="ru">Claude изучает код и предлагает план. Вы утверждаете.</span><span class="uk">Claude вивчає код і пропонує план. Ви затверджуєте.</span></p></div>
         <div class="card fu" style="--i:2"><span class="num">3</span><h4><span class="en">Implement + tests</span><span class="ru">Реализация + тесты</span><span class="uk">Реалізація + тести</span></h4>
           <p><span class="en">It writes the code, runs the suite, fixes what fails.</span><span class="ru">Он пишет код, гоняет тесты и чинит упавшее.</span><span class="uk">Він пише код, ганяє тести й лагодить те, що впало.</span></p></div>
@@ -1476,7 +1479,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div><span class="pp">&gt;</span> JIRA-482: users can&#39;t remove the last payment method.</div>
 <div>  Expected: block it with a clear error. Plan first.</div>
 <div><span class="hl">●</span> <span class="cm">plan mode</span> <span class="en">3 steps: guard in service, error copy, 2 tests. Approve?</span><span class="ru">3 шага: гард в сервисе, текст ошибки, 2 теста. Утвердить?</span><span class="uk">3 кроки: гард у сервісі, текст помилки, 2 тести. Затвердити?</span></div>
-<div><span class="pp">&gt;</span> <span class="en">approved</span><span class="ru">approved</span><span class="uk">approved</span></div>
+<div><span class="pp">&gt;</span> approved</div>
 <div><span class="hl">●</span> <span class="en">edited billing.service.ts, messages.ts · added 2 tests</span><span class="ru">изменил billing.service.ts, messages.ts · добавил 2 теста</span><span class="uk">змінив billing.service.ts, messages.ts · додав 2 тести</span></div>
 <div><span class="hl">●</span> npm test → 63/63 <span class="ok">✓</span> · /code-review → <span class="ok">0 findings</span></div>
 <div><span class="ok">✓</span> <span class="en">PR #512 opened, JIRA-482 linked</span><span class="ru">Открыт PR #512, JIRA-482 привязан</span><span class="uk">Відкрито PR #512, JIRA-482 зв’язано</span></div>
@@ -1496,7 +1499,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
       <div class="term">
         <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">claude — api-service</span></div>
         <div class="tbody">
-<div class="ln" style="--i:0"><span class="pp">&gt;</span> <span class="en">Production error, ~50/hour. Find the cause and fix it:</span><span class="ru">Production error, ~50/hour. Find the cause and fix it:</span><span class="uk">Production error, ~50/hour. Find the cause and fix it:</span></div>
+<div class="ln" style="--i:0"><span class="pp">&gt;</span> Production error, ~50/hour. Find the cause and fix it:</div>
 <div class="ln" style="--i:1">  TypeError: Cannot read properties of undefined (reading 'userId')</div>
 <div class="ln" style="--i:2">  at SessionService.refresh (session.ts:214)</div>
 <div class="ln" style="--i:3">&nbsp;</div>
@@ -1560,7 +1563,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div class="ln" style="--i:4"><span class="hl">●</span> <span class="en">Analyzed the reference: dark theme, oversized type, glass cards…</span><span class="ru">Разобрал референс: тёмная тема, огромная типографика, стеклянные карточки…</span><span class="uk">Розібрав референс: темна тема, величезна типографіка, скляні картки…</span></div>
 <div class="ln" style="--i:5"><span class="ok">✓</span> landing-draft.html <span class="cm">— <span class="en">open next to the reference and compare</span><span class="ru">откройте рядом с референсом и сравните</span><span class="uk">відкрийте поруч із референсом і порівняйте</span></span></div>
 <div class="ln" style="--i:6">&nbsp;</div>
-<div class="ln" style="--i:7"><span class="pp">&gt;</span> <span class="en">Hero type +20%, try our coral as the accent</span><span class="ru">Hero type +20%, try our coral as the accent</span><span class="uk">Hero type +20%, try our coral as the accent</span></div>
+<div class="ln" style="--i:7"><span class="pp">&gt;</span> Hero type +20%, try our coral as the accent</div>
 <div class="ln" style="--i:8"><span class="ok">✓</span> <span class="en">Updated — iterate until it feels right</span><span class="ru">Обновлено — итерируйте, пока не станет идеально</span><span class="uk">Оновлено — ітеруйте, доки не сяде ідеально</span></div>
         </div>
       </div>
@@ -1586,14 +1589,15 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
             <span class="en">Open SYNAPSE — the live demo →</span><span class="ru">Открыть SYNAPSE — живое демо →</span><span class="uk">Відкрити SYNAPSE — живе демо →</span></a>
         </div>
         <div class="term" style="margin-top:0">
-          <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">claude — the actual prompt</span></div>
+          <div class="tbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tttl">synapse-demo.html</span></div>
           <div class="tbody">
-<div class="ln" style="--i:0"><span class="pp">&gt;</span> Build a one-page site about AI in a maximally</div>
-<div class="ln" style="--i:1">  unique style: a living neural network that reacts</div>
-<div class="ln" style="--i:2">  to the cursor, scramble typography, animated</div>
-<div class="ln" style="--i:3">  counters, a timeline. One HTML file, no libraries.</div>
-<div class="ln" style="--i:4">&nbsp;</div>
-<div class="ln" style="--i:5"><span class="ok">✓</span> synapse-demo.html <span class="cm">— <span class="en">~700 lines, one pass</span><span class="ru">~700 строк, один проход</span><span class="uk">~700 рядків, один прохід</span></span></div>
+<div class="ln" style="--i:0"><span class="ok">✓</span> synapse-demo.html <span class="cm">— <span class="en">one pass</span><span class="ru">один проход</span><span class="uk">один прохід</span></span></div>
+<div class="ln" style="--i:1">&nbsp;</div>
+<div class="ln" style="--i:2">  <span class="cm">·</span> <span class="en">a neural network that follows the cursor</span><span class="ru">нейросеть, следящая за курсором</span><span class="uk">нейромережа, що стежить за курсором</span></div>
+<div class="ln" style="--i:3">  <span class="cm">·</span> <span class="en">an attention map you can probe</span><span class="ru">карта внимания, которую можно потрогать</span><span class="uk">карта уваги, яку можна помацати</span></div>
+<div class="ln" style="--i:4">  <span class="cm">·</span> <span class="en">a temperature dial over a live softmax</span><span class="ru">ползунок температуры над живым softmax</span><span class="uk">повзунок температури над живим softmax</span></div>
+<div class="ln" style="--i:5">&nbsp;</div>
+<div class="ln" style="--i:6"><span class="ok">✓</span> <span class="en">0 dependencies · works offline</span><span class="ru">0 зависимостей · работает офлайн</span><span class="uk">0 залежностей · працює офлайн</span></div>
           </div>
         </div>
       </div>
@@ -1876,7 +1880,7 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 <div class="ln" style="--i:8"><span class="hl">●</span> <span class="en">Console: 0 errors · animations verified</span><span class="ru">Консоль: 0 ошибок · анимации проверены</span><span class="uk">Консоль: 0 помилок · анімації перевірено</span></div>
 <div class="ln" style="--i:9"><span class="ok">✓</span> <span class="en">Done. Interactive, offline, zero dependencies.</span><span class="ru">Готово. Интерактивно, офлайн, ноль зависимостей.</span><span class="uk">Готово. Інтерактивно, офлайн, нуль залежностей.</span></div>
 <div class="ln" style="--i:10">&nbsp;</div>
-<div class="ln" style="--i:11"><span class="pp">&gt;</span> <span class="en">Make the hero glow stronger, counters a bit faster</span><span class="ru">Make the hero glow stronger, counters a bit faster</span><span class="uk">Make the hero glow stronger, counters a bit faster</span></div>
+<div class="ln" style="--i:11"><span class="pp">&gt;</span> Make the hero glow stronger, counters a bit faster</div>
 <div class="ln" style="--i:12"><span class="ok">✓</span> <span class="en">Updated — that's the whole loop. Anything else?</span><span class="ru">Обновлено — вот и весь цикл. Что-то ещё?</span><span class="uk">Оновлено — ось і весь цикл. Щось іще?</span></div>
           </div>
         </div>
