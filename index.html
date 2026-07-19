@@ -428,7 +428,9 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
   .chips{margin-top:22px;gap:8px}
   .chip{padding:7px 13px;font-size:12px}
   .stat{padding:22px 18px}
-  .loop{margin-top:30px}
+  /* the arrows carry the horizontal spacing on desktop (gap is 0 there);
+     hiding them here left the cards touching edge to edge */
+  .loop{margin-top:30px;column-gap:10px;row-gap:10px}
   .loop .arr{display:none}
   .loop .node{flex:1 1 40%;min-width:120px}
   .btn{padding:13px 24px;font-size:14px}
