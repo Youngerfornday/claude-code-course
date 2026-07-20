@@ -912,31 +912,31 @@ html:not(.jsboot) .slide:first-of-type{opacity:1;visibility:visible}
 
   <section class="slide" data-ch-en="02 · Setup" data-ch-ru="02 · Настройка" data-ch-uk="02 · Налаштування">
     <div class="inner">
-      <span class="eyebrow"><span class="en">If the terminal is new to you</span><span class="ru">Если терминал для вас в новинку</span><span class="uk">Якщо термінал для вас новий</span></span>
+      <span class="eyebrow"><span class="en">If the terminal is new to you</span><span class="ru">Если терминал для вас в новинку</span><span class="uk">Якщо ви ще не працювали в терміналі</span></span>
       <h2 class="h1"><span class="kl"><span class="kw"><span class="en">Sixty seconds</span><span class="ru">Шестьдесят секунд</span><span class="uk">Шістдесят секунд</span></span>
         <span class="kw grad" style="--i:1"><span class="en">of terminal.</span><span class="ru">терминала.</span><span class="uk">термінала.</span></span></span></h2>
       <p class="lead fu" style="--i:0">
         <span class="en">The terminal is a window where you type commands instead of clicking. These six are all you need to start — after that, you talk to Claude in ordinary language.</span>
-        <span class="ru">Терминал — это окно, где вы печатаете команды вместо того, чтобы кликать. Этих шести команд хватит, чтобы начать, — а дальше вы говорите с Claude обычным языком.</span><span class="uk">Термінал — це вікно, де ви друкуєте команди замість того, щоб клікати. Цих шести команд вистачить, щоб почати, — а далі ви говорите з Claude звичайною мовою.</span>
+        <span class="ru">Терминал — это окно, где вы печатаете команды вместо того, чтобы кликать. Этих шести команд хватит, чтобы начать, — а дальше вы говорите с Claude обычным языком.</span><span class="uk">Термінал — це вікно, де ви набираєте команди текстом, а не клікаєте мишкою. Цих шести команд вистачить, щоб почати, — а далі ви говорите з Claude звичайною мовою.</span>
       </p>
       <div class="cheat">
-        <div class="row fu" style="--i:0"><code>pwd</code><span><span class="en">which folder am I in right now?</span><span class="ru">в какой папке я сейчас?</span><span class="uk">у якій теці я зараз?</span></span></div>
-        <div class="row fu" style="--i:1"><code>ls</code><span><span class="en">what's inside this folder?</span><span class="ru">что лежит в этой папке?</span><span class="uk">що лежить у цій теці?</span></span></div>
-        <div class="row fu" style="--i:2"><code>cd my-project</code><span><span class="en">go into the folder called my-project</span><span class="ru">зайти в папку my-project</span><span class="uk">зайти в теку my-project</span></span></div>
+        <div class="row fu" style="--i:0"><code>pwd</code><span><span class="en">which folder am I in right now?</span><span class="ru">в какой папке я сейчас?</span><span class="uk">у якій папці я зараз?</span></span></div>
+        <div class="row fu" style="--i:1"><code>ls</code><span><span class="en">what's inside this folder?</span><span class="ru">что лежит в этой папке?</span><span class="uk">що лежить у цій папці?</span></span></div>
+        <div class="row fu" style="--i:2"><code>cd my-project</code><span><span class="en">go into the folder called my-project</span><span class="ru">зайти в папку my-project</span><span class="uk">зайти в папку my-project</span></span></div>
         <div class="row fu" style="--i:3"><code>cd ..</code><span><span class="en">go back out, one level up</span><span class="ru">выйти обратно, на уровень вверх</span><span class="uk">вийти назад, на рівень вище</span></span></div>
-        <div class="row fu" style="--i:4"><code>claude</code><span><span class="en">start the agent here, in this folder</span><span class="ru">запустить агента здесь, в этой папке</span><span class="uk">запустити агента тут, у цій теці</span></span></div>
+        <div class="row fu" style="--i:4"><code>claude</code><span><span class="en">start the agent here, in this folder</span><span class="ru">запустить агента здесь, в этой папке</span><span class="uk">запустити агента тут, у цій папці</span></span></div>
         <div class="row fu" style="--i:5"><code>Ctrl+C</code><span><span class="en">stop whatever is running</span><span class="ru">остановить то, что выполняется</span><span class="uk">зупинити те, що виконується</span></span></div>
       </div>
       <div class="ex fu" style="--i:6">
         <span class="exlab"><span class="en">The whole thing, start to finish</span><span class="ru">Всё целиком, от начала до конца</span><span class="uk">Усе цілком, від початку до кінця</span></span>
 <div><span class="pp">$</span> pwd</div>
-<div>  /Users/you            <span class="cm">← <span class="en">I'm in my home folder</span><span class="ru">я в домашней папке</span><span class="uk">я в домашній теці</span></span></div>
+<div>  /Users/you            <span class="cm">← <span class="en">I'm in my home folder</span><span class="ru">я в домашней папке</span><span class="uk">я в домашній папці</span></span></div>
 <div><span class="pp">$</span> cd projects/website  <span class="cm">← <span class="en">go where the project lives</span><span class="ru">иду туда, где лежит проект</span><span class="uk">іду туди, де лежить проєкт</span></span></div>
 <div><span class="pp">$</span> claude                <span class="cm">← <span class="en">and that's it. Now just type.</span><span class="ru">и всё. Дальше просто пишите.</span><span class="uk">і все. Далі просто пишіть.</span></span></div>
       </div>
       <p class="sub fu" style="--i:7">
         <span class="en">Claude only ever works inside the folder you started it in. That's the whole safety model of "where am I" — so <code>pwd</code> is worth checking before you begin.</span>
-        <span class="ru">Claude работает только внутри той папки, в которой вы его запустили. В этом вся модель безопасности «где я нахожусь» — поэтому перед началом стоит проверить <code>pwd</code>.</span><span class="uk">Claude працює лише всередині тієї теки, у якій ви його запустили. У цьому вся модель безпеки «де я перебуваю» — тому перед початком варто перевірити <code>pwd</code>.</span>
+        <span class="ru">Claude работает только внутри той папки, в которой вы его запустили. В этом вся модель безопасности «где я нахожусь» — поэтому перед началом стоит проверить <code>pwd</code>.</span><span class="uk">Claude працює лише всередині тієї папки, у якій ви його запустили. У цьому вся модель безпеки «де я перебуваю» — тому перед початком варто перевірити <code>pwd</code>.</span>
       </p>
     </div>
   </section>
