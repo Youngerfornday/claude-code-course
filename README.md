@@ -3,24 +3,27 @@
 A practical, trilingual (EN / RU / UA) course on working with Claude Code:
 introduction, step-by-step setup, role playbooks for developers, designers and
 product people, best practices, a workshop with homework, and a built-in
-interactive map of all 20 configuration files.
+interactive map of all 20 configuration files, plus a bonus game.
 
 **By Oleg Osypenko.**
 
 Live: <https://youngerfornday.github.io/claude-code-course/>
 
-- `index.html` — the course (81 slides).
+- `index.html` — the course (82 slides).
 - `synapse-demo.html` — SYNAPSE, an interactive demo page built by Claude Code
   from a single prompt, linked from the designer chapter.
+- `game.html` — the bonus game: a split-screen falling-blocks race against a
+  bot, linked from the closing slide. Trilingual, keyboard and touch.
 - `og.jpg` — link-preview card (1200×630), rendered from the title slide.
 
 Everything is self-contained: no build step, no dependencies, no external
 requests, works offline.
 
-> **Slide numbers changed on 2026-07-20.** The deck grew from 54 to 81 slides
-> when worked examples were added throughout, so any `#N` link shared before
-> that date now points at a different slide. Links into the Contents entries
-> are unaffected — they are generated from live positions.
+> **Slide numbers changed on 2026-07-20.** The deck grew from 54 to 82 slides
+> when worked examples were added throughout and the bonus game was appended,
+> so any `#N` link shared before that date now points at a different slide.
+> Links into the Contents entries are unaffected — they are generated from
+> live positions.
 
 ## Navigating
 

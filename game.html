@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bonus — a game built by one prompt</title>
+<meta name="description" content="A bonus to the Claude Code course: a split-screen falling-blocks match against a bot. One prompt, one file, zero dependencies.">
+<meta name="theme-color" content="#0A0A0E">
+<link rel="canonical" href="https://youngerfornday.github.io/claude-code-course/game.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Claude Code — The Course">
+<meta property="og:title" content="Bonus — a game built by one prompt">
+<meta property="og:description" content="A split-screen falling-blocks match against a bot. Both sides get the same sequence of pieces. One prompt, one file, zero dependencies.">
+<meta property="og:url" content="https://youngerfornday.github.io/claude-code-course/game.html">
+<meta property="og:image" content="https://youngerfornday.github.io/claude-code-course/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bonus — a game built by one prompt">
+<meta name="twitter:description" content="A split-screen falling-blocks match against a bot. One prompt, one file, zero dependencies.">
+<meta name="twitter:image" content="https://youngerfornday.github.io/claude-code-course/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0E'/%3E%3Crect x='20' y='20' width='26' height='26' rx='6' fill='%23E8765A'/%3E%3Crect x='54' y='20' width='26' height='26' rx='6' fill='%23B06AF9'/%3E%3Crect x='20' y='54' width='26' height='26' rx='6' fill='%235AA9FF'/%3E%3C/svg%3E">
+<script>
+/* Entrance animations stay gated until we know JS runs, or a headless
+   renderer and a restored background tab both ship the page blank. */
+document.documentElement.classList.add('js');
+</script>
+<style>
+:root{
+  --bg:#0A0A0E;
+  --bg2:#0E0E14;
+  --text:#F5F5F7;
+  --muted:#9A9AA3;
+  --dim:#8A8A94;
+  --coral:#E8765A;
+  --coral-soft:#FFB088;
+  --violet:#B06AF9;
+  --blue:#5AA9FF;
+  --green:#7ED99A;
+  --border:rgba(255,255,255,.10);
+  --border-ui:rgba(255,255,255,.36);
+  --glass:rgba(255,255,255,.045);
+  --grad:linear-gradient(100deg,#FFB088 0%,#E8765A 32%,#B06AF9 66%,#5AA9FF 100%);
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  /* both grids are sized to a whole number of pixels by fit(), below —
+     a fractional cell size lands blocks on half-pixels and blurs every edge */
+  --cell:22px;
+  --wm:16px;
+  --pad:9px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100dvh;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;overscroll-behavior-y:contain;
+}
+::selection{background:rgba(232,118,90,.35)}
+:focus-visible{outline:2px solid var(--coral-soft);outline-offset:3px}
+
+[data-lang="en"] .ru,[data-lang="en"] .uk{display:none!important}
+[data-lang="ru"] .en,[data-lang="ru"] .uk{display:none!important}
+[data-lang="uk"] .en,[data-lang="uk"] .ru{display:none!important}
+
+/* ---------- ambient chrome, same recipe as the deck ---------- */
+.orbs{position:fixed;inset:0;pointer-events:none;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.42}
+.orb.o1{width:56vw;height:56vw;left:-18vw;top:-24vh;background:radial-gradient(circle,#E8765A33,transparent 65%)}
+.orb.o2{width:48vw;height:48vw;right:-16vw;bottom:-28vh;background:radial-gradient(circle,#B06AF92e,transparent 65%)}
+.orb.o3{width:36vw;height:36vw;right:8vw;top:-16vh;background:radial-gradient(circle,#5AA9FF26,transparent 65%)}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+
+.wrap{position:relative;z-index:2;width:min(1180px,100%);margin:0 auto;
+  padding:22px 16px calc(44px + env(safe-area-inset-bottom,0px))}
+
+/* ---------- top bar ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.back{color:var(--muted);text-decoration:none;font-size:13px;line-height:1;
+  padding:10px 15px;border:1px solid var(--border);border-radius:999px;transition:color .2s var(--ease),border-color .2s var(--ease)}
+.back:hover{color:var(--text);border-color:var(--border-ui)}
+.langs{display:flex;gap:5px}
+.langs button{font:inherit;font-size:12px;line-height:1;letter-spacing:.09em;color:var(--dim);cursor:pointer;
+  background:transparent;border:1px solid var(--border);border-radius:999px;padding:9px 12px;
+  transition:color .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease)}
+.langs button:hover{color:var(--text);border-color:var(--border-ui)}
+.langs button[aria-pressed="true"]{color:var(--bg);background:var(--text);border-color:var(--text)}
+
+/* ---------- the wordmark, assembled out of blocks ---------- */
+.hero{text-align:center;margin:clamp(20px,3.5vw,40px) 0 clamp(14px,2vw,22px)}
+.eyebrow{display:block;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+#wordmark{display:grid;grid-template-columns:repeat(var(--wmc,28),var(--wm));grid-auto-rows:var(--wm);
+  gap:2px;justify-content:center;margin:0 auto;width:max-content}
+#wordmark i{display:block;border-radius:calc(var(--wm)*.26)}
+.js #wordmark i.on{opacity:0}
+.js #wordmark.go i.on{animation:drop .52s var(--ease) var(--d) forwards}
+@keyframes drop{from{opacity:0;transform:translateY(-46px) scale(.72)}to{opacity:1;transform:none}}
+.tagline{margin:18px auto 0;max-width:64ch;color:var(--muted);font-size:clamp(13.5px,1.4vw,15.5px);line-height:1.6}
+.tagline b{color:var(--text);font-weight:600}
+
+/* ---------- the match ---------- */
+.match{display:flex;gap:var(--gap,20px);justify-content:center;align-items:flex-start;margin-top:clamp(16px,2.5vw,26px)}
+.side{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
+.sidehead{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);line-height:1}
+.sidehead b{font-weight:700;letter-spacing:.15em}
+.side.me .sidehead b{color:var(--coral-soft)}
+.side.ai .sidehead b{color:var(--blue)}
+.pip{width:6px;height:6px;border-radius:50%;flex:none}
+.side.me .pip{background:var(--coral)}
+.side.ai .pip{background:var(--blue)}
+
+.wellbox{position:relative;padding:var(--pad);border:1px solid var(--border);
+  border-radius:calc(var(--pad) + 5px);background:rgba(0,0,0,.42)}
+.well{display:grid;grid-template-columns:repeat(10,var(--cell));grid-auto-rows:var(--cell);gap:1px}
+.well b{display:block;border-radius:calc(var(--cell)*.22);background:var(--glass);
+  transition:background .07s linear}
+.well b.gh{background:transparent;box-shadow:inset 0 0 0 2px rgba(255,255,255,.20)}
+.well b.fl{background:#FFF;box-shadow:0 0 12px 2px rgba(255,255,255,.65)}
+
+.veil{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:14px;
+  background:rgba(10,10,14,.87);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  border-radius:calc(var(--pad) + 5px);z-index:3}
+.veil.on{display:grid}
+.veil .vt{font-size:clamp(14px,1.9vw,19px);font-weight:700;line-height:1.25}
+.veil .vs{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.45}
+.veil.win .vt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.stats{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11.5px;color:var(--dim);line-height:1}
+.stats b{color:var(--text);font-weight:600}
+.next{display:grid;grid-template-columns:repeat(4,var(--nx,10px));grid-auto-rows:var(--nx,10px);gap:1px}
+.next b{display:block;border-radius:2px;background:transparent}
+
+/* ---------- controls ---------- */
+.bar{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:clamp(18px,2.5vw,26px)}
+.btn{font:inherit;font-size:14px;font-weight:600;line-height:1;color:#0A0A0E;cursor:pointer;border:0;
+  padding:15px 30px;border-radius:999px;background:var(--grad);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 52px rgba(232,118,90,.4)}
+.btn:active{transform:translateY(0)}
+.diff{display:flex;gap:3px;padding:4px;border:1px solid var(--border);border-radius:999px}
+.diff button{font:inherit;font-size:12.5px;line-height:1;color:var(--dim);cursor:pointer;background:transparent;
+  border:0;border-radius:999px;padding:10px 15px;transition:color .2s var(--ease),background .2s var(--ease)}
+.diff button:hover{color:var(--text)}
+.diff button[aria-pressed="true"]{color:var(--bg);background:var(--text)}
+
+/* reserve two lines: the game-over readout is long enough to wrap, and a
+   reflow there would resize the wells mid-match */
+.status{margin-top:16px;text-align:center;font-size:13.5px;color:var(--muted);line-height:1.5;min-height:3em}
+.status b{color:var(--text)}
+
+.keys{margin:28px auto 0;max-width:620px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:9px 24px;font-size:12.5px;color:var(--dim)}
+.keys div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.keys kbd{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--glass);
+  border:1px solid var(--border);border-radius:5px;padding:3px 7px;white-space:nowrap}
+
+/* the touch pad replaces the key legend wherever there is no hover */
+.pad{display:none;grid-template-columns:repeat(5,1fr);gap:8px;margin:22px auto 0;max-width:460px}
+.pad button{font:inherit;font-size:19px;line-height:1;color:var(--text);cursor:pointer;background:var(--glass);
+  border:1px solid var(--border);border-radius:14px;padding:17px 0;
+  touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.pad button:active{background:rgba(255,255,255,.15)}
+@media (hover:none){.pad{display:grid}.keys{display:none}}
+/* the media query alone misses hybrids and lies in some in-app browsers */
+.touch .pad{display:grid}
+.touch .keys{display:none}
+
+.foot{margin-top:38px;text-align:center;font-size:12px;color:var(--dim);line-height:1.7}
+.foot a{color:var(--muted)}
+.foot a:hover{color:var(--text)}
+
+@media (max-width:620px){
+  .wrap{padding-top:16px}
+  .hero{margin-top:18px}
+  .eyebrow{margin-bottom:16px}
+  .tagline{margin-top:20px;max-width:36ch}
+  .back{padding:9px 13px;font-size:12.5px}
+  .btn{padding:14px 24px}
+  .bar{margin-top:20px}
+  .foot{margin-top:30px}
+}
+/* short viewports: drop the hero copy and tighten every gap before the well
+   is allowed to shrink into unplayability */
+/* a short screen swaps the hero copy for a one-line version rather than
+   dropping the framing altogether */
+.tagline .sm{display:none}
+.compact .tagline .lg{display:none}
+.compact .tagline .sm{display:inline}
+.tiny .tagline{display:none}
+.compact .hero{margin:14px 0 10px}
+.compact .eyebrow{margin-bottom:10px;font-size:9.5px;letter-spacing:.18em}
+.compact .match{margin-top:12px}
+.compact .side{gap:7px}
+.compact .sidehead{font-size:9.5px}
+.compact .stats{font-size:10.5px;gap:9px}
+.compact .bar{margin-top:12px}
+.compact .btn{padding:12px 22px;font-size:13px}
+.compact .diff button{padding:8px 12px;font-size:12px}
+.compact .status{margin-top:8px;min-height:1.6em;font-size:12px}
+.compact .pad{margin-top:10px;gap:6px}
+.compact .pad button{padding:12px 0;font-size:17px}
+.compact .foot{margin-top:24px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js #wordmark i.on{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="orbs" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <div class="top">
+    <a class="back" href="index.html">
+      <span class="en">← Back to the course</span><span class="ru">← Назад к курсу</span><span class="uk">← Назад до курсу</span></a>
+    <div class="langs" role="group" aria-label="Language">
+      <button id="btnEn" type="button" aria-pressed="true">EN</button>
+      <button id="btnRu" type="button" aria-pressed="false">RU</button>
+      <button id="btnUk" type="button" aria-pressed="false">UA</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <span class="eyebrow">
+      <span class="en">Bonus · built by one prompt</span>
+      <span class="ru">Бонус · собрано одним промптом</span>
+      <span class="uk">Бонус · зібрано одним промптом</span></span>
+    <div id="wordmark" role="img" aria-label="Claude"></div>
+    <p class="tagline">
+      <span class="lg">
+        <span class="en">A falling-blocks race against a bot. Both sides get the <b>same sequence of pieces</b>, so a loss is never bad luck. One prompt, one file, zero dependencies.</span>
+        <span class="ru">Гонка в падающих блоках против бота. Обе стороны получают <b>одинаковую последовательность фигур</b>, так что проигрыш не спишешь на удачу. Один промпт, один файл, ноль зависимостей.</span>
+        <span class="uk">Перегони в падаючих блоках проти бота. Обидві сторони отримують <b>однакову послідовність фігур</b>, тож програш не спишеш на удачу. Один промпт, один файл, нуль залежностей.</span>
+      </span>
+      <span class="sm">
+        <span class="en">A race against a bot — <b>same pieces for both sides</b>.</span>
+        <span class="ru">Гонка против бота — <b>фигуры у обеих сторон одинаковые</b>.</span>
+        <span class="uk">Перегони проти бота — <b>фігури в обох сторін однакові</b>.</span>
+      </span>
+    </p>
+  </div>
+
+  <div class="match">
+    <div class="side me">
+      <div class="sidehead"><span class="pip"></span><b><span class="en">You</span><span class="ru">Вы</span><span class="uk">Ви</span></b></div>
+      <div class="wellbox">
+        <div class="well" id="wellMe" role="img"></div>
+        <div class="veil" id="veilMe"><div><div class="vt"></div><div class="vs"></div></div></div>
+      </div>
+      <div class="stats">
+        <span><span class="en">lines</span><span class="ru">линии</span><span class="uk">лінії</span> <b id="lnMe">0</b></span>
+        <span><span class="en">lvl</span><span class="ru">ур.</span><span class="uk">рів.</span> <b id="lvMe">1</b></span>
+        <div class="next" id="nxMe" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="side ai">
+      <div class="sidehead"><span class="pip"></span><b><span class="en">Bot</span><span class="ru">Бот</span><span class="uk">Бот</span></b></div>
+      <div class="wellbox">
+        <div class="well" id="wellAi" role="img"></div>
+        <div class="veil" id="veilAi"><div><div class="vt"></div><div class="vs"></div></div></div>
+      </div>
+      <div class="stats">
+        <span><span class="en">lines</span><span class="ru">линии</span><span class="uk">лінії</span> <b id="lnAi">0</b></span>
+        <span><span class="en">lvl</span><span class="ru">ур.</span><span class="uk">рів.</span> <b id="lvAi">1</b></span>
+        <div class="next" id="nxAi" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar">
+    <button class="btn" id="play" type="button"></button>
+    <div class="diff" role="group" id="diff" aria-label="Bot strength">
+      <button type="button" data-d="0" aria-pressed="false"><span class="en">Easy</span><span class="ru">Спокойно</span><span class="uk">Спокійно</span></button>
+      <button type="button" data-d="1" aria-pressed="true"><span class="en">Even</span><span class="ru">Ровно</span><span class="uk">Рівно</span></button>
+      <button type="button" data-d="2" aria-pressed="false"><span class="en">Hard</span><span class="ru">Жёстко</span><span class="uk">Жорстко</span></button>
+    </div>
+  </div>
+
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+
+  <div class="pad">
+    <button type="button" data-k="left"  aria-label="Move left">←</button>
+    <button type="button" data-k="rot"   aria-label="Rotate">⟳</button>
+    <button type="button" data-k="right" aria-label="Move right">→</button>
+    <button type="button" data-k="soft"  aria-label="Soft drop">↓</button>
+    <button type="button" data-k="hard"  aria-label="Hard drop">⤓</button>
+  </div>
+
+  <div class="keys">
+    <div><span><span class="en">Move</span><span class="ru">Двигать</span><span class="uk">Рухати</span></span><kbd>← →</kbd></div>
+    <div><span><span class="en">Rotate</span><span class="ru">Повернуть</span><span class="uk">Повернути</span></span><kbd>↑ / X / Z</kbd></div>
+    <div><span><span class="en">Soft drop</span><span class="ru">Мягкий сброс</span><span class="uk">М’яке скидання</span></span><kbd>↓</kbd></div>
+    <div><span><span class="en">Hard drop</span><span class="ru">Жёсткий сброс</span><span class="uk">Жорстке скидання</span></span><kbd>Space</kbd></div>
+    <div><span><span class="en">Pause</span><span class="ru">Пауза</span><span class="uk">Пауза</span></span><kbd>P</kbd></div>
+    <div><span><span class="en">Restart</span><span class="ru">Заново</span><span class="uk">Заново</span></span><kbd>R</kbd></div>
+  </div>
+
+  <p class="foot">
+    <span class="en">Part of <a href="index.html">Claude Code — The Course</a>. No build step, no dependencies, works offline.</span>
+    <span class="ru">Часть <a href="index.html">курса по Claude Code</a>. Без сборки, без зависимостей, работает офлайн.</span>
+    <span class="uk">Частина <a href="index.html">курсу з Claude Code</a>. Без збірки, без залежностей, працює офлайн.</span>
+  </p>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+
+var root = document.documentElement;
+
+/* ============================================================
+   language — shares the deck's storage key, so the choice carries over
+   ============================================================ */
+function L(){ return root.getAttribute('data-lang') || 'en'; }
+function tt(o){ return (typeof o === 'string') ? o : (o[L()] || o.en || ''); }
+
+function setLang(l){
+  root.setAttribute('data-lang', l);
+  root.lang = l;
+  ['btnEn','btnRu','btnUk'].forEach(function(id, i){
+    document.getElementById(id).setAttribute('aria-pressed', String(['en','ru','uk'][i] === l));
+  });
+  try{ localStorage.setItem('ccc-lang', l); }catch(e){}
+  paintText();
+  refit();   /* the three languages do not set to the same height */
+}
+document.getElementById('btnEn').onclick = function(){ setLang('en'); };
+document.getElementById('btnRu').onclick = function(){ setLang('ru'); };
+document.getElementById('btnUk').onclick = function(){ setLang('uk'); };
+
+/* ============================================================
+   the wordmark — a 3x5 bitmap per letter, assembled out of blocks
+   ============================================================ */
+var GLYPH = {
+  C:['111','100','100','100','111'],
+  L:['100','100','100','100','111'],
+  A:['111','101','111','101','101'],
+  U:['101','101','101','101','111'],
+  D:['110','101','101','101','110'],
+  E:['111','100','110','100','111']
+};
+var WORD = 'CLAUDE';
+var WM_STRIDE = 5;                              /* 3 columns of glyph, 2 of air */
+var WM_COLS = WORD.length * WM_STRIDE - 2;      /* no trailing gutter */
+var WM_ROWS = 5;
+var WM_TINT = ['#FFB088','#E8765A','#B06AF9','#7A8CFF','#5AA9FF','#7ED99A'];
+var wmEl = document.getElementById('wordmark');
+
+(function buildWordmark(){
+  var html = '', y, x, li, lx, on;
+  for(y = 0; y < WM_ROWS; y++){
+    for(x = 0; x < WM_COLS; x++){
+      li = Math.floor(x / WM_STRIDE); lx = x % WM_STRIDE;
+      on = lx < 3 && GLYPH[WORD[li]][y][lx] === '1';
+      /* the delay rides on a custom property: resetting the animation
+         shorthand later would wipe an inline animation-delay */
+      html += on
+        ? '<i class="on" style="--d:' + (110 + x * 21 + y * 10) + 'ms;background:' + WM_TINT[li] + '"></i>'
+        : '<i></i>';
+    }
+  }
+  wmEl.innerHTML = html;
+  requestAnimationFrame(function(){ wmEl.classList.add('go'); });
+})();
+
+function replayWordmark(){
+  wmEl.classList.remove('go');
+  void wmEl.offsetWidth;
+  wmEl.classList.add('go');
+}
+
+/* ============================================================
+   pieces
+   ============================================================ */
+var COLS = 10, ROWS = 20;
+/* The match is a race, not a survival contest. A well-tuned bot survives
+   essentially forever, so "outlast it" would make the hard setting
+   unwinnable; first to GOAL lines keeps every difficulty beatable and the
+   match around a minute. */
+var GOAL = 12;
+var SHAPES = {
+  I:{c:'#5AA9FF', m:[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]]},
+  O:{c:'#FFB088', m:[[1,1],[1,1]]},
+  T:{c:'#B06AF9', m:[[0,1,0],[1,1,1],[0,0,0]]},
+  S:{c:'#7ED99A', m:[[0,1,1],[1,1,0],[0,0,0]]},
+  Z:{c:'#E8765A', m:[[1,1,0],[0,1,1],[0,0,0]]},
+  J:{c:'#7A8CFF', m:[[1,0,0],[1,1,1],[0,0,0]]},
+  L:{c:'#FFD08A', m:[[0,0,1],[1,1,1],[0,0,0]]}
+};
+var KEYS = ['I','O','T','S','Z','J','L'];
+
+function rotCW(m){
+  var n = m.length, r = [], y, x;
+  for(y = 0; y < n; y++){ r.push([]); for(x = 0; x < n; x++) r[y].push(m[n - 1 - x][y]); }
+  return r;
+}
+/* precompute the four orientations once — the bot's search walks them hard */
+var PIECE = {};
+KEYS.forEach(function(k){
+  var rots = [SHAPES[k].m], i;
+  for(i = 1; i < 4; i++) rots.push(rotCW(rots[i - 1]));
+  PIECE[k] = {c:SHAPES[k].c, r:rots};
+});
+
+/* ------------------------------------------------------------
+   one shared piece stream: both wells read the same indices, so
+   neither side can blame the randomiser
+   ------------------------------------------------------------ */
+var SEQ = [], seqRand = null;
+
+function makeRand(seed){
+  var s = seed >>> 0;
+  return function(){ s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+}
+function resetSeq(seed){ SEQ = []; seqRand = makeRand(seed); }
+function pieceAt(i){
+  while(SEQ.length <= i){
+    var bag = KEYS.slice(), j, k, t;
+    for(j = bag.length - 1; j > 0; j--){
+      k = Math.floor(seqRand() * (j + 1)); t = bag[j]; bag[j] = bag[k]; bag[k] = t;
+    }
+    SEQ = SEQ.concat(bag);
+  }
+  return SEQ[i];
+}
+resetSeq(1);   /* must precede any Well — the constructor pulls its first piece */
+
+/* ============================================================
+   grid helpers — plain data, shared by the renderer and the bot
+   ============================================================ */
+function emptyGrid(){
+  var g = [], y, x;
+  for(y = 0; y < ROWS; y++){ g.push([]); for(x = 0; x < COLS; x++) g[y].push(null); }
+  return g;
+}
+function cloneGrid(g){ return g.map(function(row){ return row.slice(); }); }
+
+function collides(g, key, rot, px, py){
+  var m = PIECE[key].r[rot], n = m.length, y, x, gx, gy;
+  for(y = 0; y < n; y++) for(x = 0; x < n; x++){
+    if(!m[y][x]) continue;
+    gx = px + x; gy = py + y;
+    if(gx < 0 || gx >= COLS || gy >= ROWS) return true;
+    if(gy >= 0 && g[gy][gx]) return true;
+  }
+  return false;
+}
+function stamp(g, key, rot, px, py){
+  var m = PIECE[key].r[rot], n = m.length, y, x;
+  for(y = 0; y < n; y++) for(x = 0; x < n; x++){
+    if(m[y][x] && py + y >= 0) g[py + y][px + x] = PIECE[key].c;
+  }
+}
+function fullRows(g){
+  var rows = [], y, x, full;
+  for(y = 0; y < ROWS; y++){
+    full = true;
+    for(x = 0; x < COLS; x++) if(!g[y][x]){ full = false; break; }
+    if(full) rows.push(y);
+  }
+  return rows;
+}
+function stripRows(g, rows){
+  /* splice from the bottom up, or each removal shifts the indices below it */
+  rows.slice().sort(function(a, b){ return b - a; }).forEach(function(y){ g.splice(y, 1); });
+  while(g.length < ROWS){
+    var r = [], x;
+    for(x = 0; x < COLS; x++) r.push(null);
+    g.unshift(r);
+  }
+}
+function dropY(g, key, rot, px, py){
+  while(!collides(g, key, rot, px, py + 1)) py++;
+  return py;
+}
+
+/* ============================================================
+   a well
+   ============================================================ */
+function Well(wellId, veilId, lnId, lvId, nxId, isBot){
+  this.host  = document.getElementById(wellId);
+  this.veil  = document.getElementById(veilId);
+  this.lnEl  = document.getElementById(lnId);
+  this.lvEl  = document.getElementById(lvId);
+  this.nxEl  = document.getElementById(nxId);
+  this.isBot = isBot;
+
+  var html = '', i;
+  for(i = 0; i < ROWS * COLS; i++) html += '<b></b>';
+  this.host.innerHTML = html;
+  this.cells = [].slice.call(this.host.children);
+
+  html = '';
+  for(i = 0; i < 8; i++) html += '<b></b>';
+  this.nxEl.innerHTML = html;
+  this.nxCells = [].slice.call(this.nxEl.children);
+
+  this.reset();
+}
+
+Well.prototype.reset = function(){
+  this.grid   = emptyGrid();
+  this.shadow = new Array(ROWS * COLS);   /* last painted colour per cell */
+  this.n      = 0;                        /* index into the shared stream */
+  this.lines  = 0;
+  this.level  = 1;
+  this.dead   = false;
+  this.fall   = 0;
+  this.clearing = null;
+  this.plan   = null;
+  this.botAt  = 0;
+  this.cur    = null;
+  this.spawn();
+  this.paintStats();
+};
+
+Well.prototype.interval = function(){ return Math.max(100, 420 - (this.level - 1) * 40); };
+
+Well.prototype.spawn = function(){
+  var key = pieceAt(this.n++);
+  var m = PIECE[key].r[0];
+  this.cur = {key:key, rot:0, x:Math.floor((COLS - m.length) / 2), y:-1};
+  this.plan = null;
+  this.botAt = 0;
+  if(collides(this.grid, key, 0, this.cur.x, this.cur.y)){ this.dead = true; this.cur = null; }
+  this.paintNext();
+};
+
+Well.prototype.move = function(dx){
+  if(!this.cur || this.clearing) return false;
+  if(collides(this.grid, this.cur.key, this.cur.rot, this.cur.x + dx, this.cur.y)) return false;
+  this.cur.x += dx;
+  return true;
+};
+
+Well.prototype.rotate = function(dir){
+  if(!this.cur || this.clearing) return false;
+  var rot = (this.cur.rot + (dir > 0 ? 1 : 3)) % 4;
+  var kicks = [0, -1, 1, -2, 2], i;
+  for(i = 0; i < kicks.length; i++){
+    if(!collides(this.grid, this.cur.key, rot, this.cur.x + kicks[i], this.cur.y)){
+      this.cur.rot = rot;
+      this.cur.x += kicks[i];
+      return true;
+    }
+  }
+  return false;
+};
+
+Well.prototype.step = function(){
+  if(!this.cur || this.clearing) return;
+  if(collides(this.grid, this.cur.key, this.cur.rot, this.cur.x, this.cur.y + 1)) this.lock();
+  else this.cur.y++;
+};
+
+Well.prototype.hardDrop = function(){
+  if(!this.cur || this.clearing) return;
+  this.cur.y = dropY(this.grid, this.cur.key, this.cur.rot, this.cur.x, this.cur.y);
+  this.lock();
+};
+
+Well.prototype.lock = function(){
+  stamp(this.grid, this.cur.key, this.cur.rot, this.cur.x, this.cur.y);
+  this.cur = null;
+  var rows = fullRows(this.grid);
+  if(rows.length){
+    /* hold the board still for a beat, or the clear never reads as an event */
+    this.clearing = {rows:rows, t:0};
+    this.lines += rows.length;
+    this.level = 1 + Math.floor(this.lines / 10);
+    this.paintStats();
+  }else{
+    this.spawn();
+  }
+};
+
+Well.prototype.tickClear = function(dt){
+  if(!this.clearing) return;
+  this.clearing.t += dt;
+  if(this.clearing.t < 200) return;
+  stripRows(this.grid, this.clearing.rows);
+  this.clearing = null;
+  this.spawn();
+};
+
+/* ---------- rendering: diff against the last painted frame ---------- */
+Well.prototype.paint = function(){
+  var buf = new Array(ROWS * COLS), y, x, i, n, m;
+
+  for(y = 0; y < ROWS; y++) for(x = 0; x < COLS; x++) buf[y * COLS + x] = this.grid[y][x];
+
+  if(this.clearing){
+    this.clearing.rows.forEach(function(ry){
+      for(var cx = 0; cx < COLS; cx++) buf[ry * COLS + cx] = 'FLASH';
+    });
+  }
+
+  if(this.cur){
+    m = PIECE[this.cur.key].r[this.cur.rot];
+    n = m.length;
+    var gy = dropY(this.grid, this.cur.key, this.cur.rot, this.cur.x, this.cur.y);
+    for(y = 0; y < n; y++) for(x = 0; x < n; x++){
+      if(!m[y][x]) continue;
+      var ay = gy + y, ax = this.cur.x + x;
+      if(ay >= 0 && !buf[ay * COLS + ax]) buf[ay * COLS + ax] = 'GHOST';
+    }
+    for(y = 0; y < n; y++) for(x = 0; x < n; x++){
+      if(!m[y][x]) continue;
+      var py = this.cur.y + y;
+      if(py >= 0) buf[py * COLS + this.cur.x + x] = PIECE[this.cur.key].c;
+    }
+  }
+
+  for(i = 0; i < buf.length; i++){
+    if(buf[i] === this.shadow[i]) continue;
+    this.shadow[i] = buf[i];
+    var el = this.cells[i];
+    if(buf[i] === 'GHOST'){ el.className = 'gh'; el.style.background = ''; }
+    else if(buf[i] === 'FLASH'){ el.className = 'fl'; el.style.background = ''; }
+    else { el.className = ''; el.style.background = buf[i] || ''; }
+  }
+};
+
+Well.prototype.paintStats = function(){
+  this.lnEl.textContent = this.lines + '/' + GOAL;
+  this.lvEl.textContent = this.level;
+  this.host.setAttribute('aria-label',
+    (this.isBot ? 'Bot' : 'You') + ': ' + this.lines + ' of ' + GOAL + ' lines, level ' + this.level);
+};
+
+Well.prototype.paintNext = function(){
+  var key = pieceAt(this.n), m = PIECE[key].r[0], y, x, i;
+  for(i = 0; i < 8; i++) this.nxCells[i].style.background = '';
+  /* the preview is 4x2 — every piece's spawn orientation fits inside it */
+  for(y = 0; y < Math.min(m.length, 2); y++)
+    for(x = 0; x < Math.min(m.length, 4); x++)
+      if(m[y][x]) this.nxCells[y * 4 + x].style.background = PIECE[key].c;
+};
+
+/* ============================================================
+   the bot — enumerate every landing, score it, then play it out by hand
+   ============================================================ */
+var W_HEIGHT = -0.51, W_LINES = 0.76, W_HOLES = -0.36, W_BUMP = -0.18;
+
+function scoreGrid(g){
+  var heights = [], holes = 0, x, y, h, seen;
+  for(x = 0; x < COLS; x++){
+    h = 0; seen = false;
+    for(y = 0; y < ROWS; y++){
+      if(g[y][x]){ if(!seen){ seen = true; h = ROWS - y; } }
+      else if(seen) holes++;
+    }
+    heights.push(h);
+  }
+  var agg = 0, bump = 0;
+  for(x = 0; x < COLS; x++) agg += heights[x];
+  for(x = 0; x < COLS - 1; x++) bump += Math.abs(heights[x] - heights[x + 1]);
+  return {agg:agg, holes:holes, bump:bump};
+}
+
+function bestPlacement(grid, key, noise){
+  var best = null, rot, x, y, g, cleared, s, v;
+  for(rot = 0; rot < 4; rot++){
+    for(x = -2; x < COLS; x++){
+      if(collides(grid, key, rot, x, -1)) continue;
+      y = dropY(grid, key, rot, x, -1);
+      g = cloneGrid(grid);
+      stamp(g, key, rot, x, y);
+      cleared = fullRows(g);
+      if(cleared.length) stripRows(g, cleared);
+      s = scoreGrid(g);
+      v = W_HEIGHT * s.agg + W_LINES * cleared.length + W_HOLES * s.holes + W_BUMP * s.bump
+        + (noise ? (Math.random() - 0.5) * noise : 0);
+      if(!best || v > best.v) best = {v:v, rot:rot, x:x};
+    }
+  }
+  return best;
+}
+
+/* easy / even / hard: how fast the bot acts, and how sloppy its judgement is.
+   The delay is one beat — one steering input, or one row of descent. The bot
+   never hard-drops: it lives under the same physics the player does, so the
+   difficulty knob reads honestly as "how fast the bot plays". */
+var LEVELS = [{delay:250, noise:2.6}, {delay:135, noise:0.7}, {delay:75, noise:0}];
+var diff = 1;
+
+Well.prototype.beat = function(){
+  return Math.max(45, LEVELS[diff].delay * Math.max(0.45, 1 - (this.level - 1) * 0.06));
+};
+
+Well.prototype.think = function(dt){
+  if(!this.isBot || !this.cur || this.clearing) return;
+  if(!this.plan) this.plan = bestPlacement(this.grid, this.cur.key, LEVELS[diff].noise);
+  if(!this.plan) return;
+
+  this.botAt += dt;
+  if(this.botAt < this.beat()) return;
+  this.botAt = 0;
+
+  /* one input per beat — steer first, then walk the piece down by hand */
+  if(this.cur.rot !== this.plan.rot){
+    if(!this.rotate(1)) this.plan.rot = this.cur.rot;
+    return;
+  }
+  if(this.cur.x !== this.plan.x){
+    if(!this.move(this.cur.x < this.plan.x ? 1 : -1)) this.plan.x = this.cur.x;
+    return;
+  }
+  this.step();
+};
+
+/* ============================================================
+   the match
+   ============================================================ */
+var me = new Well('wellMe', 'veilMe', 'lnMe', 'lvMe', 'nxMe', false);
+var ai = new Well('wellAi', 'veilAi', 'lnAi', 'lvAi', 'nxAi', true);
+
+var STATE = 'idle';          /* idle | running | paused | over */
+var winner = null;
+var last = 0, raf = 0;
+var statusEl = document.getElementById('status');
+var playEl   = document.getElementById('play');
+
+var T = {
+  play:    {en:'Start the match',  ru:'Начать матч',   uk:'Почати матч'},
+  again:   {en:'Play again',       ru:'Ещё раз',       uk:'Ще раз'},
+  restart: {en:'Restart',          ru:'Заново',        uk:'Заново'},
+  resume:  {en:'Resume',           ru:'Продолжить',    uk:'Продовжити'},
+  idle:    {en:'First to {g} lines wins. Press start — or just hit an arrow key.',
+            ru:'Побеждает тот, кто первым соберёт {g} линий. Нажмите старт — или просто любую стрелку.',
+            uk:'Перемагає той, хто першим збере {g} ліній. Натисніть старт — або просто будь-яку стрілку.'},
+  running: {en:'Your move.',       ru:'Ваш ход.',      uk:'Ваш хід.'},
+  paused:  {en:'Paused.',          ru:'Пауза.',        uk:'Пауза.'},
+  youWin:  {en:'You got there first',     ru:'Вы дошли первым',         uk:'Ви дійшли першим'},
+  botWin:  {en:'The bot got there first', ru:'Бот дошёл первым',        uk:'Бот дійшов першим'},
+  youOut:  {en:'You topped out',          ru:'Ваш стакан переполнился', uk:'Ваш стакан переповнився'},
+  botOut:  {en:'The bot topped out',      ru:'Стакан бота переполнился',uk:'Стакан бота переповнився'},
+  draw:    {en:'Dead heat',        ru:'Ничья',         uk:'Нічия'},
+  best:    {en:'your best is {n}', ru:'ваш рекорд — {n}', uk:'ваш рекорд — {n}'},
+  over:    {en:'Topped out',       ru:'Переполнен',    uk:'Переповнено'},
+  lost:    {en:'Outpaced',         ru:'Не успел',      uk:'Не встиг'},
+  won:     {en:'Winner',           ru:'Победа',        uk:'Перемога'},
+  tally:   {en:'{a} lines against {b}', ru:'{a} линий против {b}', uk:'{a} ліній проти {b}'},
+  lines:   {en:'lines',            ru:'линий',         uk:'ліній'}
+};
+function fill(s, map){ return s.replace(/\{(\w+)\}/g, function(_, k){ return map[k]; }); }
+
+function bestScore(){
+  try{ return parseInt(localStorage.getItem('ccc-game-best') || '0', 10) || 0; }catch(e){ return 0; }
+}
+function saveBest(n){
+  try{ if(n > bestScore()) localStorage.setItem('ccc-game-best', String(n)); }catch(e){}
+}
+
+function paintText(){
+  playEl.textContent = tt(
+    STATE === 'over'    ? T.again :
+    STATE === 'paused'  ? T.resume :
+    STATE === 'running' ? T.restart : T.play);
+
+  if(STATE === 'over'){
+    /* name what actually decided it — reaching the target outranks the other
+       well filling up, since both can be true in the same frame */
+    var head = winner === null ? tt(T.draw)
+      : winner === 'me' ? tt(me.lines >= GOAL ? T.youWin : T.botOut)
+      : tt(ai.lines >= GOAL ? T.botWin : T.youOut);
+    var b = bestScore();
+    statusEl.textContent = head + ' — ' + fill(tt(T.tally), {a:me.lines, b:ai.lines})
+      + (b ? ' · ' + fill(tt(T.best), {n:b}) : '');
+  }else{
+    statusEl.textContent = fill(tt(T[STATE] || T.idle), {g:GOAL});
+  }
+
+  paintVeil(me, 'me');
+  paintVeil(ai, 'ai');
+}
+
+function paintVeil(w, who){
+  var on = STATE === 'over';
+  w.veil.classList.toggle('on', on);
+  w.veil.classList.toggle('win', on && winner === who);
+  if(!on) return;
+  w.veil.querySelector('.vt').textContent =
+    (winner === who) ? tt(T.won) : (w.dead ? tt(T.over) : tt(T.lost));
+  w.veil.querySelector('.vs').textContent = w.lines + ' / ' + GOAL + ' ' + tt(T.lines);
+}
+
+function start(){
+  cancelAnimationFrame(raf);            /* a restart mid-match must not leave two loops */
+  resetSeq((Date.now() ^ Math.floor(Math.random() * 0xffffffff)) >>> 0);
+  me.reset();
+  ai.reset();
+  winner = null;
+  STATE = 'running';
+  last = 0;
+  paintText();
+  me.paint();
+  ai.paint();
+  raf = requestAnimationFrame(loop);
+}
+
+function finish(){
+  cancelAnimationFrame(raf);
+  STATE = 'over';
+
+  var meGoal = me.lines >= GOAL, aiGoal = ai.lines >= GOAL;
+  if(meGoal || aiGoal){
+    /* reaching the target outranks anything else; a tie falls back to lines */
+    winner = (meGoal && aiGoal)
+      ? (me.lines === ai.lines ? null : (me.lines > ai.lines ? 'me' : 'ai'))
+      : (meGoal ? 'me' : 'ai');
+  }else if(me.dead && ai.dead){
+    winner = (me.lines === ai.lines) ? null : (me.lines > ai.lines ? 'me' : 'ai');
+  }else{
+    winner = me.dead ? 'ai' : 'me';
+  }
+  saveBest(me.lines);
+  me.paint();
+  ai.paint();
+  paintText();
+  replayWordmark();
+}
+
+function loop(now){
+  raf = requestAnimationFrame(loop);
+  if(STATE !== 'running'){ last = 0; return; }
+
+  var dt = last ? Math.min(now - last, 120) : 16;
+  last = now;
+
+  [me, ai].forEach(function(w){
+    if(w.dead) return;
+    if(w.clearing){ w.tickClear(dt); return; }
+    /* the bot drives its own descent in think(); stacking gravity on top of
+       that would make it fall at two speeds at once */
+    if(w.isBot){ w.think(dt); return; }
+    w.fall += dt;
+    while(w.fall >= w.interval() && !w.clearing && !w.dead && w.cur){
+      w.fall -= w.interval();
+      w.step();
+    }
+  });
+
+  me.paint();
+  ai.paint();
+  /* let a clear finish animating before the veil drops over it */
+  var reached = (me.lines >= GOAL && !me.clearing) || (ai.lines >= GOAL && !ai.clearing);
+  if(me.dead || ai.dead || reached) finish();
+}
+
+/* ---------- input ---------- */
+function act(k){
+  if(STATE === 'idle' || STATE === 'over'){ start(); return; }
+  if(STATE !== 'running' || me.dead) return;
+  if(k === 'left')   me.move(-1);
+  else if(k === 'right')  me.move(1);
+  else if(k === 'rot')    me.rotate(1);
+  else if(k === 'rotccw') me.rotate(-1);
+  else if(k === 'soft'){ me.fall = 0; me.step(); }
+  else if(k === 'hard')   me.hardDrop();
+  me.paint();
+}
+
+function togglePause(){
+  if(STATE === 'running') STATE = 'paused';
+  else if(STATE === 'paused'){ STATE = 'running'; last = 0; }
+  else return;
+  paintText();
+}
+
+document.addEventListener('keydown', function(e){
+  if(e.metaKey || e.ctrlKey || e.altKey) return;
+  var k = e.key;
+  if(k === 'ArrowLeft'){ e.preventDefault(); act('left'); }
+  else if(k === 'ArrowRight'){ e.preventDefault(); act('right'); }
+  else if(k === 'ArrowUp' || k === 'x' || k === 'X' || k === 'ч' || k === 'Ч'){ e.preventDefault(); act('rot'); }
+  else if(k === 'z' || k === 'Z' || k === 'я' || k === 'Я'){ e.preventDefault(); act('rotccw'); }
+  else if(k === 'ArrowDown'){ e.preventDefault(); act('soft'); }
+  else if(k === ' '){ e.preventDefault(); act('hard'); }
+  else if(k === 'p' || k === 'P' || k === 'з' || k === 'З'){ e.preventDefault(); togglePause(); }
+  else if(k === 'r' || k === 'R' || k === 'к' || k === 'К'){ e.preventDefault(); start(); }
+});
+
+playEl.onclick = function(){
+  if(STATE === 'paused') togglePause();
+  else start();
+};
+
+[].slice.call(document.querySelectorAll('.pad button')).forEach(function(b){
+  b.addEventListener('click', function(){ act(b.getAttribute('data-k')); });
+});
+
+var diffEl = document.getElementById('diff');
+diffEl.addEventListener('click', function(e){
+  var b = e.target.closest('button');
+  if(!b) return;
+  diff = parseInt(b.getAttribute('data-d'), 10);
+  [].slice.call(diffEl.children).forEach(function(o){
+    o.setAttribute('aria-pressed', String(o === b));
+  });
+});
+
+/* swipe over the player's well, for thumbs that never reach the pad */
+(function(){
+  var sx = 0, sy = 0, st = 0;
+  var box = me.host.parentNode;
+  box.addEventListener('touchstart', function(e){
+    var t = e.changedTouches[0];
+    sx = t.clientX; sy = t.clientY; st = Date.now();
+  }, {passive:true});
+  box.addEventListener('touchend', function(e){
+    var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+    if(Date.now() - st > 600) return;
+    if(Math.abs(dx) > 28 && Math.abs(dx) > Math.abs(dy)) act(dx > 0 ? 'right' : 'left');
+    else if(dy > 42) act('hard');
+    else if(Math.abs(dx) < 12 && Math.abs(dy) < 12) act('rot');
+  }, {passive:true});
+})();
+
+/* ============================================================
+   sizing — whole-pixel cells, or every block edge lands on a half pixel
+   ============================================================ */
+function fit(){
+  var wrapW = document.querySelector('.wrap').clientWidth;
+  var avail = wrapW - 32;                       /* .wrap horizontal padding */
+  var gap   = avail < 420 ? 12 : 24;
+  var pad   = avail < 420 ? 6 : 9;
+
+  /* two wells: 10 cells + 9 inner gaps + padding + border, twice, plus the gap */
+  var byWidth = Math.floor((avail - gap - 2 * (9 + 2 * pad + 2)) / (2 * COLS));
+  var cap = Math.min(byWidth, 24);
+  var cell = cap;
+
+  root.style.setProperty('--pad', pad + 'px');
+  root.style.setProperty('--gap', gap + 'px');
+  root.style.setProperty('--wmc', WM_COLS);
+  setCell(cell);
+  setWordmark(avail);
+
+  /* Height is settled by measurement, not by a guessed constant for the
+     chrome: header, wordmark and status all change height with the language
+     and the viewport. The pad only exists on touch. */
+  var padEl = document.querySelector('.pad');
+
+  function slackNow(){
+    var anchor = padEl.offsetParent ? padEl : statusEl;
+    return window.innerHeight - (anchor.getBoundingClientRect().bottom + window.scrollY) - 12;
+  }
+  /* Shrink the cell until the controls clear the fold. The cell starts at its
+     cap, so this only ever needs to go downward. One pixel of cell buys ROWS
+     pixels of height — but always take at least one, or a deficit smaller
+     than ROWS rounds to zero and the page stays overflowing. */
+  function settle(floor){
+    var slack;
+    for(var pass = 0; pass < 4; pass++){
+      slack = slackNow();
+      if(slack >= 0) return slack;
+      var next = Math.max(floor, cell + Math.min(-1, Math.floor(slack / ROWS)));
+      if(next === cell) return slack;
+      cell = next;
+      setCell(cell);
+    }
+    return slackNow();
+  }
+
+  /* Escalate only as far as the viewport forces. A roomy well is worth more
+     than the tagline, so the cell shrinks to a comfortable floor first; only
+     a genuinely short screen loses the hero copy, and only then does the
+     well go below 12px. */
+  root.classList.remove('compact', 'tiny');
+  if(settle(12) < 0){
+    root.classList.add('compact');          /* short hero copy, tighter gaps */
+    setWordmark(avail);
+    if(settle(10) < 0){
+      root.classList.add('tiny');           /* no hero copy at all */
+      if(settle(8) < 0) settle(7);
+    }
+  }
+}
+
+function setCell(c){
+  root.style.setProperty('--cell', c + 'px');
+  root.style.setProperty('--nx', Math.max(6, Math.round(c * 0.42)) + 'px');
+}
+
+function setWordmark(avail){
+  var cap = root.classList.contains('compact') ? 12 : 20;
+  /* the glyph columns plus their 2px gutters must clear the viewport */
+  var wm = Math.max(5, Math.min(cap, Math.floor((avail - (WM_COLS - 1) * 2) / WM_COLS)));
+  root.style.setProperty('--wm', wm + 'px');
+}
+
+var fitQueued = false;
+function refit(){
+  if(fitQueued) return;
+  fitQueued = true;
+  requestAnimationFrame(function(){ fitQueued = false; fit(); });
+}
+window.addEventListener('resize', refit);
+window.addEventListener('orientationchange', refit);
+
+/* ---------- boot ---------- */
+if(('ontouchstart' in window) || navigator.maxTouchPoints > 0 ||
+   (window.matchMedia && window.matchMedia('(hover:none)').matches)){
+  root.classList.add('touch');
+}
+
+var saved = 'en';
+try{ saved = localStorage.getItem('ccc-lang') || 'en'; }catch(e){}
+if(['en','ru','uk'].indexOf(saved) < 0) saved = 'en';
+setLang(saved);   /* text first — fit() measures the laid-out page */
+
+fit();
+me.paint();
+ai.paint();
+})();
+</script>
+</body>
+</html>
